@@ -31,7 +31,6 @@ class HomeController extends Controller
 
       $usuario = Usuario::where('email',$request->input('email'))->first();
       $senha = $request->input('senha');
-
       if(Hash::check($senha,$usuario->senha) && $usuario!= null){
           echo 'okay';
       }else{
