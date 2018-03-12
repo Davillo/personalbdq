@@ -22,8 +22,9 @@ class CriarTabelaUsuario extends Migration
             $table->boolean('admin')->default(false);
             $table->string('email',100)->unique();
             $table->string('senha',100);
-            $table->rememberToken();
-            $table->timestamps();
+
+           // $table->integer('curso_id')->unsigned();
+            //$table->foreign('curso_id')->references('id')->on('curso');
         });
     }
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Personalbdq</title>
+    <title>PersonalBDQ</title>
     <!-- Font Awesome -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
@@ -16,11 +16,14 @@
 </head>
 
 <body>
+
+
+
 <header class="container-fluid">
     <div class="page-header">
         <div class="container">
             <nav class="navbar col-lg-12 navbar-dark navbar-transparent">
-                <h2 class="logo">Personalbdq</h2>
+                <h2 class="logo">PersonalBDQ</h2>
                 <button class="btn float-right btn-entrar" href="" data-toggle="modal" data-target="#myModal">Entrar</button>
 
             </nav>
@@ -30,8 +33,6 @@
             assim não passando horas as procurando em seu computador ou internet</p>
     </div>
 </header>
-
-
 <!-- Termino Header -->
 
 <!-- Main -->
@@ -41,13 +42,13 @@
 
             <div class="col-lg-12 col-md-6">
                 <h1 class="text-center sobre" id="sobre">Sobre</h1>
-                <p class="text-center sobre-descricao">Nossa platafoma disponibiliza inumeras funcionalidas para que sua experiência seja a melhor possivel,<br>
+                <p class="text-center sobre-descricao">Nossa platafoma disponibiliza inumeras funcionalidades para que sua experiência seja a melhor possivel,<br>
                     nossa missão principal é satisfazer a necessidade do cliente!!!
                 </p>
             </div>
             <div class="col-lg-12 col-md-6">
                 <h1 class="text-center funcionalidade" id="funcionaalidade">Funcionalidades</h1>
-                <p class="text-center funcionalidade-descricao">Nossa platafoma disponibiliza inumeras funcionalidas para que sua experiência seja a melhor possivel,<br>
+                <p class="text-center funcionalidade-descricao">Nossa platafoma disponibiliza inumeras funcionalidades para que sua experiência seja a melhor possivel,<br>
                     nossa missão principal é satisfazer a necessidade do cliente!!!</p>
             </div>
         </div>
@@ -57,6 +58,7 @@
             <div class="col-md-4">
                 <img class="image center-block" src="img/img1.png" alt="Thumbnail Image">
                 <h4 class="text-center title">GERENCIE SUAS QUESTÕES</h4>
+
             </div>
             <div class="col-md-4">
                 <img class="image center-block" src="img/img2.png" alt="Thumbnail Image">
@@ -65,6 +67,7 @@
             <div class="col-md-4">
                 <img class="image center-block" src="img/img3.png" alt="Thumbnail Image">
                 <h4 class="text-center title">COMPARTILHE SUAS LISTAS</h4>
+
 
             </div>
         </div>
@@ -113,57 +116,26 @@
     <!--/.Copyright-->
 </footer>
 <!-- Termino Footer -->
-<!-- Modal  -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="logo-modal text-center" id="myModalLabel">Personalbdq</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <form method="POST" action="/login">
-                <div class="modal-body">
-                    <div class="row">
-                        <h5 class="text-center" style="margin-left:32%;margin-top:20px;">Acesso ao sistema</h5>
-                    </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">email</i>
-                                </span>
-                            </div>
-                            {{ csrf_field() }}
-                            <input type="text" class="form-control" name="email" placeholder="Email..." id="login" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">vpn_key</i>
-                                </span>
-                            </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha" id="senha" required>
-                        </div>
-                    </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" class="btn btn-modal col-sm-8" value="Entrar"><br>
-                    </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <a class="" style="padding-top: 10px;" href="">Esqueceu a senha?</a>
-                    </div>
-                </div>
-            </form>
-    </div>
-</div>
 
-</div>
-<!-- SCRIPTS -->
+
+<!-- Modal  -->
+@include('inc.modallogin')
+@include('inc.errologin')
+
 <!-- JQuery -->
 <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 </body>
+
+
+@if(isset($erro))
+    <script>
+        $(function(){
+            $('#modalerro').modal('show');
+        });
+    </script>
+@endif
+
 
 </html>

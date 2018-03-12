@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: davil
- * Date: 26/02/2018
- * Time: 12:29
- */
+
 
 namespace App;
 use Illuminate\Notifications\Notifiable;
@@ -18,6 +13,11 @@ class Usuario extends Authenticatable
     protected $hidden = ['senha','remember_token'];
     protected $primaryKey = 'id';
     protected $table = 'usuario';
+
+
+    public function curso(){
+        return $this->hasOne('App\Curso');
+    }
 
 
 }
