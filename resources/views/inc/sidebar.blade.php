@@ -9,43 +9,43 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="active">
+            <li class="@yield('index')">
                 <a href="../examples/dashboard.html">
                     <i class="now-ui-icons design_app"></i>
-                    <p>Inicio</p>
+                    <p>Usuarios</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/icons.html">
                     <i class="now-ui-icons education_atom"></i>
                     <p>Icons</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/map.html">
                     <i class="now-ui-icons location_map-big"></i>
                     <p>Maps</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/notifications.html">
                     <i class="now-ui-icons ui-1_bell-53"></i>
                     <p>Notifications</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/user.html">
                     <i class="now-ui-icons users_single-02"></i>
                     <p>User Profile</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/tables.html">
                     <i class="now-ui-icons design_bullet-list-67"></i>
                     <p>Table List</p>
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="../examples/typography.html">
                     <i class="now-ui-icons text_caps-small"></i>
                     <p>Typography</p>

@@ -16,8 +16,8 @@
     <!-- CSS Files -->
     <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
     <link href="{{asset('/css/now-ui-dashboard.css?v=1.0.1')}}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <!-- Custom -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body class="">

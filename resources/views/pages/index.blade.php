@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('index','active')
+
 @section('conteudo')
 <div class="card-header">
     <div class="row">
@@ -7,50 +9,49 @@
             <h5 class="title pt-2">Usuarios</h5>
         </div>
         <div class="col-md-8 pr-5">
-            <button type="submit" class="btn btn-success float-right">Novo</button>
+            <button type="submit" class="btn btn-success float-right" data-toggle="modal" data-target="#novoModal">Novo</button>
         </div>
     </div>
 </div>
 <div class="card-body">
     <div class="row">
-        <div class="col-10 m-auto">
+        <div class="col-12 m-auto">
             <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Country
-                    </th>
-                    <th>
-                        City
-                    </th>
-                    <th>
-                        Salary
-                    </th>
-                    <th class="text-right">
-                        Operações
-                    </th>
+                <table class="table table-striped">
+                    <thead class="text-primary">
+                        <th>
+                            Matricula
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Senha
+                        </th>
+                        <th>
+                            Operações
+                        </th>
                     </thead>
                     <tbody>
                     <tr>
                         <td>
-                            Dakota Rice
+                            2015103358
                         </td>
                         <td>
-                            Niger
+                            Jaelson dos Santos Daniel
                         </td>
                         <td>
-                            Oud-Turnhout
+                            jaelson.jua@gmail.com
                         </td>
-                        <td class="text-right">
-                            $36,738
+                        <td>
+                            estaaquiasenha
                         </td>
-                        <td class="text-right">
-                            <button type="submit" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></button>
-                            <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">delete</i></button>
-
+                        <td>
+                            <button type="submit" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;" data-toggle="modal" data-target="#editarModal"><i class="material-icons" style="font-size:18px;">mode_edit</i></button>
+                            <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
                         </td>
                     </tr>
                     <tr>
@@ -66,6 +67,10 @@
                         <td class="text-right">
                             $23,789
                         </td>
+                        <td>
+                            <button type="submit" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;" data-toggle="modal" data-target="#editarModal"><i class="material-icons" style="font-size:18px;">mode_edit</i></button>
+                            <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">delete</i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -80,6 +85,11 @@
                         <td class="text-right">
                             $56,142
                         </td>
+                        <td>
+                            <button type="submit" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;" data-toggle="modal" data-target="#editarModal"><i class="material-icons" style="font-size:18px;">mode_edit</i></button>
+                            <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">delete</i></button>
+                        </td>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -88,3 +98,8 @@
     </div>
 </div>
 @endsection
+
+<!-- Modal  -->
+@include('modals.modal_novo_usuario')
+@include('modals.modal_editar_usuario')
+@include('modals.modal_remover_usuario')

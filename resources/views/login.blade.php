@@ -119,7 +119,7 @@
 
 
 <!-- Modal  -->
-@include('inc.modallogin')
+@include('modals.modallogin')
 @include('inc.errologin')
 
 <!-- JQuery -->
