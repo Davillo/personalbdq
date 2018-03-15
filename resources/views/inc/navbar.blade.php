@@ -25,7 +25,7 @@
                             </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Sair</a>
+                            <a class="dropdown-item" href="/logout">Sair</a>
                         </div>
                     </li>
                 </ul>

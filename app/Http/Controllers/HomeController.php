@@ -5,62 +5,43 @@ use App\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Exception;
 
+class HomeController extends Controller{
 
-class HomeController extends Controller
-{
-   public function index(){
+    public function index(){
+       return view('login');
+   }
 
+   public function logout(){
+       Auth::logout();
+       return redirect('/');
+   }
 
-
-     //  $usuario = Usuario::where('email','admin@admin.com')->first();
-    //   if(Hash::check('admin',$usuario->senha)){
-       //    if(  Auth::loginUsingId($usuario->id)){
-     //          return redirect('/teste');
-     //      }
-//       }
-       echo 'index';
-
+    public function home(){
+        if(Auth::check()){
+            return view('pages.dashboard')->with('usuario',Auth::user());
+        }else{
+            return redirect('/');
+        }
    }
 
 
-    public function login()
-    {
-        /*
-         $usuario = Usuario::create(array(
-             'nome' => 'admin',
-             'admin'=> true,
-             'email'=> 'admin@admin.com',
-             'senha'=>bcrypt('admin')
-         ));
-       */
-
-        return view('login');
-    }
-
-
-
     public function efetuarLogin(Request $request){
-
         $erro = 'erro ao logar';
        try{
            $usuario = Usuario::where('email',$request->input('email'))->first();
            $senha = $request->input('senha');
            if(Hash::check($senha,$usuario->senha) && $usuario!= null){
-              return 'okay';
+              $usuario =  Auth::loginUsingId($usuario->id);
+               return redirect('/home')->with('usuario',$usuario);
            }else{
-
-              return view('login')->with('erro',$erro);
+               return view('login')->with('erro',$erro);
            }
-       }catch (\Exception $e){
-
+       }catch (Exception $e){
            $erro = $e->getMessage();
            return view('login')->with('erro',$erro);
-
        }
-
-
-
     }
 
 }

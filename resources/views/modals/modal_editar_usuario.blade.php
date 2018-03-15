@@ -1,4 +1,4 @@
-<div class="modal fade" style="margin-top: 75px;" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
+<div class="modal fade" style="margin-top: 75px;" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
-            <form method="POST" action="/login">
+            <form method="POST" action="/usuario/update/{{$usuario->id}}">
                 <div class="modal-body">
                     <div class="row">
                         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">

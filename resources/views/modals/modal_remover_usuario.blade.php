@@ -10,7 +10,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Remover</button>
+
+              <a href="/usuario/excluir/{{$usuario->id}}">  <button type="button" class="btn btn-danger">Remover</button></a>
             </div>
         </div>
     </div>

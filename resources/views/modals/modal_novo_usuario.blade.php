@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
-            <form method="POST" action="/login">
+            <form method="POST" action="/usuario/inserir">
                 <div class="modal-body">
                     <div class="row">
                         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
@@ -25,8 +25,8 @@
                                     <i class="material-icons">account_box</i>
                                 </span>
                             </div>
-                            {{ csrf_field() }}
-                            <input type="text" class="form-control " name="nome" placeholder="Nome..." id="email" required>
+                            {{csrf_field()}}
+                            <input type="text" class="form-control" name="nome" placeholder="Nome..." id="email" required>
                         </div>
                     </div>
                     <div class="row">
@@ -36,7 +36,7 @@
                                     <i class="material-icons">email</i>
                                 </span>
                             </div>
-                            {{ csrf_field() }}
+                            {{csrf_field()}}
                             <input type="email" class="form-control " name="email" placeholder="Email..." id="email" required>
                         </div>
                     </div>
