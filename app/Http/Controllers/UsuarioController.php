@@ -29,9 +29,9 @@ class UsuarioController extends Controller{
         return view('pages.usuarios')->with('usuarios',$usuarios)->with('usuario',Auth::user());
     }
 
-    public function edit(){
-        $flagEdit = 'flag';
-        return redirect('/usuario')->with('flagEdit',$flagEdit);
+    public function edit($id){
+        $usuario = Usuario::find($id);
+        return view('modals.editar_usuario')->with('usuario',$usuario);
     }
 
     public function update(Request $request){
@@ -43,7 +43,7 @@ class UsuarioController extends Controller{
         //$usuario->curso_id = $request->input('');
 
         if($usuario->save()){
-            return redirect('/usuario')->with('success','Salvo com sucesso!');
+            return redirect('/usuario')->with('success','Editado com sucesso!');
         }
     }
 

@@ -1,12 +1,30 @@
-<div class="modal fade" style="margin-top: 75px;" id="novoModal" tabindex="-1" role="dialog" aria-labelledby="novoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="logo-modal text-center" id="novoModalLabel">Novo Usuario</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
+@extends('layouts.app')
 
+@section('index','active')
+
+@section('conteudo')
+<div class="card-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h5 class="title pt-2">Usuarios</h5>
+        </div>
+
+        <div class="col-md-8 pr-5">
+            <a class="float-right" href="/usuario">
+                <span class="input-group-text" id="basic-addon1">
+                      <i class="material-icons">keyboard_backspace</i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-12 m-auto">
             <form method="POST" action="/usuario/inserir">
+
+                <h3 class="title text-center mb-1" id="novoModalLabel">Novo Usuario</h3>
+
                 <div class="modal-body">
                     <div class="row">
                         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
@@ -59,3 +77,5 @@
         </div>
     </div>
 </div>
+@endsection
+

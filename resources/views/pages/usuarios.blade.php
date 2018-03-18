@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-md-8 pr-5">
-            <button type="submit" class="btn btn-success float-right" data-toggle="modal" data-target="#novoModal">Novo</button>
+            <a class="btn btn-success float-right" href="{{ url('novo_usuario') }}">Novo</a>
         </div>
     </div>
 </div>
@@ -40,19 +40,7 @@
                             <tr>
 
                                 <td>
-                                    <?php if($flagEdit != null){
-                                        echo $flagEdit;
-                                    }
-                                    ?>
 
-                                  <?php
-                                    if($usuario->matricula == null){
-                                        echo 'Não possui';
-                                    }else{
-                                     echo $usuario->matricula;
-                                    }
-
-                                      ?>
                                 </td>
 
                                 <td>
@@ -64,7 +52,7 @@
                                  </td>
                                 <!--data-toggle="modal"-->
                                 <td>
-                                   <a href="/edit"> <button type="submit" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"  data-target="#editarModal"><i class="material-icons" style="font-size:18px;">mode_edit</i></button></a>
+                                    <a href="{{ url('edit/'.$usuario->id) }}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
                                     <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
                                 </td>
                             </tr>
@@ -86,6 +74,4 @@
 @endsection
 
 <!-- Modal  -->
-@include('modals.modal_novo_usuario')
-@include('modals.modal_editar_usuario')
 @include('modals.modal_remover_usuario')

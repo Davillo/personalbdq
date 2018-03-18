@@ -1,12 +1,30 @@
-<div class="modal fade" style="margin-top: 75px;" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="logo-modal text-center" id="editarModalLabel">Editar Usuario</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
+@extends('layouts.app')
 
+@section('index','active')
+
+@section('conteudo')
+<div class="card-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h5 class="title pt-2">Usuarios</h5>
+        </div>
+
+        <div class="col-md-8 pr-5">
+            <a class="float-right" href="/usuario">
+                <span class="input-group-text" id="basic-addon1">
+                      <i class="material-icons">keyboard_backspace</i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-12 m-auto">
             <form method="POST" action="/usuario/update/{{$usuario->id}}">
+
+                <h3 class="title text-center mb-1" id="novoModalLabel">Editar Usuario</h3>
+
                 <div class="modal-body">
                     <div class="row">
                         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
@@ -26,7 +44,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input type="text" class="form-control " name="nome" placeholder="Nome..." id="email" required>
+                            <input value="{{$usuario->nome}}" type="text" class="form-control " name="nome" placeholder="Nome..." id="email" required>
                         </div>
                     </div>
                     <div class="row">
@@ -37,7 +55,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input type="email" class="form-control " name="email" placeholder="Email..." id="email" required>
+                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email..." id="email" required>
                         </div>
                     </div>
                     <div class="row">
@@ -47,11 +65,11 @@
                                     <i class="material-icons">vpn_key</i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
+                            <input value="{{$usuario->senha}}" type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
                         </div>
                     </div>
                     <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="login" name="cadastrar" class="btn btn-modal col-sm-8" value="Atualizar"><br>
+                        <input type="submit" id="login" name="editar" class="btn btn-modal col-sm-8" value="Atualizar"><br>
                     </div>
 
                 </div>
@@ -59,3 +77,5 @@
         </div>
     </div>
 </div>
+@endsection
+
