@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 
 <head>
     <meta charset="utf-8" />
@@ -52,13 +53,7 @@
     </div>
 </div>
 </body>
-@if(isset($flag))
-    <script>
-        $(function(){
-            $('#modalEditarUsuario').modal('show');
-        });
-    </script>
-@endif
+
 <!--   Core JS Files   -->
 
 <script type="text/javascript" src="{{ asset('/js/jquery-3.3.1.min.js') }}"></script>

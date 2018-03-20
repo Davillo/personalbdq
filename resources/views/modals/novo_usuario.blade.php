@@ -9,6 +9,7 @@
             <h5 class="title pt-2">Usuarios</h5>
         </div>
 
+
         <div class="col-md-8 pr-5">
             <a class="float-right" href="/usuario">
                 <span class="input-group-text" id="basic-addon1">
@@ -18,10 +19,11 @@
         </div>
     </div>
 </div>
+
 <div class="card-body">
     <div class="row">
         <div class="col-12 m-auto">
-            <form method="POST" action="/usuario/inserir">
+            <form method="POST" id="dados" action="/usuario/inserir">
 
                 <h3 class="title text-center mb-1" id="novoModalLabel">Novo Usuario</h3>
 
@@ -68,8 +70,30 @@
                             <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
                         </div>
                     </div>
+
+                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="material-icons">
+                                        book
+                                    </i>
+                                </span>
+                        </div>
+                        {{csrf_field()}}
+
+                            @if(count($cursos)>0)
+                            <select name="curso_id" class="col-sm-11" required>
+                                <option value="">Selecione o curso...</option>
+                                    @foreach($cursos as $curso)
+                                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                                    @endforeach
+                            </select>
+                            @endif
+
+                    </div>
+                </div>
                     <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="login" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
+                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
                     </div>
 
                 </div>

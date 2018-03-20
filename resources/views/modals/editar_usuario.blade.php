@@ -21,7 +21,7 @@
 <div class="card-body">
     <div class="row">
         <div class="col-12 m-auto">
-            <form method="POST" action="/usuario/update/{{$usuario->id}}">
+            <form method="POST" action="/usuario/update/{{$usuario->id}}" onsubmit="return(verifica(this))">
 
                 <h3 class="title text-center mb-1" id="novoModalLabel">Editar Usuario</h3>
 
@@ -33,7 +33,7 @@
                                     <i class="material-icons">subtitles</i>
                                 </span>
                             </div>
-                            <input type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" value="2015103358" disabled>
+                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required>
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +65,7 @@
                                     <i class="material-icons">vpn_key</i>
                                 </span>
                             </div>
-                            <input value="{{$usuario->senha}}" type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
+                            <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
                         </div>
                     </div>
                     <div class="text-center" style="margin-bottom: 10px;">

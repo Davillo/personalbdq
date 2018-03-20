@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <div class="table-responsive">
-
+                    Seja bem-vindo, {{Auth::user()->nome}}
                 </div>
             </div>
         </div>
