@@ -14,7 +14,7 @@ class UsuarioController extends Controller{
         $cursos = Curso::all();
         return view('modals.novo_usuario')->with('cursos',$cursos);
     }
-
+    ///
     public function store(Request $request){
 
         $usuario = new Usuario();
