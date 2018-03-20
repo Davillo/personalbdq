@@ -23,7 +23,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="dados" action="/curso/inserir">
+                <form method="POST" id="dados" action="/curso/update/{{$curso->id}}">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Novo Curso</h3>
 
@@ -31,12 +31,12 @@
                         <div class="row">
                             <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
                                 <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">subtitles</i>
-                                </span>
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="material-icons">subtitles</i>
+                                    </span>
                                 </div>
 
-                                <input type="text" class="form-control" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso" required>
+                                <input type="text" class="form-control" value="{{ $curso->nome }}" name="nome" placeholder="Nome do curso" required>
 
                                 </div>
                         </div>
@@ -48,17 +48,28 @@
                                     </span>
                                 </div>
                                 {{csrf_field()}}
-                               <select name="tipo" class="form-control" required>
+
+                                <select class="form-control" name="tipo" required>
                                    <option value="">Selecione o tipo...</option>
-                                   <option value="BACHAREL">Bacharel</option>
-                                   <option value="LICENCIATURA">Licenciatura</option>
-                                   <option value="TECNÓLOGO">Tecnólogo</option>
-                               </select>
+                                   @if($curso->tipo == "BACHAREL")
+                                      <option value="BACHAREL" selected>Bacharel</option>
+                                       <option value="LICENCIATURA">Licenciatura</option>
+                                       <option value="TECNÓLOGO">Tecnólogo</option>
+                                   @elseif($curso->tipo == "LICENCIATURA")
+                                       <option value="BACHAREL">Bacharel</option>
+                                       <option value="LICENCIATURA" selected>Licenciatura</option>
+                                       <option value="TECNÓLOGO">Tecnólogo</option>
+                                   @elseif($curso->tipo == "TECNÓLOGO")
+                                       <option value="BACHAREL">Bacharel</option>
+                                       <option value="LICENCIATURA">Licenciatura</option>
+                                       <option value="TECNÓLOGO" selected>Tecnólogo</option>
+                                   @endif
+                                </select>
                             </div>
                         </div>
 
                         <div class="text-center" style="margin-bottom: 10px;">
-                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
+                            <input type="submit" id="atualizar" name="editar" class="btn btn-modal col-sm-8" value="Atualizar"><br>
                         </div>
 
                     </div>

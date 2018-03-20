@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('index','active')
+@section('musuario','active')
 
 @section('conteudo')
 <div class="card-header">
@@ -21,8 +21,8 @@
 <div class="card-body">
     <div class="row">
         <div class="col-12 m-auto">
-            <form method="POST" action="/usuario/update/{{$usuario->id}}" onsubmit="return(verifica(this))">
-
+            <form method="POST" action="/usuario/update/{{$usuario->id}}">
+                <input type="hidden" name="id" value="{{$usuario->id}}">
                 <h3 class="title text-center mb-1" id="novoModalLabel">Editar Usuario</h3>
 
                 <div class="modal-body">
@@ -33,7 +33,7 @@
                                     <i class="material-icons">subtitles</i>
                                 </span>
                             </div>
-                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required>
+                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula..." required>
                         </div>
                     </div>
                     <div class="row">
@@ -44,7 +44,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input value="{{$usuario->nome}}" type="text" class="form-control " name="nome" placeholder="Nome..." id="email" required>
+                            <input type="text" value="{{$usuario->nome}}" class="form-control " name="nome" placeholder="Nome..." required>
                         </div>
                     </div>
                     <div class="row">
@@ -55,7 +55,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email..." id="email" required>
+                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email..." required>
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +65,7 @@
                                     <i class="material-icons">vpn_key</i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
+                            <input type="password" class="form-control" name="senha" placeholder="Senha..." required>
                         </div>
                     </div>
                     <div class="text-center" style="margin-bottom: 10px;">

@@ -6,6 +6,7 @@ Route::get('/edit/{id}', 'UsuarioController@edit');
 Route::get('/usuario','UsuarioController@show'); //rota listar usuários GET
 Route::get('/usuario/excluir/{id}','UsuarioController@destroy'); //deletar usuário GET
 Route::post('/usuario/inserir','UsuarioController@store'); // rota cadastro usuário POST
+Route::post('/usuario/update/{id}','UsuarioController@update');
 
 
 //Home requests
@@ -20,8 +21,9 @@ Route::post('/login', 'HomeController@efetuarLogin'); // rota de login POST
 Route::get('/novo_curso', 'CursoController@novo');
 Route::get('/curso','CursoController@show');
 Route::get('/curso/edit/{id}','CursoController@edit');
-Route::post('/curso/inserir','CursoController@inserir');
 Route::get('/curso/excluir/{id}','CursoController@destroy'); //deletar curso GET
+Route::post('/curso/inserir','CursoController@inserir');
+Route::post('/curso/update/{id}','CursoController@update');
 
 
 

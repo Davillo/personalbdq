@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('index','active')
+@section('musuario','active')
 
 @section('conteudo')
 <div class="card-header">
@@ -71,32 +71,31 @@
                         </div>
                     </div>
 
-                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                        <div class="input-group-prepend">
+                    <div class="row">
+                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="material-icons">
                                         book
                                     </i>
                                 </span>
+                            </div>
+                                {{csrf_field()}}
+
+                                @if(count($cursos)>0)
+                                    <select name="curso_id" class="form-control" required>
+                                        <option value="">Selecione o curso...</option>
+                                        @foreach($cursos as $curso)
+                                            <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                         </div>
-                        {{csrf_field()}}
-
-                            @if(count($cursos)>0)
-                            <select name="curso_id" class="col-sm-11" required>
-                                <option value="">Selecione o curso...</option>
-                                    @foreach($cursos as $curso)
-                                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                                    @endforeach
-                            </select>
-                            @endif
-
                     </div>
                 </div>
                     <div class="text-center" style="margin-bottom: 10px;">
                         <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
                     </div>
-
-                </div>
             </form>
         </div>
     </div>

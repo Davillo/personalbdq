@@ -37,11 +37,11 @@ class UsuarioController extends Controller{
 
     public function edit($id){
         $usuario = Usuario::find($id);
-        return view('modals.editar_usuario');
+        return view('modals.editar_usuario')->with('usuario',$usuario);
     }
 
     public function update(Request $request){
-        $usuario = find($request->input('id'));
+        $usuario = Usuario::find($request->input('id'));
         $usuario->email = $request->input('email');
         $usuario->nome = $request->input('nome');
         $usuario->senha = bcrypt($request->input('senha'));

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('index','active')
+@section('mcurso','active')
 
 @section('conteudo')
     <div class="card-header">
