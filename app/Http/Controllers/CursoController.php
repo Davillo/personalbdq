@@ -12,12 +12,13 @@ class CursoController extends Controller
     }
 
     public function show(){
-        $cursos = Curso::all();
+        $cursos = Curso::orderBy('nome','asc')->get();
         return view('pages.cursos')->with('cursos',$cursos);
     }
 
     public function inserir(Request $request){
         $curso = new Curso();
+
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
 
@@ -33,6 +34,7 @@ class CursoController extends Controller
     }
 
     public function update(Request $request){
+
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');

@@ -23,7 +23,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="dados" action="/curso/update/{{$curso->id}}">
+                <form method="POST" action="/curso/update">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Novo Curso</h3>
 
@@ -35,7 +35,7 @@
                                         <i class="material-icons">subtitles</i>
                                     </span>
                                 </div>
-
+                                <input type="hidden" class="form-control" value="{{ $curso->id }}" name="id" required>
                                 <input type="text" class="form-control" value="{{ $curso->nome }}" name="nome" placeholder="Nome do curso" required>
 
                                 </div>

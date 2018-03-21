@@ -21,7 +21,7 @@
                 <table class="table table-striped">
                     <thead class="text-primary">
                         <th>
-                            Matricula
+                            Matrícula
                         </th>
                         <th>
                             Nome

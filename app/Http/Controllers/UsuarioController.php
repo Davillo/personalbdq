@@ -31,7 +31,7 @@ class UsuarioController extends Controller{
     }
 
     public function show(){
-        $usuarios = Usuario::orderBy('id','asc')->get();
+        $usuarios = Usuario::orderBy('id','desc')->get();
         return view('pages.usuarios')->with('usuarios',$usuarios);
     }
 
@@ -44,8 +44,13 @@ class UsuarioController extends Controller{
         $usuario = Usuario::find($request->input('id'));
         $usuario->email = $request->input('email');
         $usuario->nome = $request->input('nome');
-        $usuario->senha = bcrypt($request->input('senha'));
         $usuario->matricula = $request->input('matricula');
+
+        if($request->input('senha') == null){
+            $usuario->senha = $usuario->senha;
+       }else{
+            $usuario->senha = bcrypt($request->input('senha'));
+        }
         //$usuario->curso_id = $request->input('');
 
         if($usuario->save()){

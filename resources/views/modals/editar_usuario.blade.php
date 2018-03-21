@@ -21,7 +21,7 @@
 <div class="card-body">
     <div class="row">
         <div class="col-12 m-auto">
-            <form method="POST" action="/usuario/update/{{$usuario->id}}">
+            <form method="POST" action="/usuario/update">
                 <input type="hidden" name="id" value="{{$usuario->id}}">
                 <h3 class="title text-center mb-1" id="novoModalLabel">Editar Usuario</h3>
 
@@ -65,7 +65,7 @@
                                     <i class="material-icons">vpn_key</i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha..." required>
+                            <input type="password" class="form-control" name="senha" placeholder="Senha...">
                         </div>
                     </div>
                     <div class="text-center" style="margin-bottom: 10px;">
