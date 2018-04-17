@@ -25,6 +25,13 @@ Route::get('/curso/excluir/{id}','CursoController@destroy'); //deletar curso GET
 Route::post('/curso/inserir','CursoController@inserir');
 Route::post('/curso/update','CursoController@update');
 
+//Lista
+//Route::get('/nova_lista', 'ListaController@nova');
+//Route::get('/curso','CursoController@show');
+//Route::get('/curso/edit/{id}','CursoController@edit');
+//Route::get('/curso/excluir/{id}','CursoController@destroy'); //deletar curso GET
+//Route::post('/curso/inserir','CursoController@inserir');
+//Route::post('/curso/update','CursoController@update');
 
 
 

@@ -16,15 +16,19 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                     <p>Usuarios</p>
                 </a>
             </li>
-
-
-                <li class="@yield('mcurso')">
-                    <a href="/curso">
-                        <i class="now-ui-icons education_agenda-bookmark"></i>
-                        <p>Cursos</p>
-                    </a>
-                </li>
-                <?php }?>
+            <li class="@yield('mcurso')">
+                 <a href="/curso">
+                     <i class="now-ui-icons education_agenda-bookmark"></i>
+                     <p>Cursos</p>
+                 </a>
+            </li>
+            <li class="@yield('mlistas')">
+                 <a href="/listas">
+                      <i class="now-ui-icons education_agenda-bookmark"></i>
+                      <p>Listas</p>
+                 </a>
+            </li>
+            <?php }?>
         </ul>
     </div>
 </div>
