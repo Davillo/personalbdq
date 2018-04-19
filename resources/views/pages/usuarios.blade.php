@@ -59,6 +59,7 @@
                                 <td>
                                     <a href="{{ url('edit/'.$usuario->id) }}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
                                     <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
+                                    @include('modals.modal_remover_usuario')
                                 </td>
                             </tr>
                         @endforeach
@@ -76,4 +77,3 @@
 @endsection
 
 <!-- Modal  -->
-@include('modals.modal_remover_usuario')

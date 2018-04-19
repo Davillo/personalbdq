@@ -11,7 +11,7 @@
 
 
         <div class="col-md-8 pr-5">
-            <a class="float-right" href="/usuario">
+            <a class="float-right" href="/listas">
                 <span class="input-group-text" id="basic-addon1">
                       <i class="material-icons">keyboard_backspace</i>
                 </span>
@@ -47,7 +47,7 @@
                                 </span>
                             </div>
                             {{csrf_field()}}
-                            <textarea type="text" class="form-control " name="descricao" placeholder="Descrição..." id="descricao" required/>
+                            <textarea class="form-control " name="descricao" placeholder="Descrição..." id="descricao" maxlength="255" required></textarea>
                         </div>
                     </div>
                 </div>

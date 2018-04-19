@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="{{ url('/nova_lista') }}">Novo</a>
+                <a class="btn btn-success float-right" href="{{ url('/nova_lista/')}}">Nova</a>
             </div>
         </div>
     </div>
@@ -21,54 +21,40 @@
                     <table class="table table-striped">
                         <thead class="text-primary">
                         <th>
-                            Nome do curso
-                        </th>
-                        <th>
-                            Tipo
-                        </th>
-
-                        <th>
-                            Operações
+                            Minhas Listas
                         </th>
                         </thead>
                         <tbody>
-
-                            @if(count($cursos)>0)
-                                @foreach($cursos as $curso)
+                        @if(count($listas)>0)
+                            @foreach($listas as $lista)
                                 <tr>
 
                                     <td>
-
-                                        {{$curso->nome}}
+                                        {{$lista->nome}}
                                     </td>
 
                                     <td>
-                                        {{$curso->tipo}}
+                                        {{$lista->descricao}}
+                                    </td>
+
+                                    <td>
+                                        {{$lista->created_at}}
                                     </td>
 
 
-
                                     <td>
-                                        <a href="/curso/edit/{{$curso->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
+                                        <a href="/lista/edit/{{$lista->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
                                         <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
+                                        @include('modals.modal_remover_lista')
                                     </td>
                                 </tr>
-                                @endforeach
-                            @else
-                                <td>
-                                    <tr>Nenhum registro cadastrado</tr>
-                                </td>
-                            @endif
-
-
-
-
-
+                            @endforeach
+                        @else
+                            <tr>
+                                <td>Nenhuma lista foi encontrada</td>
+                            </tr>
+                        @endif
                         </tbody>
-
-
-
-
                     </table>
                 </div>
             </div>
@@ -77,4 +63,3 @@
 @endsection
 
 <!-- Modal  -->
-@include('modals.modal_remover_curso')

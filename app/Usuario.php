@@ -19,5 +19,8 @@ class Usuario extends Authenticatable
         return $this->hasOne('App\Curso');
     }
 
+    public function listaQuestao(){
+        return $this->hasMany('App\ListaQuestao');
+    }
 
 }
