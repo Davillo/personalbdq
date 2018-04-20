@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="{{ url('/nova_lista/')}}">Nova</a>
+                <a class="btn btn-success float-right" href="{{ url('/nova_lista/')}}">Nova Lista</a>
             </div>
         </div>
     </div>
@@ -21,8 +21,21 @@
                     <table class="table table-striped">
                         <thead class="text-primary">
                         <th>
-                            Minhas Listas
+                           Nome
                         </th>
+
+                        <th>
+                            Descrição
+                        </th>
+
+                        <th>
+                            Data de criação
+                        </th>
+
+                        <th>
+                            Operações
+                        </th>
+
                         </thead>
                         <tbody>
                         @if(count($listas)>0)
@@ -38,7 +51,11 @@
                                     </td>
 
                                     <td>
-                                        {{$lista->created_at}}
+
+                                        <?php $data = new DateTime($lista->created_at);
+                                        echo $data->format('d/m/y');
+                                        ?>
+
                                     </td>
 
 

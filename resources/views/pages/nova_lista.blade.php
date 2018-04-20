@@ -52,7 +52,7 @@
                     </div>
                 </div>
                     <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
+                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="SALVAR"><br>
                     </div>
             </form>
         </div>

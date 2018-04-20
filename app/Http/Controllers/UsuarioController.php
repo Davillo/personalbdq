@@ -12,7 +12,7 @@ class UsuarioController extends Controller{
 
     public function novo(){
         $cursos = Curso::all();
-        return view('modals.novo_usuario')->with('cursos',$cursos);
+        return view('pages.novo_usuario')->with('cursos',$cursos);
     }
 
     public function store(Request $request){
@@ -37,7 +37,7 @@ class UsuarioController extends Controller{
 
     public function edit($id){
         $usuario = Usuario::find($id);
-        return view('modals.editar_usuario')->with('usuario',$usuario);
+        return view('pages.editar_usuario')->with('usuario',$usuario);
     }
 
     public function update(Request $request){

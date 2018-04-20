@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-md-8 pr-5">
-            <a class="btn btn-success float-right" href="{{ url('novo_usuario') }}">Novo</a>
+            <a class="btn btn-success float-right" href="{{ url('novo_usuario') }}">Novo Usuário</a>
         </div>
     </div>
 </div>

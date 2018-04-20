@@ -30,7 +30,7 @@ class CursoController extends Controller
 
     public function edit($id){
         $curso = Curso::find($id);
-        return view('modals.editar_curso')->with('curso',$curso);
+        return view('pages.editar_curso')->with('curso',$curso);
     }
 
     public function update(Request $request){

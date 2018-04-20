@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="{{ url('/novo_curso') }}">Novo</a>
+                <a class="btn btn-success float-right" href="{{ url('/novo_curso') }}">Novo curso</a>
             </div>
         </div>
     </div>
@@ -26,7 +26,6 @@
                         <th>
                             Tipo
                         </th>
-
                         <th>
                             Operações
                         </th>
@@ -45,8 +44,6 @@
                                     <td>
                                         {{$curso->tipo}}
                                     </td>
-
-
 
                                     <td>
                                         <a href="/curso/edit/{{$curso->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>

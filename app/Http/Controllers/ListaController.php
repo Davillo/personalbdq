@@ -28,18 +28,24 @@ class ListaController extends Controller
     public function show()
     {
         $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('created_at','asc')->get();
-        //$listas = ListaQuestao::orderBy('created_at', 'asc')->get();
         return view('pages.listas')->with('listas',$listas);
     }
 
-    public function edit(ListaQuestao $listaQuestao)
+    public function edit($id)
     {
-        //
+        $lista = ListaQuestao::find($id);
+        return view('pages.editar_lista')->with('lista',$lista);
     }
 
-    public function update(Request $request, ListaQuestao $listaQuestao)
+    public function update(Request $request)
     {
-        //
+        $lista = ListaQuestao::find($request->input('id'));
+        $lista->nome = $request->input('nome');
+        $lista->descricao = $request->input('descricao');
+
+        if($lista->save()){
+            return redirect('/listas')->with('success','Salvo com sucesso!');
+        }
     }
 
     public function destroy($id)

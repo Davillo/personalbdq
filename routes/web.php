@@ -28,10 +28,10 @@ Route::post('/curso/update','CursoController@update');
 //Lista
 Route::get('/nova_lista', 'ListaController@nova');
 Route::get('/listas','ListaController@show');
-//Route::get('/curso/edit/{id}','CursoController@edit');
+Route::get('/lista/edit/{id}','ListaController@edit');
 Route::get('/lista/excluir/{id}','ListaController@destroy'); //deletar curso GET
 Route::post('/lista/inserir','ListaController@store');
-//Route::post('/curso/update','CursoController@update');
+Route::post('/lista/update','ListaController@update');
 
 
 
