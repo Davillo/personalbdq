@@ -10,7 +10,7 @@ class ListaController extends Controller
 {
 
     public function nova(){
-        return view('modals.nova_lista');
+        return view('pages.nova_lista');
     }
 
     public function store(Request $request)

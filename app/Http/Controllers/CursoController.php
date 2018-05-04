@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CursoController extends Controller
 {
     public function novo(){
-        return view('modals.novo_curso');
+        return view('pages.novo_curso');
     }
 
     public function show(){

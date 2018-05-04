@@ -9,7 +9,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <?php  if(Auth::user()->admin){ ?>
+            @if(Auth::user()->admin)
             <li class="@yield('musuario')">
                 <a href="/usuario">
                     <i class="now-ui-icons users_single-02"></i>
@@ -22,8 +22,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                      <p>Cursos</p>
                  </a>
             </li>
-
-            <?php }?>
+            @endif
 
                 <li class="@yield('mlistas')">
                     <a href="/listas">
