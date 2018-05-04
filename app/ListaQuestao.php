@@ -10,4 +10,8 @@ class ListaQuestao extends Model
 
     public  $primaryKey = 'id';
 
+    public function questao(){
+        return $this->hasMany('App\Questao');
+    }
+
 }
