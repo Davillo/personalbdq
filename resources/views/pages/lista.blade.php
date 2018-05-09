@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="{{ url('/nova_lista/')}}">Nova Lista</a>
+                <a class="btn btn-success float-right" href="{{ url('/nova_questao/')}}">Nova Questão</a>
             </div>
         </div>
     </div>
@@ -21,46 +21,48 @@
                     <table class="table table-striped">
                         <thead class="text-primary">
                         <th>
-                            Nome
+                           Enunciado
                         </th>
 
                         <th>
-                            Descrição
+                            Categoria
                         </th>
 
                         <th>
-                            Data de criação
+                            Dificuldade
+                        </th>
+
+                        <th>
+                            Tipo
                         </th>
 
                         <th>
                             Operações
                         </th>
-
                         </thead>
                         <tbody>
-                        @if(count($listas)>0)
-                            @foreach($listas as $lista)
+                        @if(count($questoes)>0)
+                            @foreach($questoes as $questao)
                                 <tr>
 
                                     <td>
-                                        <a href="lista/{{$lista->id}}">{{$lista->nome}}</a>
+                                        {{$questao->enunciado}}
                                     </td>
 
                                     <td>
-                                        {{$lista->descricao}}
+                                        {{$questao->categoria}}
                                     </td>
 
                                     <td>
-
-                                        <?php $data = new DateTime($lista->created_at);
-                                        echo $data->format('d/m/y');
-                                        ?>
-
+                                        {{$questao->dificuldade}}
                                     </td>
 
+                                    <td>
+                                        {{$questao->tipo}}
+                                    </td>
 
                                     <td>
-                                        <a href="/lista/edit/{{$lista->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
+                                        <a href="/lista/edit/{{$questao->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
                                         <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
                                         @include('modals.modal_remover_lista')
                                     </td>
@@ -68,7 +70,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>Nenhuma lista foi encontrada</td>
+                                <td>Nenhuma questão foi encontrada.</td>
                             </tr>
                         @endif
                         </tbody>

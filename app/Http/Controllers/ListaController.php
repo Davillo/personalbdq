@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ListaQuestao;
+use App\Questao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,5 +53,10 @@ class ListaController extends Controller
     {
         ListaQuestao::destroy($id);
         return redirect('/listas')->with('success','Lista excluída com sucesso!');
+    }
+
+    public function lista($id){
+        $questoes = Questao::where('lista_questao_id',$id)->where('autor_usuario_id',Auth::user()->id)->get();
+        return view('pages.lista')->with('questoes',$questoes);
     }
 }

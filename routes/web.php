@@ -32,6 +32,11 @@ Route::get('/lista/edit/{id}','ListaController@edit');
 Route::get('/lista/excluir/{id}','ListaController@destroy'); //deletar curso GET
 Route::post('/lista/inserir','ListaController@store');
 Route::post('/lista/update','ListaController@update');
+Route::get('lista/{id}','ListaController@lista');
+
+//Questão
+Route::get('nova_questao', 'QuestaoController@nova');
+
 
 
 
