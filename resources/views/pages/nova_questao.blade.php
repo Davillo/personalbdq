@@ -81,8 +81,6 @@
                                 </span>
                             </div>
                                 {{csrf_field()}}
-
-
                                     <select name="curso_id" class="form-control" required>
                                         <option value="">Selecione o curso...</option>
                                     </select>

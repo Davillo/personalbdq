@@ -24,6 +24,6 @@ class Usuario extends Authenticatable
     }
 
     public function questao(){
-        return $this->hasOne('App\Questao');
+        return $this->hasMany('App\Questao');
     }
 }

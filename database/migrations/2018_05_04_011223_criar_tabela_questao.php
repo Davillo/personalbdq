@@ -14,16 +14,15 @@ class CriarTabelaQuestao extends Migration
     public function up()
     {
         Schema::create('questao', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('enunciado',255);
-            $table->string('categoria',30);
-            $table->string('tipo',10);
-            $table->string('dificuldade',20);
-            $table->integer('autor_usuario_id')->unsigned();
-            $table->integer('lista_questao_id')->unsigned();
-            $table->foreign('autor_usuario_id')->references('id')->on('usuario');
-            $table->foreign('lista_questao_id')->references('id')->on('lista_questao');
-            $table->timestamps();
+           // $table->increments('id');
+           // $table->longText('enunciado');
+            //$table->string('palavras_chave',150);
+            //$table->string('categoria',30);
+           // $table->string('tipo',30);
+           // $table->string('dificuldade',30);
+           // $table->integer('autor_usuario_id')->unsigned();
+           // $table->foreign('autor_usuario_id')->references('id')->on('usuario');
+           // $table->timestamps();
         });
     }
 
