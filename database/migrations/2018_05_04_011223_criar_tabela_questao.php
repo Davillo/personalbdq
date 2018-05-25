@@ -13,7 +13,7 @@ class CriarTabelaQuestao extends Migration
      */
     public function up()
     {
-        Schema::create('questao', function (Blueprint $table) {
+       // Schema::create('questao', function (Blueprint $table) {
            // $table->increments('id');
            // $table->longText('enunciado');
             //$table->string('palavras_chave',150);
@@ -23,7 +23,7 @@ class CriarTabelaQuestao extends Migration
            // $table->integer('autor_usuario_id')->unsigned();
            // $table->foreign('autor_usuario_id')->references('id')->on('usuario');
            // $table->timestamps();
-        });
+       // });
     }
 
     /**

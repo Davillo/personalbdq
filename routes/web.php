@@ -36,6 +36,8 @@ Route::get('lista/{id}','ListaController@lista');
 
 //Questão
 Route::get('nova_questao', 'QuestaoController@nova');
+Route::post('/nova_questao', 'QuestaoController@store');
+Route::post('/questoes', 'QuestaoController@show');
 
 
 
