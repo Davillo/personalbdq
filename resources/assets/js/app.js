@@ -17,6 +17,40 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+Vue.component('v-multiplaescolha', require('./components/v-multiplaEscolha.vue'));
+
+Vue.component('v-dissertativa', require('./components/v-dissertativa.vue'));
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        multiplaEscolha: false,
+        dissertativa: false
+    },
+    methods: {
+        getForm(e) {
+            if(e.target.options.selectedIndex == 0) {
+                this.multiplaEscolha = false
+                this.dissertativa = false
+            }
+            if(e.target.options.selectedIndex == 1) {
+                this.multiplaEscolha = false
+                this.dissertativa = true
+            }
+            if(e.target.options.selectedIndex == 2){
+                this.multiplaEscolha = true
+                this.dissertativa = false
+            }
+            if(e.target.options.selectedIndex == 3){
+                this.multiplaEscolha = true
+                this.dissertativa = false
+            }
+            if(e.target.options.selectedIndex == 4){
+                this.multiplaEscolha = true
+                this.dissertativa = false
+            }
+        }
+
+
+    }
 });

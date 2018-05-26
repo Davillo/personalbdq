@@ -13,8 +13,8 @@
 
             <select name="categoria" class="form-control" required>
                 <option value="">Categoria...</option>
-                <option value="Av1">Avaliação 1</option>
-                <option value="Av2">Avaliação 2</option>
+                <option value="Avaliação 1">Avaliação 1</option>
+                <option value="Avaliação 2">Avaliação 2</option>
                 <option value="Enade">Enade</option>
             </select>
 
@@ -31,15 +31,28 @@
                                 </span>
             </div>
 
-            <select name="categoria"  class="form-control" required>
+            <select name="dificuldade"  class="form-control" required>
                 <option value="">Dificuldade...</option>
-                <option value="facil">Fácil</option>
-                <option value="intermediario">Intermediário</option>
-                <option value="dificil">Difícil</option>
+                <option value="Fácil">Fácil</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Difícil">Difícil</option>
             </select>
 
         </div>
     </div>
+
+    <div class="row">
+       <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+               Palavras Chave:
+       </div>
+    </div>
+
+    <div class="row">
+       <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+           <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..." required></input>
+       </div>
+    </div>
+
 
     <div class="row">
         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
@@ -49,7 +62,7 @@
 
     <div class="row">
         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-            <textarea type="text" class="form-control" name="matricula" placeholder="Enunciado..." id="matricula" required></textarea>
+            <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." required></textarea>
         </div>
     </div>
 
@@ -66,7 +79,12 @@
                                     A
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required></textarea>
+            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0" id="basic-addon1">
+                                     <input type="radio" name="correta" value="1">
+                                </span>
+            </div>
+            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula..." required></textarea>
         </div>
     </div>
     <div class="row">
@@ -76,7 +94,12 @@
                                     B
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required></textarea>
+            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0" id="basic-addon1">
+                                     <input type="radio" name="correta" value="2">
+                                </span>
+            </div>
+            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula..." required></textarea>
         </div>
     </div>
     <div class="row">
@@ -86,7 +109,12 @@
                                     C
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required></textarea>
+            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0" id="basic-addon1">
+                                     <input type="radio" name="correta" value="3">
+                                </span>
+            </div>
+            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula..." required></textarea>
         </div>
     </div>
     <div class="row">
@@ -96,7 +124,12 @@
                                     D
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required></textarea>
+            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0" id="basic-addon1">
+                                     <input type="radio" name="correta" value="4">
+                                </span>
+            </div>
+            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula..." required></textarea>
         </div>
     </div>
     <div class="row">
@@ -106,7 +139,12 @@
                                     E
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required></textarea>
+            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-0" id="basic-addon1">
+                                     <input type="radio" name="correta" value="5">
+                                </span>
+            </div>
+            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Matricula..." required></textarea>
         </div>
     </div>
    </div>
@@ -117,3 +155,12 @@
 
     }
 </script>
+
+<style>
+    .btn span.glyphicon {
+        opacity: 0;
+    }
+    .btn.active span.glyphicon {
+        opacity: 1;
+    }
+</style>

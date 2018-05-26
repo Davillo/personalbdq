@@ -22,7 +22,7 @@
 </head>
 
 <body class="">
-<div class="wrapper ">
+<div class="wrapper " id="app">
 
         @include('inc.sidebar')
     <div class="main-panel">
@@ -61,14 +61,14 @@
 <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 <script type="text/javascript" src="{{asset('/js/perfect-scrollbar.jquery.min.js')}}"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
 <!-- Chart JS -->
-<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--<script src="../assets/js/plugins/chartjs.min.js"></script>-->
 <!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!--<script src="../assets/js/plugins/bootstrap-notify.js"></script>-->
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script type="text/javascript" src="{{asset('/js/now-ui-dashboard.js?v=1.0.1')}}"></script>
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/demo/demo.js"></script>
+<!--<script src="../assets/demo/demo.js"></script>-->
 
 </html>
