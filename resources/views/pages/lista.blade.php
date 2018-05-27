@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="{{ url('/nova_questao/')}}">Nova Questão</a>
+                <a class="btn btn-success float-right" href="/nova_questao/{{$lista_id}}">Nova Questão</a>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                                     <td>
                                         <a href="/lista/edit/{{$questao->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
                                         <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
-                                        @include('modals.modal_remover_lista')
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -60,6 +60,7 @@
                     </div>
 
                     <div class="text-center" style="margin-bottom: 10px;">
+                        <input type="hidden" name="lista_id" value="{{$lista_id}}">
                         <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
                     </div>
                 </form>
