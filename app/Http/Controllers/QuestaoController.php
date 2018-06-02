@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Alternativa;
 use App\Questao;
+use App\QuestaoListas;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestaoController extends Controller
 {
-    public function nova(){
-        return view('pages.nova_questao');
+    public function nova($id){
+        return view('pages.nova_questao')->with("lista_id",$id);
     }
 
     public function index()
@@ -45,12 +46,13 @@ class QuestaoController extends Controller
         $questao->autor_usuario_id = Auth::user()->id;
         $questao->save();
 
+        $ultimoIdQeustao = $questao->id;
+
         if($request->input('tipo') == 'Múltipla Escolha'){
-            $ultimoId = $questao->id;
 
             if($request->input('enunciado_alternativa1') != null){
                 $alternativa1 = new Alternativa();
-                $alternativa1->questao_id = $ultimoId;
+                $alternativa1->questao_id = $ultimoIdQeustao;
                 $alternativa1->enunciado = $request->input('enunciado_alternativa1');
                 if($request->input('correta') == '1'){
                     $alternativa1->correta = true;
@@ -62,7 +64,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa2') != null){
                 $alternativa2 = new Alternativa();
-                $alternativa2->questao_id = $ultimoId;
+                $alternativa2->questao_id = $ultimoIdQeustao;
                 $alternativa2->enunciado = $request->input('enunciado_alternativa2');
                 if($request->input('correta') == '2'){
                     $alternativa2->correta = true;
@@ -74,7 +76,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa3') != null){
                 $alternativa3 = new Alternativa();
-                $alternativa3->questao_id = $ultimoId;
+                $alternativa3->questao_id = $ultimoIdQeustao;
                 $alternativa3->enunciado = $request->input('enunciado_alternativa3');
                 if($request->input('correta') == '3'){
                     $alternativa3->correta = true;
@@ -86,7 +88,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa4') != null){
                 $alternativa4 = new Alternativa();
-                $alternativa4->questao_id = $ultimoId;
+                $alternativa4->questao_id = $ultimoIdQeustao;
                 $alternativa4->enunciado = $request->input('enunciado_alternativa4');
                 if($request->input('correta') == '4'){
                     $alternativa4->correta = true;
@@ -98,7 +100,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa5') != null){
                 $alternativa5 = new Alternativa();
-                $alternativa5->questao_id = $ultimoId;
+                $alternativa5->questao_id = $ultimoIdQeustao;
                 $alternativa5->enunciado = $request->input('enunciado_alternativa5');
                 if($request->input('correta') == '5'){
                     $alternativa5->correta = true;
@@ -108,6 +110,12 @@ class QuestaoController extends Controller
                 $alternativa5->save();
             }
         }
+
+        $questaoListas = new QuestaoListas();
+        $questaoListas->questao_id = $ultimoIdQeustao;
+        $questaoListas->lista_id = $request->input('lista_id');
+        $questaoListas->save();
+
     }
 
     public function show()

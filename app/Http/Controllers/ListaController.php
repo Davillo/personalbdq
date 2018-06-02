@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ListaQuestao;
 use App\Questao;
+use App\QuestaoListas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,7 +70,8 @@ class ListaController extends Controller
     }
 
     public function lista($id){
-        $questoes = Questao::where('lista_questao_id',$id)->where('autor_usuario_id',Auth::user()->id)->get();
-        return view('pages.lista')->with('questoes',$questoes);
+        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id);
+        $questoes = Questao::whereIn('id',$questaoLista)->get();
+        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id);
     }
 }
