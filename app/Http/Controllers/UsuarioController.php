@@ -17,16 +17,27 @@ class UsuarioController extends Controller{
 
     public function store(Request $request){
 
-        $usuario = new Usuario();
-        $usuario->email = $request->input('email');
-        $usuario->nome = $request->input('nome');
-        $usuario->senha = bcrypt($request->input('senha'));
-        $usuario->matricula = $request->input('matricula');
-        $usuario->curso_id = $request->input('curso_id');
-
-        if($usuario->save()){
-            return redirect('/usuario')->with('success','Salvo com sucesso!');
+        if($this->validate($request,[
+           'email' => 'required',
+            'nome' => 'required',
+            'senha' => 'required',
+            'matricula'=>'required',
+            'curso_id' => 'required'
+        ])){
+            $usuario = new Usuario();
+            $usuario->email = $request->input('email');
+            $usuario->nome = $request->input('nome');
+            $usuario->senha = bcrypt($request->input('senha'));
+            $usuario->matricula = $request->input('matricula');
+            $usuario->curso_id = $request->input('curso_id');
+            if($usuario->save()){
+                return redirect('/usuario')->with('success','Salvo com sucesso!');
+            }
         }
+
+
+
+
 
     }
 
@@ -41,6 +52,12 @@ class UsuarioController extends Controller{
     }
 
     public function update(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'nome' => 'required',
+            'matricula'=>'required',
+            ]);
+
         $usuario = Usuario::find($request->input('id'));
         $usuario->email = $request->input('email');
         $usuario->nome = $request->input('nome');

@@ -35,7 +35,7 @@
                                     <i class="material-icons">subtitles</i>
                                 </span>
                             </div>
-                            <input type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula" required>
+                            <input type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula">
                         </div>
                     </div>
                     <div class="row">
@@ -46,7 +46,7 @@
                                 </span>
                             </div>
                             {{csrf_field()}}
-                            <input type="text" class="form-control" name="nome" placeholder="Nome..." id="email" required>
+                            <input type="text" class="form-control" name="nome" placeholder="Nome..." id="email">
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +57,7 @@
                                 </span>
                             </div>
                             {{csrf_field()}}
-                            <input type="email" class="form-control " name="email" placeholder="Email..." id="email" required>
+                            <input type="email" class="form-control " name="email" placeholder="Email..." id="email">
                         </div>
                     </div>
                     <div class="row">
@@ -67,7 +67,7 @@
                                     <i class="material-icons">vpn_key</i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha" required>
+                            <input type="password" class="form-control" name="senha" placeholder="Senha..." id="senha">
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                                 {{csrf_field()}}
 
                                 @if(count($cursos)>0)
-                                    <select name="curso_id" class="form-control" required>
+                                    <select name="curso_id" class="form-control">
                                         <option value="">Selecione o curso...</option>
                                         @foreach($cursos as $curso)
                                             <option value="{{$curso->id}}">{{$curso->nome}}</option>

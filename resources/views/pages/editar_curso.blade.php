@@ -25,7 +25,7 @@
             <div class="col-12 m-auto">
                 <form method="POST" action="/curso/update">
 
-                    <h3 class="title text-center mb-1" id="novoModalLabel">Novo Curso</h3>
+                    <h3 class="title text-center mb-1" id="novoModalLabel">Editar Curso</h3>
 
                     <div class="modal-body">
                         <div class="row">
@@ -35,8 +35,8 @@
                                         <i class="material-icons">subtitles</i>
                                     </span>
                                 </div>
-                                <input type="hidden" class="form-control" value="{{ $curso->id }}" name="id" required>
-                                <input type="text" class="form-control" value="{{ $curso->nome }}" name="nome" placeholder="Nome do curso" required>
+                                <input type="hidden" class="form-control" value="{{ $curso->id }}" name="id" >
+                                <input type="text" class="form-control" value="{{ $curso->nome }}" name="nome" placeholder="Nome do curso">
 
                                 </div>
                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 {{csrf_field()}}
 
-                                <select class="form-control" name="tipo" required>
+                                <select class="form-control" name="tipo">
                                    <option value="">Selecione o tipo...</option>
                                    @if($curso->tipo == "BACHAREL")
                                       <option value="BACHAREL" selected>Bacharel</option>

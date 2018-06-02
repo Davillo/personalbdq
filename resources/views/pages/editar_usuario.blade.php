@@ -33,7 +33,7 @@
                                     <i class="material-icons">subtitles</i>
                                 </span>
                             </div>
-                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula..." required>
+                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula...">
                         </div>
                     </div>
                     <div class="row">
@@ -44,7 +44,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input type="text" value="{{$usuario->nome}}" class="form-control " name="nome" placeholder="Nome..." required>
+                            <input type="text" value="{{$usuario->nome}}" class="form-control " name="nome" placeholder="Nome..." >
                         </div>
                     </div>
                     <div class="row">
@@ -55,7 +55,7 @@
                                 </span>
                             </div>
                             {{ csrf_field() }}
-                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email..." required>
+                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email...">
                         </div>
                     </div>
                     <div class="row">

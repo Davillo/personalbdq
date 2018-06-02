@@ -16,6 +16,12 @@ class ListaController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'nome' => 'required',
+            'descricao' => 'required'
+        ]);
+
         $lista = new ListaQuestao();
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
@@ -40,6 +46,13 @@ class ListaController extends Controller
 
     public function update(Request $request)
     {
+
+
+        $this->validate($request, [
+            'nome' => 'required',
+            'descricao' => 'required'
+        ]);
+
         $lista = ListaQuestao::find($request->input('id'));
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');

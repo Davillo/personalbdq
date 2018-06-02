@@ -11,7 +11,7 @@
             </div>
 
 
-            <select name="categoria" class="form-control" required>
+            <select name="categoria" class="form-control" >
                 <option value="">Categoria...</option>
                 <option value="Avaliação 1">Avaliação 1</option>
                 <option value="Avaliação 2">Avaliação 2</option>
@@ -31,7 +31,7 @@
                                 </span>
             </div>
 
-            <select name="dificuldade"  class="form-control" required>
+            <select name="dificuldade"  class="form-control">
                 <option value="">Dificuldade...</option>
                 <option value="Fácil">Fácil</option>
                 <option value="Intermediário">Intermediário</option>
@@ -49,7 +49,7 @@
 
     <div class="row">
        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-           <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..." required></input>
+           <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..." ></input>
        </div>
     </div>
 
@@ -62,7 +62,7 @@
 
     <div class="row">
         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-            <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." ></textarea>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
                                      <input type="radio" name="correta" value="1">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -99,7 +99,7 @@
                                      <input type="radio" name="correta" value="2">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -114,7 +114,7 @@
                                      <input type="radio" name="correta" value="3">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -129,7 +129,7 @@
                                      <input type="radio" name="correta" value="4">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula..." ></textarea>
         </div>
     </div>
     <div class="row">
@@ -144,17 +144,13 @@
                                      <input type="radio" name="correta" value="5">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Matricula..." required></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Matricula..."></textarea>
         </div>
     </div>
    </div>
 </template>
 
-<script>
-    export default {
 
-    }
-</script>
 
 <style>
     .btn span.glyphicon {

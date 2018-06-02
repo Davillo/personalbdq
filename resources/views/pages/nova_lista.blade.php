@@ -36,7 +36,7 @@
                                 </span>
                             </div>
                             {{csrf_field()}}
-                            <input type="text" class="form-control" name="nome" placeholder="Nome..." id="nome" required>
+                            <input type="text" class="form-control" name="nome" placeholder="Nome..." id="nome">
                         </div>
                     </div>
                     <div class="row">
@@ -47,7 +47,7 @@
                                 </span>
                             </div>
                             {{csrf_field()}}
-                            <textarea class="form-control " name="descricao" placeholder="Descrição..." id="descricao" maxlength="255" required></textarea>
+                            <textarea class="form-control " name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
                         </div>
                     </div>
                 </div>

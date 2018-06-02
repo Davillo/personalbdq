@@ -17,6 +17,12 @@ class CursoController extends Controller
     }
 
     public function inserir(Request $request){
+
+        $this->validate($request, [
+            'nome' => 'required',
+            'tipo' => 'required'
+        ]);
+
         $curso = new Curso();
 
         $curso->nome = $request->input('nome');
@@ -34,6 +40,11 @@ class CursoController extends Controller
     }
 
     public function update(Request $request){
+
+        $this->validate($request, [
+            'nome' => 'required',
+            'tipo' => 'required'
+        ]);
 
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');

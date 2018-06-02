@@ -28,6 +28,14 @@ class QuestaoController extends Controller
     {
         $questao = new Questao();
 
+        $this->validate($request,[
+           'enunciado' => 'required',
+           'palavras_chave' => 'required',
+           'dificuldade' => 'required',
+            'tipo' => 'required',
+            'categoria' => 'required'
+        ]);
+
 
         $questao->enunciado = $request->input('enunciado');
         $questao->palavras_chave = $request->input('palavras_chave');

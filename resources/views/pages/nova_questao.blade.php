@@ -40,7 +40,7 @@
                                 </div>
                                 {{csrf_field()}}
 
-                                <select @change="getForm" name="tipo" class="form-control" required>
+                                <select @change="getForm" name="tipo" class="form-control" >
                                     <option value="">Selecione o tipo de questão...</option>
                                     <option value="Dissertativa">Dissertativa</option>
                                     <option value="Múltipla Escolha">Múltipla Escolha</option>

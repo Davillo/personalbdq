@@ -11,5 +11,6 @@ class Questao extends Model
     public function alternativa(){
         return $this->hasMany('App\Alternativa');
     }
-    //
+
+
 }

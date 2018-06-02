@@ -11,7 +11,7 @@
                </div>
 
 
-               <select name="categoria" class="form-control" required>
+               <select name="categoria" class="form-control">
                    <option value="">Categoria...</option>
                    <option value="Avaliação 1">Avaliação 1</option>
                    <option value="Avaliação 2">Avaliação 2</option>
@@ -31,7 +31,7 @@
                                 </span>
                </div>
 
-               <select name="dificuldade"  class="form-control" required>
+               <select name="dificuldade"  class="form-control">
                    <option value="">Dificuldade...</option>
                    <option value="Fácil">Fácil</option>
                    <option value="Intermediário">Intermediário</option>
@@ -49,7 +49,7 @@
 
        <div class="row">
            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-               <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..." required></input>
+               <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..."></input>
            </div>
        </div>
 
@@ -61,14 +61,10 @@
 
        <div class="row">
            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-               <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." required></textarea>
+               <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..."></textarea>
            </div>
        </div>
    </div>
 </template>
 
-<script>
-    export default {
 
-    }
-</script>

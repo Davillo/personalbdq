@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <form method="POST" id="dados" action="/lista/update">
-                    <input type="hidden" class="form-control" value="{{$lista->id }}" name="id" required>
+                    <input type="hidden" class="form-control" value="{{$lista->id }}" name="id">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Editar Lista</h3>
 
@@ -37,7 +37,7 @@
                                 </span>
                                 </div>
                                 {{csrf_field()}}
-                                <input type="text" class="form-control" value="{{$lista->nome}}" name="nome" placeholder="Nome..." id="nome" required>
+                                <input type="text" class="form-control" value="{{$lista->nome}}" name="nome" placeholder="Nome..." id="nome">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                 </span>
                                 </div>
                                 {{csrf_field()}}
-                                <textarea class="form-control" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255" required>{{$lista->descricao}}</textarea>
+                                <textarea class="form-control" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255">{{$lista->descricao}}</textarea>
                             </div>
                         </div>
                     </div>

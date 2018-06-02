@@ -36,7 +36,7 @@
                                 </span>
                                 </div>
 
-                                <input type="text" class="form-control" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso" required>
+                                <input type="text" class="form-control" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso">
 
                                 </div>
                         </div>
@@ -48,7 +48,7 @@
                                     </span>
                                 </div>
                                 {{csrf_field()}}
-                               <select name="tipo" class="form-control" required>
+                               <select name="tipo" class="form-control">
                                    <option value="">Selecione o tipo...</option>
                                    <option value="BACHAREL">Bacharel</option>
                                    <option value="LICENCIATURA">Licenciatura</option>
