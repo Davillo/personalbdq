@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="margin-bottom: 60px">
                         <thead class="text-primary">
                         <th>
                             Nome
@@ -31,22 +31,16 @@
                         <th>
                             Data de criação
                         </th>
-
-                        <th>
-                            Operações
-                        </th>
-
                         </thead>
                         <tbody>
                         @if(count($listas)>0)
                             @foreach($listas as $lista)
                                 <tr>
-
                                     <td>
                                         <a href="lista/{{$lista->id}}">{{$lista->nome}}</a>
                                     </td>
 
-                                    <td>
+                                    <td class="td-fixo">
                                         {{$lista->descricao}}
                                     </td>
 
@@ -57,11 +51,16 @@
                                         ?>
 
                                     </td>
-
-
                                     <td>
-                                        <a href="/lista/edit/{{$lista->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
-                                        <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
+                                        <a href="#" class="dropdown " data-toggle="dropdown">
+                                            <i class="material-icons">
+                                                more_horiz
+                                            </i>
+                                        </a>
+                                        <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
+                                            <li><a href="/lista/edit/{{$lista->id}}">Editar</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#removerModal{{$lista->id}}">Excluir</a></li>
+                                        </ul>
                                         @include('modals.modal_remover_lista')
                                     </td>
                                 </tr>

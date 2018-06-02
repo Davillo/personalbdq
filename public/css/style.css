@@ -124,4 +124,15 @@ body{
     color: #ffffff;     
     background: #F87E40;
 }
+.td-fixo{
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.modal-body, .modal-visualizar{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
 

@@ -38,7 +38,7 @@ Route::get('lista/{id}','ListaController@lista');
 Route::get('/nova_questao/{id}', 'QuestaoController@nova');
 Route::post('/nova_questao/', 'QuestaoController@store');
 Route::post('/questoes', 'QuestaoController@show');
-
+Route::get('/questao/excluir/{id}','QuestaoController@destroy');
 
 
 

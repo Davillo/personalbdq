@@ -1,4 +1,4 @@
-<div class="modal fade" id="removerModal" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel" aria-hidden="true">
+<div class="modal fade" id="removerModal{{$lista->id}}" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 Deseja realmente remover esta lista?
-                <strong class="text-danger">Obs: ao remover essa lista você excluirá todas as questões da mesma.</strong>
+                <strong class="text-danger">Obs: ao remover essa lista você excluirá todas as questões que estiverem somente nessa lista.</strong>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

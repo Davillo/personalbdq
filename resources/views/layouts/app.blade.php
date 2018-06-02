@@ -18,7 +18,7 @@
     <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
     <link href="{{asset('/css/now-ui-dashboard.css?v=1.0.1')}}" rel="stylesheet" />
     <!-- Custom -->
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="">

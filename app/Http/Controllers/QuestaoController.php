@@ -116,6 +116,8 @@ class QuestaoController extends Controller
         $questaoListas->lista_id = $request->input('lista_id');
         $questaoListas->save();
 
+        return redirect('/lista/'.$questaoListas->lista_id)->with('success','Questão criada com sucesso!');
+
     }
 
     public function show()
@@ -132,8 +134,11 @@ class QuestaoController extends Controller
         //
     }
 
-    public function destroy(Questao $questao)
+    public function destroy($id)
     {
-        //
+        Questao::destroy($id);
+        QuestaoListas::where('questao_id',$id)->delete();
+        //return redirect('/lista')->with('success','Lista excluída com sucesso!');
+        return back()->with('success','Questão excluída com sucesso!');
     }
 }

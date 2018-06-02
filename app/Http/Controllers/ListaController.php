@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Alternativa;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
@@ -65,13 +66,24 @@ class ListaController extends Controller
 
     public function destroy($id)
     {
+        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id)->get();
+        foreach($questaoLista as $id_questao){
+            $questoes = QuestaoListas::select('questao_id')->where('questao_id',$id_questao->questao_id)->get();
+            if(count($questoes)==1){
+                Questao::destroy($id_questao->questao_id);
+            }
+        }
+
         ListaQuestao::destroy($id);
+
         return redirect('/listas')->with('success','Lista excluída com sucesso!');
     }
 
     public function lista($id){
-        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id);
+        $lista = ListaQuestao::find($id);
+        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
         $questoes = Questao::whereIn('id',$questaoLista)->get();
-        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id);
+        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome);
     }
 }

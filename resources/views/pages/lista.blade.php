@@ -6,7 +6,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-4">
-                <h5 class="title pt-2">Listas</h5>
+                <h5 class="title pt-2">{{$nomeLista}}</h5>
             </div>
 
             <div class="col-md-8 pr-5">
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="margin-bottom: 60px;">
                         <thead class="text-primary">
                         <th>
                            Enunciado
@@ -35,17 +35,12 @@
                         <th>
                             Tipo
                         </th>
-
-                        <th>
-                            Operações
-                        </th>
                         </thead>
                         <tbody>
                         @if(count($questoes)>0)
                             @foreach($questoes as $questao)
                                 <tr>
-
-                                    <td>
+                                    <td class="td-fixo">
                                         {{$questao->enunciado}}
                                     </td>
 
@@ -60,11 +55,27 @@
                                     <td>
                                         {{$questao->tipo}}
                                     </td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#visualizarModal{{$questao->id}}">
+                                            <i class="material-icons">
+                                                visibility
+                                            </i>
+                                        </a>
+
+                                    </td>
 
                                     <td>
-                                        <a href="/lista/edit/{{$questao->id}}" class="btn btn-sm btn-info mr-1" style="height:25px;width:50px;"><i class="material-icons" style="font-size:18px;">mode_edit</i></a>
-                                        <button type="submit" class="btn btn-sm btn-danger" style="height:25px;width:50px;" data-toggle="modal" data-target="#removerModal"><i class="material-icons" style="font-size:18px;">delete</i></button>
-
+                                        <a href="#" class="dropdown " data-toggle="dropdown">
+                                            <i class="material-icons">
+                                                more_horiz
+                                            </i>
+                                        </a>
+                                        <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
+                                            <li><a href="/lista/edit/{{$questao->id}}">Editar</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#removerModal{{$questao->id}}">Excluir</a></li>
+                                        </ul>
+                                        @include('modals.modal_remover_questao')
+                                        @include('modals.modal_visualizar_questao')
                                     </td>
                                 </tr>
                             @endforeach

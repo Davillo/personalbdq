@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarTabelaAlternativa extends Migration
+class CriarTabelaQuestaoLista extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CriarTabelaAlternativa extends Migration
      */
     public function up()
     {
-       /* Schema::create('alternativa', function (Blueprint $table) {
+      /*  Schema::create('questao_listas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('enunciado',255);
-            $table->boolean('correta');
             $table->integer('questao_id')->unsigned();
-            $table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');
+            $table->integer('lista_id')->unsigned();
+            $table->foreign('questao_id')->references('id')->on('questao');
+            $table->foreign('lista_id')->references('id')->on('lista_questao');
             $table->timestamps();
         });*/
     }
@@ -30,6 +30,6 @@ class CriarTabelaAlternativa extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('alternativa');
+    //    Schema::dropIfExists('questao_lista');
     }
 }
