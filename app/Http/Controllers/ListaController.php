@@ -34,12 +34,6 @@ class ListaController extends Controller
         }
     }
 
-    public function show()
-    {
-        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('created_at','asc')->get();
-        return view('pages.listas')->with('listas',$listas);
-    }
-
     public function edit($id)
     {
         $lista = ListaQuestao::find($id);
@@ -85,5 +79,11 @@ class ListaController extends Controller
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
         return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome);
+    }
+
+    public function show()
+    {
+        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('created_at','asc')->get();
+        return view('pages.listas')->with('listas',$listas);
     }
 }

@@ -71,7 +71,7 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                            <li><a href="/lista/edit/{{$questao->id}}">Editar</a></li>
+                                            <li><a href="/questao/edit/{{$questao->id}}/{{$lista_id}}">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$questao->id}}">Excluir</a></li>
                                         </ul>
                                         @include('modals.modal_remover_questao')

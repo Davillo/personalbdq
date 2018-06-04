@@ -1,4 +1,4 @@
-<div class="modal fade" id="removerModal{{$questao->id}}" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel" aria-hidden="true">
+<div class="modal fade" id="removerModal{{$questao->id}}" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
