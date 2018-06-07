@@ -30,6 +30,13 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                         <p>Listas</p>
                     </a>
                 </li>
+
+                <li class="@yield('mquestoes')">
+                    <a href="/questoes">
+                        <i class="now-ui-icons education_paper"></i>
+                        <p>Questoes</p>
+                    </a>
+                </li>
         </ul>
     </div>
 </div>

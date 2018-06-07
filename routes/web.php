@@ -37,9 +37,10 @@ Route::get('lista/{id}','ListaController@lista');
 //Questão
 Route::get('/nova_questao/{id}', 'QuestaoController@nova');
 Route::get('/questao/edit/{id}/{lista_id}', 'QuestaoController@edit');
+Route::get('/questao/edit/{id}', 'QuestaoController@editarQuestao');
 Route::post('/questao/update', 'QuestaoController@update');
 Route::post('/nova_questao/', 'QuestaoController@store');
-Route::post('/questoes', 'QuestaoController@show');
+Route::get('/questoes', 'QuestaoController@show');
 Route::get('/questao/excluir/{id}','QuestaoController@destroy');
 
 

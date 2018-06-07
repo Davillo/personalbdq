@@ -21,12 +21,18 @@ Vue.component('v-multiplaescolha', require('./components/v-multiplaEscolha.vue')
 
 Vue.component('v-dissertativa', require('./components/v-dissertativa.vue'));
 
+Vue.component('v-questoes', require('./components/v-questoes'));
+
 const app = new Vue({
     el: '#app',
+
+
+
     data: {
         multiplaEscolha: false,
         dissertativa: false
     },
+
     methods: {
         getForm(e) {
             if(e.target.options.selectedIndex == 0) {
@@ -52,5 +58,7 @@ const app = new Vue({
         }
 
 
-    }
+    },
+
+
 });

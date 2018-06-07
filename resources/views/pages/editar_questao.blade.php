@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('mlistas','active')
+@section('mquestoes','active')
 
 @section('conteudo')
     <div class="card-header">
@@ -25,7 +25,10 @@
             <div class="col-12 m-auto">
                 <form method="POST" id="dados" action="/questao/update">
                     <input type="hidden" class="form-control" value="{{$questao->id }}" name="id">
+
+                    @if(isset($lista_id))
                     <input type="hidden" class="form-control" value="{{$lista_id }}" name="lista_id">
+                    @endif
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Atualizar Questão</h3>
 
