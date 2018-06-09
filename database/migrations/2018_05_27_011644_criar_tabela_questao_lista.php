@@ -13,14 +13,13 @@ class CriarTabelaQuestaoLista extends Migration
      */
     public function up()
     {
-      /*  Schema::create('questao_listas', function (Blueprint $table) {
+        Schema::create('questao_listas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('questao_id')->unsigned();
             $table->integer('lista_id')->unsigned();
             $table->foreign('questao_id')->references('id')->on('questao');
             $table->foreign('lista_id')->references('id')->on('lista_questao');
-            $table->timestamps();
-        });*/
+        });
     }
 
     /**

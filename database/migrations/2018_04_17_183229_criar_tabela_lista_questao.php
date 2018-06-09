@@ -19,11 +19,8 @@ class CriarTabelaListaQuestao extends Migration
             $table->string('descricao',255);
             $table->integer('autor_usuario_id')->unsigned();
             $table->foreign('autor_usuario_id')->references('id')->on('usuario');
-            $table->timestamps();
-
-
-            // $table->integer('curso_id')->unsigned();
-            //$table->foreign('curso_id')->references('id')->on('curso');
+            $table->date('data_criacao');
+            $table->date('data_atualizado');
         });
     }
 

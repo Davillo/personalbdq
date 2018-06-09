@@ -16,7 +16,7 @@ class UsuarioController extends Controller{
     }
 
     public function store(Request $request){
-
+        date_default_timezone_set('America/Fortaleza');
         if($this->validate($request,[
            'email' => 'required',
             'nome' => 'required',
@@ -30,12 +30,13 @@ class UsuarioController extends Controller{
             $usuario->senha = bcrypt($request->input('senha'));
             $usuario->matricula = $request->input('matricula');
             $usuario->curso_id = $request->input('curso_id');
+            $usuario->data_criacao = date('Y-m-d');
+            $usuario->data_atualizado = date('Y-m-d');
+
             if($usuario->save()){
                 return redirect('/usuario')->with('success','Salvo com sucesso!');
             }
         }
-
-
 
 
 
@@ -52,6 +53,7 @@ class UsuarioController extends Controller{
     }
 
     public function update(Request $request){
+        date_default_timezone_set('America/Fortaleza');
         $this->validate($request,[
             'email' => 'required',
             'nome' => 'required',
@@ -62,6 +64,7 @@ class UsuarioController extends Controller{
         $usuario->email = $request->input('email');
         $usuario->nome = $request->input('nome');
         $usuario->matricula = $request->input('matricula');
+        $usuario->data_atualizado = date('Y-m-d');
 
         if($request->input('senha') == null){
             $usuario->senha = $usuario->senha;

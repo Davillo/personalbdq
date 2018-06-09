@@ -17,6 +17,8 @@ class CursoController extends Controller
     }
 
     public function inserir(Request $request){
+        date_default_timezone_set('America/Fortaleza');
+
 
         $this->validate($request, [
             'nome' => 'required',
@@ -27,6 +29,8 @@ class CursoController extends Controller
 
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
+        $curso->data_criacao = date('Y-m-d');
+        $curso->data_atualizado = date('Y-m-d');
 
         if($curso->save()){
             return redirect('/curso')->with('success','Salvo com sucesso!');
@@ -41,14 +45,13 @@ class CursoController extends Controller
 
     public function update(Request $request){
 
-        $this->validate($request, [
-            'nome' => 'required',
-            'tipo' => 'required'
-        ]);
+        $this->validate($request, ['nome' => 'required', 'tipo' => 'required']);
 
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
+        $curso->data_atualizado = date('Y-m-d');
+
 
         if($curso->save()){
             return redirect('/curso')->with('success','Editado com sucesso!');

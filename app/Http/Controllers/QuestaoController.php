@@ -27,6 +27,8 @@ class QuestaoController extends Controller
 
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Fortaleza');
+
         $questao = new Questao();
 
         $this->validate($request,[
@@ -44,6 +46,8 @@ class QuestaoController extends Controller
         $questao->tipo = $request->input('tipo');
         $questao->dificuldade = $request->input('dificuldade');
         $questao->autor_usuario_id = Auth::user()->id;
+        $questao->data_criacao = date('Y-m-d');
+        $questao->data_atualizado = date('Y-m-d');
         $questao->save();
 
         $ultimoIdQeustao = $questao->id;
@@ -54,6 +58,8 @@ class QuestaoController extends Controller
                 $alternativa1 = new Alternativa();
                 $alternativa1->questao_id = $ultimoIdQeustao;
                 $alternativa1->enunciado = $request->input('enunciado_alternativa1');
+                $alternativa1->data_criacao = date('Y-m-d');
+                $alternativa1->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '1'){
                     $alternativa1->correta = true;
                 }else{
@@ -66,6 +72,8 @@ class QuestaoController extends Controller
                 $alternativa2 = new Alternativa();
                 $alternativa2->questao_id = $ultimoIdQeustao;
                 $alternativa2->enunciado = $request->input('enunciado_alternativa2');
+                $alternativa2->data_criacao = date('Y-m-d');
+                $alternativa2->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '2'){
                     $alternativa2->correta = true;
                 }else{
@@ -78,6 +86,8 @@ class QuestaoController extends Controller
                 $alternativa3 = new Alternativa();
                 $alternativa3->questao_id = $ultimoIdQeustao;
                 $alternativa3->enunciado = $request->input('enunciado_alternativa3');
+                $alternativa3->data_criacao = date('Y-m-d');
+                $alternativa3->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '3'){
                     $alternativa3->correta = true;
                 }else{
@@ -90,6 +100,8 @@ class QuestaoController extends Controller
                 $alternativa4 = new Alternativa();
                 $alternativa4->questao_id = $ultimoIdQeustao;
                 $alternativa4->enunciado = $request->input('enunciado_alternativa4');
+                $alternativa4->data_criacao = date('Y-m-d');
+                $alternativa4->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '4'){
                     $alternativa4->correta = true;
                 }else{
@@ -102,6 +114,8 @@ class QuestaoController extends Controller
                 $alternativa5 = new Alternativa();
                 $alternativa5->questao_id = $ultimoIdQeustao;
                 $alternativa5->enunciado = $request->input('enunciado_alternativa5');
+                $alternativa5->data_criacao = date('Y-m-d');
+                $alternativa5->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '5'){
                     $alternativa5->correta = true;
                 }else{
@@ -147,6 +161,7 @@ class QuestaoController extends Controller
     }
 
     public function update(Request $request){
+        date_default_timezone_set('America/Fortaleza');
 
 
         $this->validate($request,[
@@ -162,6 +177,7 @@ class QuestaoController extends Controller
         $questao->categoria = $request->input('categoria');
         $questao->dificuldade = $request->input('dificuldade');
         $questao->autor_usuario_id = Auth::user()->id;
+        $questao->data_atualizado = date('Y-m-d');
         $questao->save();
 
         $ultimoIdQuestao = $questao->id;
@@ -174,6 +190,7 @@ class QuestaoController extends Controller
                 $alternativa1 = Alternativa::find($alternativas[0]->id);
                 $alternativa1->questao_id = $ultimoIdQuestao;
                 $alternativa1->enunciado = $request->input('enunciado_alternativa1');
+                $alternativa1->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '1'){
                     $alternativa1->correta = true;
                 }else{
@@ -186,6 +203,7 @@ class QuestaoController extends Controller
                 $alternativa2 = Alternativa::find($alternativas[1]->id);
                 $alternativa2->questao_id = $ultimoIdQuestao;
                 $alternativa2->enunciado = $request->input('enunciado_alternativa2');
+                $alternativa2->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '2'){
                     $alternativa2->correta = true;
                 }else{
@@ -198,6 +216,7 @@ class QuestaoController extends Controller
                 $alternativa3 = Alternativa::find($alternativas[2]->id);
                 $alternativa3->questao_id = $ultimoIdQuestao;
                 $alternativa3->enunciado = $request->input('enunciado_alternativa3');
+                $alternativa3->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '3'){
                     $alternativa3->correta = true;
                 }else{
@@ -210,6 +229,7 @@ class QuestaoController extends Controller
                 $alternativa4 = Alternativa::find($alternativas[3]->id);
                 $alternativa4->questao_id = $ultimoIdQuestao;
                 $alternativa4->enunciado = $request->input('enunciado_alternativa4');
+                $alternativa4->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '4'){
                     $alternativa4->correta = true;
                 }else{
@@ -222,6 +242,7 @@ class QuestaoController extends Controller
                 $alternativa5 = Alternativa::find($alternativas[4]->id);
                 $alternativa5->questao_id = $ultimoIdQuestao;
                 $alternativa5->enunciado = $request->input('enunciado_alternativa5');
+                $alternativa5->data_atualizado = date('Y-m-d');
                 if($request->input('correta') == '5'){
                     $alternativa5->correta = true;
                 }else{
@@ -244,7 +265,6 @@ class QuestaoController extends Controller
     {
         Questao::destroy($id);
         QuestaoListas::where('questao_id',$id)->delete();
-        //return redirect('/lista')->with('success','Lista excluída com sucesso!');
         return back()->with('success','Questão excluída com sucesso!');
     }
 }

@@ -10,7 +10,6 @@ use Exception;
 class HomeController extends Controller{
 
     public function index(){
-
        return view('login');
    }
 
@@ -23,6 +22,7 @@ class HomeController extends Controller{
         if(Auth::check()){
             return view('pages.dashboard')->with('usuario',Auth::user());
         }else{
+
             return redirect('/');
         }
    }
@@ -34,7 +34,7 @@ class HomeController extends Controller{
            $usuario = Usuario::where('email',$request->input('email'))->first();
            $senha = $request->input('senha');
            if(Hash::check($senha,$usuario->senha) && $usuario!= null){
-              $usuario =  Auth::loginUsingId($usuario->id);
+              $usuario = Auth::loginUsingId($usuario->id);
                return redirect('/home')->with('usuario',$usuario);
            }else{
                return view('login')->with('erro',$erro);

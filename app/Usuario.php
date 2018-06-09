@@ -13,6 +13,7 @@ class Usuario extends Authenticatable
     protected $hidden = ['senha','remember_token'];
     protected $primaryKey = 'id';
     protected $table = 'usuario';
+    public $timestamps  = false;
 
 
     public function curso(){

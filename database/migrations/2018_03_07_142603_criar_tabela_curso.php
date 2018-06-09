@@ -17,6 +17,8 @@ class CriarTabelaCurso extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('tipo');
+            $table->date('data_criacao');
+            $table->date('data_atualizado');
         });
     }
 

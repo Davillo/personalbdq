@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('mlistas','active')
-
 @section('conteudo')
     <div class="card-header">
         <div class="row">
@@ -46,9 +45,7 @@
 
                                     <td>
 
-                                        <?php $data = new DateTime($lista->created_at);
-                                        echo $data->format('d/m/y');
-                                        ?>
+                                        <?php echo date('d/m/y',strtotime($lista->data_criacao))?>
 
                                     </td>
                                     <td>

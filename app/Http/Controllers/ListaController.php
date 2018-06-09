@@ -19,6 +19,9 @@ class ListaController extends Controller
     public function store(Request $request)
     {
 
+        date_default_timezone_set('America/Fortaleza');
+
+
         $this->validate($request, [
             'nome' => 'required',
             'descricao' => 'required'
@@ -28,6 +31,9 @@ class ListaController extends Controller
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->autor_usuario_id = Auth::user()->id;
+        $lista->data_criacao = date('Y-m-d');
+        $lista->data_atualizado = date('Y-m-d');
+
 
         if ($lista->save()){
             return redirect('/listas')->with('success','Lista criada com sucesso');
@@ -42,6 +48,7 @@ class ListaController extends Controller
 
     public function update(Request $request)
     {
+        date_default_timezone_set('America/Fortaleza');
 
 
         $this->validate($request, [
@@ -52,6 +59,7 @@ class ListaController extends Controller
         $lista = ListaQuestao::find($request->input('id'));
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
+        $lista->data_atualizado = date('Y-m-d');
 
         if($lista->save()){
             return redirect('/listas')->with('success','Salvo com sucesso!');
@@ -83,7 +91,7 @@ class ListaController extends Controller
 
     public function show()
     {
-        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('created_at','asc')->get();
+        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('data_criacao','asc')->get();
         return view('pages.listas')->with('listas',$listas);
     }
 }

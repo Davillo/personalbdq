@@ -13,17 +13,19 @@ class CriarTabelaQuestao extends Migration
      */
     public function up()
     {
-       // Schema::create('questao', function (Blueprint $table) {
-           // $table->increments('id');
-           // $table->longText('enunciado');
-            //$table->string('palavras_chave',150);
-            //$table->string('categoria',30);
-           // $table->string('tipo',30);
-           // $table->string('dificuldade',30);
-           // $table->integer('autor_usuario_id')->unsigned();
-           // $table->foreign('autor_usuario_id')->references('id')->on('usuario');
-           // $table->timestamps();
-       // });
+        Schema::create('questao', function (Blueprint $table) {
+            $table->increments('id');
+            $table->longText('enunciado');
+            $table->string('palavras_chave',150);
+            $table->string('categoria',30);
+            $table->string('tipo',30);
+            $table->string('dificuldade',30);
+            $table->integer('autor_usuario_id')->unsigned();
+           $table->foreign('autor_usuario_id')->references('id')->on('usuario');
+            $table->date('data_criacao');
+            $table->date('data_atualizado');
+           //$table->timestamps();
+        });
     }
 
     /**
