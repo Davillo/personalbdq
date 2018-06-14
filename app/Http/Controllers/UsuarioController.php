@@ -12,6 +12,9 @@ class UsuarioController extends Controller{
 
     public function novo(){
         $cursos = Curso::all();
+        if (count($cursos) == 0){
+            return redirect('/curso')->with('error','É necessário cadastrar um curso para criar um usuário');
+        }
         return view('pages.novo_usuario')->with('cursos',$cursos);
     }
 

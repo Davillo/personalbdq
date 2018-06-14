@@ -71,6 +71,11 @@
 
                 </td>
             </tr>
+
+            <tr v-if="list.length === 0">
+                <td colspan="5">Nenhuma questão foi encontrada.</td>
+            </tr>
+
             </tbody>
         </table>
         </div>

@@ -69,7 +69,9 @@
 
                     </tbody>
                     @else
-                        <tr>Nenhum registro foi encontrado</tr>
+                        <tr>
+                            <td colspan="4">Nenhum usuário cadastrado</td>
+                        </tr>
                     @endif
 
                 </table>

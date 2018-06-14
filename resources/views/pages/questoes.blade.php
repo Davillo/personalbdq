@@ -8,6 +8,10 @@
             <div class="col-md-4">
                 <h5 class="title pt-2">Questões</h5>
             </div>
+
+            <div class="col-md-8 pr-5">
+                <a class="btn btn-success float-right" href="/nova_questao">Nova Questão</a>
+            </div>
         </div>
     </div>
     <div class="card-body">

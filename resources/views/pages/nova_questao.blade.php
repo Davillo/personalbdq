@@ -23,7 +23,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="dados" action="/nova_questao">
+                <form method="POST" id="dados" action="/questao/inserir">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Nova Questão</h3>
 

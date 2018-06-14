@@ -56,9 +56,9 @@
                                 </tr>
                                 @endforeach
                             @else
-                                <td>
-                                    <tr>Nenhum registro cadastrado</tr>
-                                </td>
+                                <tr>
+                                    <td colspan="2">Nenhum curso cadastrado</td>
+                                </tr>
                             @endif
 
 

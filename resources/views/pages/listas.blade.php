@@ -64,7 +64,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>Nenhuma lista foi encontrada</td>
+                                <td colspan="4">Nenhuma lista foi encontrada</td>
                             </tr>
                         @endif
                         </tbody>

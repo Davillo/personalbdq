@@ -81,7 +81,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>Nenhuma questão foi encontrada.</td>
+                                <td colspan="5">Nenhuma questão foi encontrada.</td>
                             </tr>
                         @endif
                         </tbody>
