@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alternativa;
+use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
 use Illuminate\Foundation\Auth\User;
@@ -12,7 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class QuestaoController extends Controller
 {
     public function nova($id){
-        return view('pages.nova_questao')->with("lista_id",$id);
+            return view('pages.nova_questao')->with("lista_id",$id);
+    }
+
+    public function nova_vindo_questoes(){
+        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->get();
+        return view('pages.nova_questao')->with("listas",$listas);
     }
 
     public function index()
@@ -36,7 +42,8 @@ class QuestaoController extends Controller
            'palavras_chave' => 'required',
            'dificuldade' => 'required',
             'tipo' => 'required',
-            'categoria' => 'required'
+            'categoria' => 'required',
+            'lista_id' => 'required'
         ]);
 
 

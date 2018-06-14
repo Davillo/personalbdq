@@ -35,6 +35,7 @@ Route::post('/lista/update','ListaController@update');
 Route::get('lista/{id}','ListaController@lista');
 
 //Questão
+Route::get('/nova_questao', 'QuestaoController@nova_vindo_questoes');
 Route::get('/nova_questao/{id}', 'QuestaoController@nova');
 Route::get('/questao/edit/{id}/{lista_id}', 'QuestaoController@edit');
 Route::get('/questao/edit/{id}', 'QuestaoController@editarQuestao');

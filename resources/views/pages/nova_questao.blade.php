@@ -29,6 +29,30 @@
 
                     <div class="modal-body">
 
+                        @if(isset($listas))
+                        <div class="row">
+                            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="material-icons">
+                                        book
+                                    </i>
+                                </span>
+                                </div>
+                                {{csrf_field()}}
+
+                                @if(count($listas)>0)
+                                    <select name="lista_id" class="form-control">
+                                        <option value="">Selecione a lista...</option>
+                                        @foreach($listas as $lista)
+                                            <option value="{{$lista->id}}">{{$lista->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="row">
                             <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
                                 <div class="input-group-prepend">
@@ -60,7 +84,9 @@
                     </div>
 
                     <div class="text-center" style="margin-bottom: 10px;">
+                        @if(isset($lista_id))
                         <input type="hidden" name="lista_id" value="{{$lista_id}}">
+                        @endif
                         <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
                     </div>
                 </form>
