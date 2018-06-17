@@ -1,13 +1,12 @@
 <template>
     <div>
 
-        <input class="form-control col-md-3 float-right" type="text" v-model="busca" placeholder="Filtrar por palavras chave!">
-
         <div class="table-responsive">
+            <a class="float-right mr-3" style="font-size:14px;" href="#" data-toggle="modal" data-target="#filtrar">Filtrar por</a>
             <table class="table table-striped" style="margin-bottom: 60px;">
             <thead class="text-primary">
             <tr>
-                <th>
+                <th class="td">
                     Enunciado
                 </th>
 
@@ -26,7 +25,7 @@
                 <th>
                     Tipo
                 </th>
-            </tr>
+               </tr>
             </thead>
             <tbody>
             <tr v-for="questao in filtrarCampo">
@@ -79,6 +78,36 @@
             </tbody>
         </table>
         </div>
+
+        <!-- Inicio modal -->
+        <div class="modal fade" id="filtrar" tabindex="-1" role="dialog" aria-labelledby="filtrarModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body modal-visualizar">
+                        <h5 class="text-center">Selecione as palavras-chave</h5>
+                         <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="form-check form-check-inline" v-for="questao in filtroCheck">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" v-model="checkdados" :value="questao">
+                                        {{questao}}
+                                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -90,41 +119,38 @@
             return {
                 list:[],
                 busca : '',
-                dados: []
+                dados: [],
+                checkdados: []
 
             }
         },
         computed: {
             filtrarCampo: function () {
 
-                let listaDados = this.busca.split(",")
-
-                console.log(listaDados)
-                if(listaDados.length>0 && listaDados[0] != "") {
+                let listaDados = this.checkdados
+                if(listaDados.length>0) {
                     this.dados = []
                     for (let i = 0; i < listaDados.length; i++) {
-                        if(listaDados[i] != "") {
                             this.dados.push(...this.list.filter((questao) => {
-                                return questao.palavras_chave.toLowerCase().match(listaDados[i])
+                                return questao.palavras_chave.toLowerCase().match(listaDados[i].toLowerCase())
                             }))
-                        }
                     }
-                    return this.dados;
+                    this.dados = [...new Set(this.dados)]
+                    return this.dados.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
                 }else{
-                    this.dados = []
-                    this.dados = this.list.filter((questao) => {
-                        return questao.palavras_chave.toLowerCase().match(this.busca)
-                    })
-                    return this.dados;
+                    return this.list.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
                 }
 
+            },
+            filtroCheck: function () {
+                let lista = []
+                for (let i = 0; i < this.list.length; i++) {
+                    lista.push(...this.list[i].palavras_chave.split(","))
+                }
+                lista = [...new Set(lista)]
+                return lista;
             }
         },
-        /*filtrarCampo: function () {
-                return this.list.filter((questao) => {
-                    return questao.palavras_chave.toLowerCase().match(this.busca)
-                })
-            }*/
 
         methods: {
 
