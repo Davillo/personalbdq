@@ -42,8 +42,7 @@ class QuestaoController extends Controller
            'palavras_chave' => 'required',
            'dificuldade' => 'required',
             'tipo' => 'required',
-            'categoria' => 'required',
-            'lista_id' => 'required'
+            'categoria' => 'required'
         ]);
 
 
@@ -132,13 +131,16 @@ class QuestaoController extends Controller
             }
         }
 
-        $questaoListas = new QuestaoListas();
-        $questaoListas->questao_id = $ultimoIdQeustao;
-        $questaoListas->lista_id = $request->input('lista_id');
-        $questaoListas->save();
+        if($request->input('lista_id') != null) {
+            $questaoListas = new QuestaoListas();
+            $questaoListas->questao_id = $ultimoIdQeustao;
+            $questaoListas->lista_id = $request->input('lista_id');
+            $questaoListas->save();
 
-        return redirect('/lista/'.$questaoListas->lista_id)->with('success','Questão criada com sucesso!');
-
+            return redirect('/lista/' . $questaoListas->lista_id)->with('success', 'Questão criada com sucesso!');
+        }else{
+            return redirect('/questoes')->with('success', 'Questão criada com sucesso!');
+        }
     }
 
     public function show()
