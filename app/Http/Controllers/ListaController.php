@@ -68,14 +68,7 @@ class ListaController extends Controller
 
     public function destroy($id)
     {
-        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id)->get();
-        foreach($questaoLista as $id_questao){
-            $questoes = QuestaoListas::select('questao_id')->where('questao_id',$id_questao->questao_id)->get();
-            if(count($questoes)==1){
-                Questao::destroy($id_questao->questao_id);
-            }
-        }
-
+        QuestaoListas::where('lista_id',$id)->delete();
         ListaQuestao::destroy($id);
 
         return redirect('/listas')->with('success','Lista excluída com sucesso!');
