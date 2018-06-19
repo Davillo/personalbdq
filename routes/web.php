@@ -44,6 +44,7 @@ Route::post('/questao/inserir', 'QuestaoController@store');
 Route::get('/questoes', 'QuestaoController@show');
 Route::get('/questao/excluir/{id}','QuestaoController@destroy');
 Route::get('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestaoLista');
+Route::post('/questao/fazerCopia','QuestaoController@fazerCopia');
 
 
 

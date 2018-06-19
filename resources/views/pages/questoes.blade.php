@@ -23,6 +23,7 @@
                         @foreach($questoes as $questao)
                             @include('modals.modal_remover_questao')
                             @include('modals.modal_visualizar_questao')
+                            @include('modals.modal_fazer_copia_questao')
                         @endforeach
 
             </div>

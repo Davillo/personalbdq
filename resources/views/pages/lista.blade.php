@@ -74,10 +74,12 @@
                                             <li><a href="/questao/edit/{{$questao->id}}/{{$lista_id}}">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$questao->id}}">Excluir</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerQuestaoModal{{$questao->id}}">Remover da lista</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#fazerCopiaModal{{$questao->id}}">Adicionar a lista</a></li>
                                         </ul>
                                         @include('modals.modal_remover_questao')
                                         @include('modals.modal_visualizar_questao')
                                         @include('modals.modal_remover_questao_lista')
+                                        @include('modals.modal_fazer_copia_questao')
                                     </td>
                                 </tr>
                             @endforeach

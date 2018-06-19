@@ -66,6 +66,7 @@
                     <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
                         <li><a :href="'/questao/edit/'+questao.id">Editar</a></li>
                         <li><a href="#" data-toggle="modal" :data-target="'#removerModal'+questao.id">Excluir</a></li>
+                        <li><a href="#" data-toggle="modal" :data-target="'#fazerCopiaModal'+questao.id">Adicionar a lista</a></li>
                     </ul>
 
                 </td>

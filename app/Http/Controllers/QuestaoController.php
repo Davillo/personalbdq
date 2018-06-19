@@ -21,16 +21,6 @@ class QuestaoController extends Controller
         return view('pages.nova_questao')->with("listas",$listas);
     }
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         date_default_timezone_set('America/Fortaleza');
@@ -141,16 +131,6 @@ class QuestaoController extends Controller
         }else{
             return redirect('/questoes')->with('success', 'Questão criada com sucesso!');
         }
-    }
-
-    public function show()
-    {
-        $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
-        $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
-        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
-
-        return view('pages.questoes')->with(compact('questoes'))->with('alternativas',$alternativas);
-        //return view('pages.questoes')->with(compact('questoes'));
     }
 
     public function edit($id,$lista_id)
@@ -270,6 +250,18 @@ class QuestaoController extends Controller
 
     }
 
+    public function show()
+    {
+        $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
+        $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+
+        $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
+
+        return view('pages.questoes')->with(compact('questoes'))->with('alternativas',$alternativas)->with('listasUsuario',$listas);
+
+    }
+
     public function destroy($id)
     {
         Questao::destroy($id);
@@ -281,4 +273,21 @@ class QuestaoController extends Controller
         QuestaoListas::where('questao_id',$id)->where('lista_id',$lista_id)->delete();
         return back()->with('success','Questão removida da lista com sucesso!');
     }
+
+    public function fazerCopia(Request $request)
+    {
+        $relacaoQuestao = QuestaoListas::where('questao_id',$request->input('questao_id'))->where('lista_id',$request->input('lista_id'))->get();
+
+        if(count($relacaoQuestao)==0){
+            $questaoLista = new QuestaoListas();
+            $questaoLista->lista_id = $request->input('lista_id');
+            $questaoLista->questao_id = $request->input('questao_id');
+            $questaoLista->save();
+            return redirect('/lista/'.$request->input('lista_id'))->with('success','Questão adicionada a lista com sucesso!');
+        }else{
+            return redirect('/lista/'.$request->input('lista_id'))->with('error','A questão já está associada a esta lista!');
+        }
+
+    }
+
 }
