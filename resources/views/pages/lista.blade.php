@@ -73,9 +73,11 @@
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
                                             <li><a href="/questao/edit/{{$questao->id}}/{{$lista_id}}">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$questao->id}}">Excluir</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#removerQuestaoModal{{$questao->id}}">Remover da lista</a></li>
                                         </ul>
                                         @include('modals.modal_remover_questao')
                                         @include('modals.modal_visualizar_questao')
+                                        @include('modals.modal_remover_questao_lista')
                                     </td>
                                 </tr>
                             @endforeach

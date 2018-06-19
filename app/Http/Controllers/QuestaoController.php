@@ -276,4 +276,9 @@ class QuestaoController extends Controller
         QuestaoListas::where('questao_id',$id)->delete();
         return back()->with('success','Questão excluída com sucesso!');
     }
+    public function removerQuestaoLista($id,$lista_id)
+    {
+        QuestaoListas::where('questao_id',$id)->where('lista_id',$lista_id)->delete();
+        return back()->with('success','Questão removida da lista com sucesso!');
+    }
 }
