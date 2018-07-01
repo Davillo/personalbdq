@@ -93,5 +93,5 @@ class ListaController extends Controller
     {
         $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('data_criacao','asc')->get();
         return view('pages.listas')->with('listas',$listas);
-    }
+    } //
 }
