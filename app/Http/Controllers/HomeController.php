@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Datas;
 use App\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,8 @@ use Exception;
 class HomeController extends Controller{
 
     public function index(){
+
+
        return view('login');
    }
 

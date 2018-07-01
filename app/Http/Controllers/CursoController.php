@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
+use App\Datas;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -17,7 +18,7 @@ class CursoController extends Controller
     }
 
     public function inserir(Request $request){
-        date_default_timezone_set('America/Fortaleza');
+
 
 
         $this->validate($request, [
@@ -29,8 +30,8 @@ class CursoController extends Controller
 
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
-        $curso->data_criacao = date('Y-m-d');
-        $curso->data_atualizado = date('Y-m-d');
+        $curso->data_criacao = Datas::getDataAtual();
+        $curso->data_atualizado = Datas::getDataAtual();
 
         if($curso->save()){
             return redirect('/curso')->with('success','Salvo com sucesso!');
@@ -50,7 +51,7 @@ class CursoController extends Controller
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
-        $curso->data_atualizado = date('Y-m-d');
+        $curso->data_atualizado = Datas::getDataAtual();
 
 
         if($curso->save()){

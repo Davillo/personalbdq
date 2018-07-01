@@ -33,6 +33,8 @@ Route::get('/lista/excluir/{id}','ListaController@destroy'); //deletar curso GET
 Route::post('/lista/inserir','ListaController@store');
 Route::post('/lista/update','ListaController@update');
 Route::get('lista/{id}','ListaController@lista');
+Route::get('lista/compartilhar/{id}','ListaController@share');
+Route::post('/lista/compartilhar','ListaController@compartilharLista');
 
 //Questão
 Route::get('/nova_questao', 'QuestaoController@nova_vindo_questoes');

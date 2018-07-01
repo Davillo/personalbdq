@@ -14,4 +14,7 @@ class Curso extends Model
     public function usuario(){
         return $this->hasMany('App\Usuario');
     }
+
+
+
 }

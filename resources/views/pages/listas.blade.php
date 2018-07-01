@@ -56,6 +56,7 @@
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
                                             <li><a href="/lista/edit/{{$lista->id}}">Editar</a></li>
+                                            <li><a href="/lista/compartilhar/{{$lista->id}}">Compartilhar Lista</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$lista->id}}">Excluir</a></li>
                                         </ul>
                                         @include('modals.modal_remover_lista')
