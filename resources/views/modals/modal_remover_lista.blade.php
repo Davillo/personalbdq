@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body">
                 Deseja realmente remover esta lista?
-                <strong class="text-danger">Obs: ao remover essa lista você excluirá todas as questões que estiverem somente nessa lista.</strong>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

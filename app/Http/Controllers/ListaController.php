@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Alternativa;
-use App\Datas;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
-use App\Usuario;
-use Illuminate\Support\Facades\DB;
-use App\UsuariosListas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +19,8 @@ class ListaController extends Controller
     public function store(Request $request)
     {
 
+        date_default_timezone_set('America/Fortaleza');
+
 
         $this->validate($request, [
             'nome' => 'required',
@@ -33,8 +31,8 @@ class ListaController extends Controller
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->autor_usuario_id = Auth::user()->id;
-        $lista->data_criacao = Datas::getDataAtual();
-        $lista->data_atualizado = Datas::getDataAtual();
+        $lista->data_criacao = date('Y-m-d');
+        $lista->data_atualizado = date('Y-m-d');
 
 
         if ($lista->save()){
@@ -50,6 +48,9 @@ class ListaController extends Controller
 
     public function update(Request $request)
     {
+        date_default_timezone_set('America/Fortaleza');
+
+
         $this->validate($request, [
             'nome' => 'required',
             'descricao' => 'required'
@@ -58,7 +59,7 @@ class ListaController extends Controller
         $lista = ListaQuestao::find($request->input('id'));
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
-        $lista->data_atualizado = Datas::getDataAtual();
+        $lista->data_atualizado = date('Y-m-d');
 
         if($lista->save()){
             return redirect('/listas')->with('success','Salvo com sucesso!');
@@ -81,7 +82,6 @@ class ListaController extends Controller
     }
 
     public function lista($id){
-
         $lista = ListaQuestao::find($id);
         $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
         $questoes = Questao::whereIn('id',$questaoLista)->get();
@@ -93,48 +93,5 @@ class ListaController extends Controller
     {
         $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('data_criacao','asc')->get();
         return view('pages.listas')->with('listas',$listas);
-    }
-
-    public function share($id){
-        $lista = ListaQuestao::find($id);
-        return view('pages.compartilhar_lista')->with('lista',$lista);
-    }
-
-    public function compartilharLista(Request $request){
-        $email = $request->input('email');
-        $idLista = $request->input('id');
-        $usuario = Usuario::where('email','=',$email)->first();
-
-        if($usuario->email == $email){
-            return redirect('/lista/compartilhar/'.$idLista)->with('error','Não é possível compartilhar uma lista consigo mesmo.');
-        }
-
-        if($usuario!=null){
-
-
-            $checarJaCompartilhada =
-                DB::table('usuarios_listas')
-                    ->select('usuario_convidado_id','lista_id')->where
-                    ('usuario_convidado_id','=',$usuario->id)->where('lista_id','=',$idLista);
-
-            if($checarJaCompartilhada){
-                return redirect('/lista/compartilhar/'.$idLista)->with('error','Esta lista já foi compartilhada com esse usuário.');
-            }else{
-                $compartilhamento = new UsuariosListas();
-                $compartilhamento->usuario_convidado_id = $usuario->id;
-                $compartilhamento->lista_id = $idLista;
-                $compartilhamento->autor_usuario_id = Auth::user()->id;
-                $compartilhamento->data_criacao = Datas::getDataAtual();
-                $compartilhamento->data_atualizado = Datas::getDataAtual();
-                $compartilhamento->save();
-            }
-
-
-
-        }else{
-            return redirect('/lista/compartilhar/'.$idLista)->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
-
-        }
-
     }
 }

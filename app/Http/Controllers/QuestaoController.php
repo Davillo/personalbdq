@@ -148,6 +148,7 @@ class QuestaoController extends Controller
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
 
         return view('pages.questoes')->with(compact('questoes'))->with('alternativas',$alternativas);
+        //return view('pages.questoes')->with(compact('questoes'));
     }
 
     public function edit($id,$lista_id)
@@ -259,7 +260,6 @@ class QuestaoController extends Controller
         }
 
         $lista_id = $request->input('lista_id');
-
         if($lista_id != null) {
             return redirect('/lista/' . $lista_id)->with('success', 'Questão atualizada com sucesso!');
         }else{
@@ -270,9 +270,8 @@ class QuestaoController extends Controller
 
     public function destroy($id)
     {
-
-        QuestaoListas::where('questao_id',$id)->delete();
         Questao::destroy($id);
+        QuestaoListas::where('questao_id',$id)->delete();
         return back()->with('success','Questão excluída com sucesso!');
     }
 }
