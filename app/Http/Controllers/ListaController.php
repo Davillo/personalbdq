@@ -6,6 +6,9 @@ use App\Alternativa;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
+use App\Usuario;
+use App\UsuariosListas;
+use App\Datas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -99,6 +102,49 @@ class ListaController extends Controller
 
                $lista = ListaQuestao::find($id);
                return view('pages.compartilhar_lista')->with('lista',$lista);
+    }
+
+
+    public function compartilharLista(Request $request){
+            $email = $request->input('email');
+            $idLista = $request->input('id');
+            $usuario = Usuario::where('email','=',$email)->first();
+
+            if(Auth::user()->email == $email){
+                    return redirect('/lista/compartilhar/'.$idLista)->with('error','Não é possível compartilhar uma lista consigo mesmo.');
+            }
+
+     if($usuario!=null){
+
+
+                    $checarJaCompartilhada =
+                            DB::table('usuarios_listas')
+                                ->select('usuario_convidado_id','lista_id')->where
+                           ('usuario_convidado_id','=',$usuario->id)->where('lista_id','=',$idLista);
+
+            if(!$checarJaCompartilhada){
+                $compartilhamento = new UsuariosListas();
+                $compartilhamento->usuario_convidado_id = $usuario->id;
+                $compartilhamento->lista_id = $idLista;
+                $compartilhamento->autor_usuario_id = Auth::user()->id;
+                $compartilhamento->data_criacao = Datas::getDataAtual();
+                $compartilhamento->data_atualizado = Datas::getDataAtual();
+                $compartilhamento->save();
+                return redirect('/lista/compartilhar/'.$idLista)->with('success','Lista compartilhada com sucesso.');
+
+            }else{
+
+                return redirect('/lista/compartilhar/'.$idLista)->with('error','Esta lista já foi compartilhada com esse usuário.');
+
+            }
+
+
+
+        }else{
+                   return redirect('/lista/compartilhar/'.$idLista)->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
+
+        }
+
     }
 
     public function listasCompartilhadas(){
