@@ -95,6 +95,12 @@ class ListaController extends Controller
         return view('pages.listas')->with('listas',$listas);
     }
 
+    public function share($id){
+
+               $lista = ListaQuestao::find($id);
+               return view('pages.compartilhar_lista')->with('lista',$lista);
+    }
+
     public function listasCompartilhadas(){
 
 

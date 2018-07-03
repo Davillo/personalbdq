@@ -39,7 +39,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                     </a>
                 </li>
 
-                <li class="@yield('mlistascompartilhadas')">
+                <li class="@yield('mcompartilhadas')">
                     <a href="/listas/compartilhadas">
                         <i class="fa fa-share"></i>
                         <p>Compartilhadas comigo</p>

@@ -55,6 +55,7 @@ class UsuarioController extends Controller{
     }
 
     public function update(Request $request){
+
         $this->validate($request,[
             'email' => 'required',
             'nome' => 'required',
