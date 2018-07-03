@@ -7,6 +7,7 @@ use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ListaController extends Controller
@@ -89,9 +90,23 @@ class ListaController extends Controller
         return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome);
     }
 
-    public function show()
-    {
+    public function show(){
         $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('data_criacao','asc')->get();
         return view('pages.listas')->with('listas',$listas);
-    } //
+    }
+
+    public function listasCompartilhadas(){
+
+
+        $listasCompartilhadas = DB::table('lista_questao')
+            ->select('lista_questao.id','lista_questao.nome','lista_questao.descricao','lista_questao.data_criacao','usuario.nome as nomeUsuario')
+            ->join('usuarios_listas', 'usuarios_listas.lista_id', '=', 'lista_questao.id')->join('usuario','usuario.id','=','lista_questao.autor_usuario_id')
+            ->where('usuarios_listas.autor_usuario_id', Auth::user()->id)
+            ->get();
+
+
+            return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
+    }
+
+
 }

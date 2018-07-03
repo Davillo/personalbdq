@@ -3,8 +3,9 @@
 Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
     <div class="logo">
-        <h3 style=" font-family: 'Pacifico', cursive;
+        <h3 style=" font-family: 'arial', cursive;
                 color: #ffffff;
+                margin-top: 10px;
                 margin-left: 20px;">PersonalBDQ</h3>
     </div>
     <div class="sidebar-wrapper">
@@ -18,7 +19,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
             </li>
             <li class="@yield('mcurso')">
                  <a href="/curso">
-                     <i class="now-ui-icons education_agenda-bookmark"></i>
+                     <i class="fa fa-book"></i>
                      <p>Cursos</p>
                  </a>
             </li>
@@ -26,15 +27,22 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
 
                 <li class="@yield('mlistas')">
                     <a href="/listas">
-                        <i class="now-ui-icons education_paper"></i>
+                        <i class="fa fa-list"></i>
                         <p>Listas</p>
                     </a>
                 </li>
 
                 <li class="@yield('mquestoes')">
                     <a href="/questoes">
-                        <i class="now-ui-icons education_paper"></i>
-                        <p>Questoes</p>
+                        <i class="fa fa-question"></i>
+                        <p>Questões</p>
+                    </a>
+                </li>
+
+                <li class="@yield('mlistascompartilhadas')">
+                    <a href="/listas/compartilhadas">
+                        <i class="fa fa-share"></i>
+                        <p>Compartilhadas comigo</p>
                     </a>
                 </li>
         </ul>
