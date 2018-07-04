@@ -120,9 +120,9 @@ class ListaController extends Controller
                     $checarJaCompartilhada =
                             DB::table('usuarios_listas')
                                 ->select('usuario_convidado_id','lista_id')->where
-                           ('usuario_convidado_id','=',$usuario->id)->where('lista_id','=',$idLista);
+                           ('usuario_convidado_id','=',$usuario->id)->where('lista_id','=',$idLista)->count();
 
-            if(!$checarJaCompartilhada){
+            if($checarJaCompartilhada==0){
                 $compartilhamento = new UsuariosListas();
                 $compartilhamento->usuario_convidado_id = $usuario->id;
                 $compartilhamento->lista_id = $idLista;
@@ -133,9 +133,7 @@ class ListaController extends Controller
                 return redirect('/lista/compartilhar/'.$idLista)->with('success','Lista compartilhada com sucesso.');
 
             }else{
-
                 return redirect('/lista/compartilhar/'.$idLista)->with('error','Esta lista já foi compartilhada com esse usuário.');
-
             }
 
 
@@ -153,7 +151,7 @@ class ListaController extends Controller
         $listasCompartilhadas = DB::table('lista_questao')
             ->select('lista_questao.id','lista_questao.nome','lista_questao.descricao','lista_questao.data_criacao','usuario.nome as nomeUsuario')
             ->join('usuarios_listas', 'usuarios_listas.lista_id', '=', 'lista_questao.id')->join('usuario','usuario.id','=','lista_questao.autor_usuario_id')
-            ->where('usuarios_listas.autor_usuario_id', Auth::user()->id)
+            ->where('usuarios_listas.usuario_convidado_id', Auth::user()->id)
             ->get();
 
 
