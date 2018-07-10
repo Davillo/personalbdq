@@ -87,10 +87,12 @@ class ListaController extends Controller
 
     public function lista($id){
         $lista = ListaQuestao::find($id);
+        $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
         $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
-        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome);
+
+        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas);
     }
 
     public function show(){
@@ -99,11 +101,9 @@ class ListaController extends Controller
     }
 
     public function share($id){
-
-               $lista = ListaQuestao::find($id);
-               return view('pages.compartilhar_lista')->with('lista',$lista);
+        $lista = ListaQuestao::find($id);
+        return view('pages.compartilhar_lista')->with('lista',$lista);
     }
-
 
     public function compartilharLista(Request $request){
             $email = $request->input('email');
@@ -130,7 +130,7 @@ class ListaController extends Controller
                 $compartilhamento->data_criacao = Datas::getDataAtual();
                 $compartilhamento->data_atualizado = Datas::getDataAtual();
                 $compartilhamento->save();
-                return redirect('/lista/compartilhar/'.$idLista)->with('success','Lista compartilhada com sucesso.');
+                return redirect('/listas')->with('success','Lista compartilhada com sucesso.');
 
             }else{
                 return redirect('/lista/compartilhar/'.$idLista)->with('error','Esta lista já foi compartilhada com esse usuário.');
