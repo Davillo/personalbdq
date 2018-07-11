@@ -36,6 +36,7 @@ Route::get('lista/{id}','ListaController@lista');
 Route::get('lista/compartilhar/{id}','ListaController@share');
 Route::post('/lista/compartilhar','ListaController@compartilharLista');
 Route::get('/listas/compartilhadas/','ListaController@listasCompartilhadas');
+Route::get('/lista/compartilhada/{id}','ListaController@listaCompartilhada');
 Route::get('/lista/compartilhar/excluir/{id}','ListaController@excluirCompartilhada');
 
 //Questão

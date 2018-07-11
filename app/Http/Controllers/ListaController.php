@@ -162,6 +162,17 @@ class ListaController extends Controller
             return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
     }
 
+    public function listaCompartilhada($id){
+
+        $lista = ListaQuestao::find($id);
+        $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
+        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
+        $questoes = Questao::whereIn('id',$questaoLista)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+
+        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas);
+    }
+
     public function excluirCompartilhada($id){
         UsuariosListas::destroy($id);
         return  redirect('/listas')->with('success','Usuário removido da lista com sucesso!');

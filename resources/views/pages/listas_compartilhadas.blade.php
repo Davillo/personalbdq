@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('mlistas','active')
+@section('mcompartilhadas','active')
 @section('conteudo')
     <div class="card-header">
         <div class="row">
@@ -39,7 +39,7 @@
                             @foreach($listas as $lista)
                                 <tr>
                                     <td>
-                                        <a href="#">{{$lista->nome}}</a>
+                                        <a href="/lista/compartilhada/{{$lista->id}}">{{$lista->nome}}</a>
                                     </td>
 
                                     <td class="td-fixo">
