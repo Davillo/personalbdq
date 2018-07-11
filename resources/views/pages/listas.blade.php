@@ -30,6 +30,9 @@
                         <th>
                             Data de criação
                         </th>
+                        <th>
+                            Compartilhada
+                        </th>
                         </thead>
                         <tbody>
                         @if(count($listas)>0)
@@ -49,6 +52,20 @@
 
                                     </td>
                                     <td>
+                                        @foreach($compartilhadas as $count => $compartilhada)
+                                            @if($compartilhada->lista_id == $lista->id)
+                                                <a href="#" data-toggle="modal" data-target="#compartilhadosModal{{$lista->id}}">Ver Usuários</a>
+                                                @include('modals.modal_usuarios_lista_compartilhada')
+                                                @break
+                                            @else
+                                                <?php $count++ ?>
+                                            @endif
+                                            @if(count($compartilhadas) == $count)
+                                                Não compartilhada
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>
                                         <a href="#" class="dropdown " data-toggle="dropdown">
                                             <i class="material-icons">
                                                 more_horiz
@@ -60,6 +77,7 @@
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$lista->id}}">Excluir</a></li>
                                         </ul>
                                         @include('modals.modal_remover_lista')
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -97,7 +97,11 @@ class ListaController extends Controller
 
     public function show(){
         $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->orderBy('data_criacao','asc')->get();
-        return view('pages.listas')->with('listas',$listas);
+        $idsListas = ListaQuestao::select('id')->where('autor_usuario_id', Auth::user()->id)->get();
+        $compartilhadas = UsuariosListas::whereIn('lista_id',$idsListas)->get();
+        $idsUsuarios = UsuariosListas::select('usuario_convidado_id')->whereIn('lista_id',$idsListas)->get();
+        $usuarios = DB::table('usuario')->select('id','email')->whereIn('id',$idsUsuarios)->get();
+        return view('pages.listas')->with('listas',$listas)->with('compartilhadas',$compartilhadas)->with('usuarios',$usuarios);
     }
 
     public function share($id){
@@ -156,6 +160,11 @@ class ListaController extends Controller
 
 
             return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
+    }
+
+    public function excluirCompartilhada($id){
+        UsuariosListas::destroy($id);
+        return  redirect('/listas')->with('success','Usuário removido da lista com sucesso!');
     }
 
 
