@@ -52,18 +52,22 @@
 
                                     </td>
                                     <td>
-                                        @foreach($compartilhadas as $count => $compartilhada)
-                                            @if($compartilhada->lista_id == $lista->id)
-                                                <a href="#" data-toggle="modal" data-target="#compartilhadosModal{{$lista->id}}">Ver Usuários</a>
-                                                @include('modals.modal_usuarios_lista_compartilhada')
-                                                @break
-                                            @else
-                                                <?php $count++ ?>
-                                            @endif
-                                            @if(count($compartilhadas) == $count)
-                                                Não compartilhada
-                                            @endif
-                                        @endforeach
+                                        @if(count($compartilhadas) != 0)
+                                            @foreach($compartilhadas as $count => $compartilhada)
+                                                @if($compartilhada->lista_id == $lista->id)
+                                                    <a href="#" data-toggle="modal" data-target="#compartilhadosModal{{$lista->id}}">Ver Usuários</a>
+                                                    @include('modals.modal_usuarios_lista_compartilhada')
+                                                    @break
+                                                @else
+                                                    <?php $count++ ?>
+                                                @endif
+                                                @if(count($compartilhadas) == $count)
+                                                    Não compartilhada
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            Não compartilhada
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="#" class="dropdown " data-toggle="dropdown">
