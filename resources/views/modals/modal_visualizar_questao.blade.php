@@ -28,7 +28,25 @@
                         @endforeach
                     @endif
 
-                </ul></div>
+                </ul>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Comentários:</strong></li>
+
+                    @if(count($comentarios) != 0)
+                        @foreach($comentarios as $comentario )
+                            @if($comentario->questao_id == $questao->id)
+                                <li class="list-group-item">
+                                    <small>Autor</small><br>
+                                    {{$comentario->comentario}}
+                                </li>
+                            @endif
+                        @endforeach
+                    @endif
+
+                </ul>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
             </div>

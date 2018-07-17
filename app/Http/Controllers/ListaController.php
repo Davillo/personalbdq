@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alternativa;
+use App\Comentario;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
@@ -92,8 +93,9 @@ class ListaController extends Controller
         $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+        $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas);
+        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios);
     }
 
     public function show(){
@@ -170,8 +172,10 @@ class ListaController extends Controller
         $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+        $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas);
+
+        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios);
     }
 
     public function excluirCompartilhada($id){
