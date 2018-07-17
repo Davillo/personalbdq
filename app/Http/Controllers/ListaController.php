@@ -75,6 +75,7 @@ class ListaController extends Controller
         $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id)->get();
         foreach($questaoLista as $id_questao){
             $questoes = QuestaoListas::select('questao_id')->where('questao_id',$id_questao->questao_id)->get();
+            QuestaoListas::where('questao_id',$id_questao->questao_id)->delete();
             if(count($questoes)==1){
                 Questao::destroy($id_questao->questao_id);
             }
@@ -178,5 +179,40 @@ class ListaController extends Controller
         return  redirect('/listas')->with('success','Usuário removido da lista com sucesso!');
     }
 
+    public function clonarLista($id)
+    {
 
+        $lista = ListaQuestao::find($id);
+        $novaLista = $lista->replicate();
+        $novaLista->autor_usuario_id = Auth::user()->id;
+        $novaLista->save();
+
+        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id);
+        $questoes = Questao::whereIn('id',$questaoLista)->get();
+
+
+        foreach ($questoes as $questao){
+
+            $novaQuestao = $questao->replicate();
+            $novaQuestao->autor_usuario_id = Auth::user()->id;
+            $novaQuestao->save();
+
+            $alternativas = Alternativa::where('questao_id',$questao->id)->get();
+            if(count($alternativas) != 0) {
+                foreach ($alternativas as $alternativa) {
+                    $novaAlternativa = $alternativa->replicate();
+                    $novaAlternativa->questao_id = $novaQuestao->id;
+                    $novaAlternativa->save();
+                }
+            }
+
+            $questaoLista = new QuestaoListas();
+            $questaoLista->lista_id = $novaLista->id;
+            $questaoLista->questao_id = $novaQuestao->id;
+            $questaoLista->save();
+
+        }
+
+        return redirect('/lista/'.$novaLista->id)->with('success',"Lista clonada com sucesso!");
+    }
 }

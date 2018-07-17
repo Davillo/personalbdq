@@ -52,7 +52,10 @@
 
                                     </td>
                                     <td>
-                                    <!--
+                                        {{$lista->nomeUsuario}}
+                                    </td>
+                                    <td>
+
                                         <a href="#" class="dropdown " data-toggle="dropdown">
                                             <i class="material-icons">
                                                 more_horiz
@@ -60,11 +63,9 @@
                                         </a>
 
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                          <li><a href="/lista/edit/{{$lista->id}}">Editar</a></li>
-                                            <li><a href="/lista/compartilhar/{{$lista->id}}">Compartilhar Lista</a></li>
-                                            <li><a href="#" data-toggle="modal" data-target="#removerModal{{$lista->id}}">Excluir</a></li>
-                                        </ul>-->
-                                        {{$lista->nomeUsuario}}
+                                           <li><a href="/lista/clonar/{{$lista->id}}">Clonar Lista</a></li>
+                                        </ul>
+
                                     </td>
                                 </tr>
                             @endforeach
