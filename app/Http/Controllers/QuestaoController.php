@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alternativa;
+use App\Comentario;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
@@ -320,4 +321,21 @@ class QuestaoController extends Controller
         return redirect('/lista/'.$request->input('lista_id'))->with('success',"Questão clonada com sucesso!");
     }
 
+    public function adicionarComentario(Request $request)
+    {
+        $this->validate($request,[
+            'comentario' => 'required'
+        ]);
+
+        $comentario = new Comentario();
+        $comentario->comentario = $request->input('comentario');
+        $comentario->questao_id = $request->input('questao_id');
+        $comentario->autor_usuario_id = Auth::user()->id;
+        $comentario->data_criacao = date('Y-m-d');
+        $comentario->data_atualizado = date('Y-m-d');
+        $comentario->save();
+
+        return redirect('/lista/compartilhada/'.$request->input('lista_id'))->with('success','Comentário feito com sucesso!');
+
+    }
 }

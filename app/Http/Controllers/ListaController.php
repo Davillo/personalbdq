@@ -171,7 +171,7 @@ class ListaController extends Controller
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas);
+        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas);
     }
 
     public function excluirCompartilhada($id){
