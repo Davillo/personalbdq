@@ -75,10 +75,12 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
+                                           <li><a href="#" data-toggle="modal" data-target="#clonarQuestaoModal{{$questao->id}}">Clonar Questão</a></li>
                                            <!-- <li><a href="#" data-toggle="modal" data-target="#fazerCopiaModal{{$questao->id}}">Adicionar a lista</a></li>-->
                                         </ul>
                                         @include('modals.modal_visualizar_questao')
                                         @include('modals.modal_fazer_copia_questao')
+                                        @include('modals.modal_clonar_questao')
                                     </td>
                                 </tr>
                             @endforeach

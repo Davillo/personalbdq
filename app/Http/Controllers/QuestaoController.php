@@ -276,6 +276,11 @@ class QuestaoController extends Controller
 
     public function fazerCopia(Request $request)
     {
+        $this->validate($request,[
+            'lista_id' => 'required'
+        ]);
+
+
         $relacaoQuestao = QuestaoListas::where('questao_id',$request->input('questao_id'))->where('lista_id',$request->input('lista_id'))->get();
 
         if(count($relacaoQuestao)==0){
@@ -289,4 +294,30 @@ class QuestaoController extends Controller
         }
 
     }
+
+    public function clonarQuestao(Request $request)
+    {
+
+        $questao = Questao::find($request->input('questao_id'));
+        $alternativas = Alternativa::where('questao_id',$request->input('questao_id'))->get();
+        $novaQuestao = $questao->replicate();
+        $novaQuestao->autor_usuario_id = Auth::user()->id;
+        $novaQuestao->save();
+
+        if(count($alternativas) != 0) {
+            foreach ($alternativas as $alternativa) {
+                $novaAlternativa = $alternativa->replicate();
+                $novaAlternativa->questao_id = $novaQuestao->id;
+                $novaAlternativa->save();
+            }
+        }
+
+        $questaoLista = new QuestaoListas();
+        $questaoLista->lista_id = $request->input('lista_id');
+        $questaoLista->questao_id = $novaQuestao->id;
+        $questaoLista->save();
+
+        return redirect('/lista/'.$request->input('lista_id'))->with('success',"Questão clonada com sucesso!");
+    }
+
 }

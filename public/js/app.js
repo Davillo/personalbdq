@@ -48730,6 +48730,41 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questoes'],
@@ -48738,7 +48773,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         return {
             list: [],
             busca: '',
-            dados: []
+            dados: [],
+            checkdados: []
 
         };
     },
@@ -48747,40 +48783,42 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         filtrarCampo: function filtrarCampo() {
             var _this = this;
 
-            var listaDados = this.busca.split(",");
-
-            console.log(listaDados);
-            if (listaDados.length > 0 && listaDados[0] != "") {
+            var listaDados = this.checkdados;
+            if (listaDados.length > 0) {
                 this.dados = [];
 
                 var _loop = function _loop(i) {
-                    if (listaDados[i] != "") {
-                        var _dados;
+                    var _dados;
 
-                        (_dados = _this.dados).push.apply(_dados, _toConsumableArray(_this.list.filter(function (questao) {
-                            return questao.palavras_chave.toLowerCase().match(listaDados[i]);
-                        })));
-                    }
+                    (_dados = _this.dados).push.apply(_dados, _toConsumableArray(_this.list.filter(function (questao) {
+                        return questao.palavras_chave.toLowerCase().match(listaDados[i].toLowerCase());
+                    })));
                 };
 
                 for (var i = 0; i < listaDados.length; i++) {
                     _loop(i);
                 }
-                return this.dados;
-            } else {
-                this.dados = [];
-                this.dados = this.list.filter(function (questao) {
-                    return questao.palavras_chave.toLowerCase().match(_this.busca);
+                this.dados = [].concat(_toConsumableArray(new Set(this.dados)));
+                return this.dados.sort(function (a, b) {
+                    return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
                 });
-                return this.dados;
+            } else {
+                return this.list.sort(function (a, b) {
+                    return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
+                });
             }
+        },
+        filtroCheck: function filtroCheck() {
+            var lista = [];
+            for (var i = 0; i < this.list.length; i++) {
+                var _lista;
+
+                (_lista = lista).push.apply(_lista, _toConsumableArray(this.list[i].palavras_chave.split(",")));
+            }
+            lista = [].concat(_toConsumableArray(new Set(lista)));
+            return lista;
         }
     },
-    /*filtrarCampo: function () {
-            return this.list.filter((questao) => {
-                return questao.palavras_chave.toLowerCase().match(this.busca)
-            })
-        }*/
 
     methods: {},
 
@@ -48801,29 +48839,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.busca,
-          expression: "busca"
-        }
-      ],
-      staticClass: "form-control col-md-3 float-right",
-      attrs: { type: "text", placeholder: "Filtrar por palavras chave!" },
-      domProps: { value: _vm.busca },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.busca = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
     _c("div", { staticClass: "table-responsive" }, [
+      _c(
+        "a",
+        {
+          staticClass: "float-right mr-3",
+          staticStyle: { "font-size": "14px" },
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#filtrar"
+          }
+        },
+        [_vm._v("Filtrar por")]
+      ),
+      _vm._v(" "),
       _c(
         "table",
         {
@@ -48835,109 +48865,230 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.filtrarCampo, function(questao) {
-              return _c("tr", [
-                _c("td", { staticClass: "td-fixo" }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(questao.enunciado) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(questao.palavras_chave) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(questao.categoria) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(questao.dificuldade) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(questao.tipo) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: "#",
-                        "data-toggle": "modal",
-                        "data-target": "#visualizarModal" + questao.id
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v(
-                          "\n                        visibility\n                    "
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._m(1, true),
+            [
+              _vm._l(_vm.filtrarCampo, function(questao) {
+                return _c("tr", [
+                  _c("td", { staticClass: "td-fixo" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(questao.enunciado) +
+                        "\n            "
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "dropdown-menu",
-                      staticStyle: { "padding-left": "10px" },
-                      attrs: { role: "menu" }
-                    },
-                    [
-                      _c("li", [
-                        _c(
-                          "a",
-                          { attrs: { href: "/questao/edit/" + questao.id } },
-                          [_vm._v("Editar")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "#",
-                              "data-toggle": "modal",
-                              "data-target": "#removerModal" + questao.id
-                            }
-                          },
-                          [_vm._v("Excluir")]
-                        )
-                      ])
-                    ]
-                  )
+                  _c("td", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(questao.palavras_chave) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(questao.categoria) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(questao.dificuldade) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(questao.tipo) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "#",
+                          "data-toggle": "modal",
+                          "data-target": "#visualizarModal" + questao.id
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "material-icons" }, [
+                          _vm._v(
+                            "\n                        visibility\n                    "
+                          )
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        staticStyle: { "padding-left": "10px" },
+                        attrs: { role: "menu" }
+                      },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            { attrs: { href: "/questao/edit/" + questao.id } },
+                            [_vm._v("Editar")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "#",
+                                "data-toggle": "modal",
+                                "data-target": "#removerModal" + questao.id
+                              }
+                            },
+                            [_vm._v("Excluir")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "#",
+                                "data-toggle": "modal",
+                                "data-target": "#fazerCopiaModal" + questao.id
+                              }
+                            },
+                            [_vm._v("Adicionar a lista")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
                 ])
-              ])
-            })
+              }),
+              _vm._v(" "),
+              _vm.list.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "5" } }, [
+                      _vm._v("Nenhuma questão foi encontrada.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
           )
         ]
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "filtrar",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "filtrarModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body modal-visualizar" }, [
+                _c("h5", { staticClass: "text-center" }, [
+                  _vm._v("Selecione as palavras-chave")
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-group" }, [
+                  _c(
+                    "li",
+                    { staticClass: "list-group-item" },
+                    _vm._l(_vm.filtroCheck, function(questao) {
+                      return _c(
+                        "div",
+                        { staticClass: "form-check form-check-inline" },
+                        [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.checkdados,
+                                  expression: "checkdados"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                value: questao,
+                                checked: Array.isArray(_vm.checkdados)
+                                  ? _vm._i(_vm.checkdados, questao) > -1
+                                  : _vm.checkdados
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.checkdados,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = questao,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.checkdados = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.checkdados = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.checkdados = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(questao) +
+                                "\n                                    "
+                            ),
+                            _vm._m(3, true)
+                          ])
+                        ]
+                      )
+                    })
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -48947,7 +49098,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "text-primary" }, [
       _c("tr", [
-        _c("th", [_vm._v("\n                Enunciado\n            ")]),
+        _c("th", { staticClass: "td" }, [
+          _vm._v("\n                Enunciado\n            ")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("\n                Palavras Chave\n            ")]),
         _vm._v(" "),
@@ -48975,6 +49128,48 @@ var staticRenderFns = [
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "form-check-sign" }, [
+      _c("span", { staticClass: "check" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Fechar")]
+      )
+    ])
   }
 ]
 render._withStripped = true
