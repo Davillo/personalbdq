@@ -50,6 +50,9 @@
                                                     <p class="card-text">
                                                 {{$comentario->comentario}}
                                             </p>
+                                            @if($questao->autor_usuario_id == \Illuminate\Support\Facades\Auth::user()->id)
+                                                    <a href="/questao/comentario/excluir/{{$comentario->id}}" class="card-link float-right mb-1 pb-1">Excluir</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </li>

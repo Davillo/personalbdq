@@ -343,4 +343,11 @@ class QuestaoController extends Controller
         return redirect('/lista/compartilhada/'.$request->input('lista_id'))->with('success','Comentário feito com sucesso!');
 
     }
+
+    public function excluirComentario($id)
+    {
+       Comentario::destroy($id);
+        return back()->with('success','Comentário excluído com sucesso!');
+    }
 }
+

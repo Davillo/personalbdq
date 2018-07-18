@@ -53,6 +53,7 @@ Route::get('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestao
 Route::post('/questao/fazerCopia','QuestaoController@fazerCopia');
 Route::post('/questao/clonar','QuestaoController@clonarQuestao');
 Route::post('/questao/comentario','QuestaoController@adicionarComentario');
+Route::get('/questao/comentario/excluir/{id}','QuestaoController@excluirComentario');
 
 
 
