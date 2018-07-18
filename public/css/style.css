@@ -131,7 +131,7 @@ body{
     white-space: nowrap;
     display: block;
 }
-.modal-body, .modal-visualizar{
+.modal-visualizar{
     max-height: calc(100vh - 200px);
     overflow-y: auto;
 }

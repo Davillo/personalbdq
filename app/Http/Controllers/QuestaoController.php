@@ -7,6 +7,7 @@ use App\Comentario;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
+use App\Usuario;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -140,9 +141,13 @@ class QuestaoController extends Controller
         $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
 
+        $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
+        $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
+
+        $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
         $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
 
-        return view('pages.questoes')->with(compact('questoes'))->with('alternativas',$alternativas)->with('listasUsuario',$listas);
+        return view('pages.questoes')->with(compact('questoes'))->with('alternativas',$alternativas)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
 
     }
 

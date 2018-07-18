@@ -94,8 +94,11 @@ class ListaController extends Controller
         $questoes = Questao::whereIn('id',$questaoLista)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
         $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
+        $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios);
+        $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
+
+        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
     }
 
     public function show(){
@@ -174,8 +177,12 @@ class ListaController extends Controller
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
         $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
 
+        $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios);
+        $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
+
+
+        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
     }
 
     public function excluirCompartilhada($id){
