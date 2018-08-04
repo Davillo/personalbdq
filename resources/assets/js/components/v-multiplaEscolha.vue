@@ -84,7 +84,7 @@
                                      <input type="radio" name="correta" value="1">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula..."></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Alternativa..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -99,7 +99,7 @@
                                      <input type="radio" name="correta" value="2">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula..."></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Alternativa..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -114,7 +114,7 @@
                                      <input type="radio" name="correta" value="3">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula..."></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Alternativa..."></textarea>
         </div>
     </div>
     <div class="row">
@@ -129,7 +129,7 @@
                                      <input type="radio" name="correta" value="4">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula..." ></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Alternativa..." ></textarea>
         </div>
     </div>
     <div class="row">
@@ -144,7 +144,7 @@
                                      <input type="radio" name="correta" value="5">
                                 </span>
             </div>
-            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Matricula..."></textarea>
+            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Alternativa..."></textarea>
         </div>
     </div>
    </div>

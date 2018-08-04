@@ -156,14 +156,11 @@ class ListaController extends Controller
     }
 
     public function listasCompartilhadas(){
-
-
         $listasCompartilhadas = DB::table('lista_questao')
             ->select('lista_questao.id','lista_questao.nome','lista_questao.descricao','lista_questao.data_criacao','usuario.nome as nomeUsuario')
             ->join('usuarios_listas', 'usuarios_listas.lista_id', '=', 'lista_questao.id')->join('usuario','usuario.id','=','lista_questao.autor_usuario_id')
             ->where('usuarios_listas.usuario_convidado_id', Auth::user()->id)
             ->get();
-
 
             return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
     }

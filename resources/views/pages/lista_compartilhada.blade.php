@@ -76,7 +76,7 @@
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
                                            <li><a href="#" data-toggle="modal" data-target="#clonarQuestaoModal{{$questao->id}}">Clonar Questão</a></li>
-                                           <li><a href="#" data-toggle="modal" data-target="#adicionarSugestaoModal{{$questao->id}}">Adicionar sustão</a></li>
+                                           <li><a href="#" data-toggle="modal" data-target="#adicionarSugestaoModal{{$questao->id}}">Adicionar Sugestão</a></li>
                                         <!-- <li><a href="#" data-toggle="modal" data-target="#fazerCopiaModal{{$questao->id}}">Adicionar a lista</a></li>-->
                                         </ul>
                                         @include('modals.modal_visualizar_questao')

@@ -48106,7 +48106,7 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "enunciado_alternativa1",
-                placeholder: "Matricula..."
+                placeholder: "Alternativa..."
               }
             })
           ]
@@ -48160,7 +48160,7 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "enunciado_alternativa2",
-                placeholder: "Matricula..."
+                placeholder: "Alternativa..."
               }
             })
           ]
@@ -48214,7 +48214,7 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "enunciado_alternativa3",
-                placeholder: "Matricula..."
+                placeholder: "Alternativa..."
               }
             })
           ]
@@ -48268,7 +48268,7 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "enunciado_alternativa4",
-                placeholder: "Matricula..."
+                placeholder: "Alternativa..."
               }
             })
           ]
@@ -48322,7 +48322,7 @@ var staticRenderFns = [
               attrs: {
                 type: "text",
                 name: "enunciado_alternativa5",
-                placeholder: "Matricula..."
+                placeholder: "Alternativa..."
               }
             })
           ]

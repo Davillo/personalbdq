@@ -19,8 +19,6 @@ class CursoController extends Controller
 
     public function inserir(Request $request){
 
-
-
         $this->validate($request, [
             'nome' => 'required',
             'tipo' => 'required'
@@ -52,7 +50,6 @@ class CursoController extends Controller
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
         $curso->data_atualizado = Datas::getDataAtual();
-
 
         if($curso->save()){
             return redirect('/curso')->with('success','Editado com sucesso!');
