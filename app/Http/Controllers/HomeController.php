@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Contato;
 use App\Datas;
 use App\Usuario;
 use Illuminate\Support\Facades\Auth;
@@ -21,11 +22,22 @@ class HomeController extends Controller{
        return redirect('/');
    }
 
+   public function contato(Request $request){
+
+        $contato = new Contato();
+        $contato->nome = $request->input('nome');
+        $contato->email = $request->input('email');
+        $contato->texto = $request->input('texto');
+        $contato->save();
+
+   }
+
+
+
     public function home(){
         if(Auth::check()){
             return view('pages.dashboard')->with('usuario',Auth::user());
         }else{
-
             return redirect('/');
         }
    }

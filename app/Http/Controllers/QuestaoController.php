@@ -23,20 +23,19 @@ class QuestaoController extends Controller
         return view('pages.nova_questao')->with("listas",$listas);
     }
 
+
     public function store(Request $request)
     {
-        date_default_timezone_set('America/Fortaleza');
-
-        $questao = new Questao();
 
         $this->validate($request,[
             'enunciado' => 'required',
             'palavras_chave' => 'required',
             'dificuldade' => 'required',
-            'tipo' => 'required',
             'categoria' => 'required'
         ]);
+        date_default_timezone_set('America/Fortaleza');
 
+        $questao = new Questao();
 
         $questao->enunciado = $request->input('enunciado');
         $questao->palavras_chave = $request->input('palavras_chave');
@@ -46,11 +45,11 @@ class QuestaoController extends Controller
         $questao->autor_usuario_id = Auth::user()->id;
         $questao->data_criacao = date('Y-m-d');
         $questao->data_atualizado = date('Y-m-d');
-        $questao->save();
+        $questao->save(); // salvando questão
 
-        $ultimoIdQeustao = $questao->id;
+        $ultimoIdQeustao = $questao->id; // recuperando ultimo id salvo
 
-        if($request->input('tipo') == 'Múltipla Escolha'){
+        if($request->input('tipo') == 'Múltipla Escolha' || $request->input('tipo') == 'Asserção Razão' || $request->input('tipo') == 'Verdadeiro ou Falso'){
 
             if($request->input('enunciado_alternativa1') != null){
                 $alternativa1 = new Alternativa();

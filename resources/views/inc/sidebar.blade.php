@@ -7,7 +7,14 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                 color: #ffffff;
                 margin-top: 10px;
                 margin-left: 20px;">PersonalBDQ</h3>
+
+        <h5  style=" font-family: 'arial', cursive;
+                color: #ffffff;
+                margin-top: 10px;
+                margin-left: 20px;">Usuário:  {{Auth::user()->nome}}</h5>
+
     </div>
+
     <div class="sidebar-wrapper">
         <ul class="nav">
             @if(Auth::user()->admin)
@@ -25,6 +32,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
             </li>
             @endif
 
+            @if(!Auth::user()->admin)
                 <li class="@yield('mlistas')">
                     <a href="/listas">
                         <i class="fa fa-list"></i>
@@ -45,6 +53,7 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                         <p>Compartilhadas comigo</p>
                     </a>
                 </li>
+                @endif
         </ul>
     </div>
 </div>

@@ -72,8 +72,9 @@
             </div>
         </div>
 
-
+        <form action="/contato" method="POST">
         <div class="row pb-4">
+
             <div class="col-lg-12">
                 <h1 class="text-center sobre mb-5" id="contato">Alguma duvida?</h1>
                 <h2 class="text-center mb-5" style="color:#575756;">Contato</h2>
@@ -85,6 +86,9 @@
                                         <i class="material-icons">perm_identity</i>
                                     </span>
                     </div>
+
+
+
                     <input type="text" class="form-control" placeholder="Nome...">
                 </div>
                 <div class="input-group mb-3">
@@ -99,8 +103,9 @@
                     <textarea class="form-control" name="name" rows="4" cols="80" placeholder="Mensagem..."></textarea>
                 </div>
                 <div class="send-button mt-3">
-                    <button href="" class="btn btn-primary float-right btn-enviar">Enviar</button>
+                    <button class="btn btn-primary float-right btn-enviar">Enviar</button>
                 </div>
+                </form>
             </div>
         </div>
     </main>

@@ -9,12 +9,14 @@ Route::post('/usuario/inserir','UsuarioController@store'); // rota cadastro usu√
 Route::post('/usuario/update','UsuarioController@update');
 
 
+
+
 //Home requests
 Route::get('/logout','HomeController@logout'); // rota logout GET
 Route::get('/', 'HomeController@index'); // Rota root
 Route::get('/home', 'HomeController@home');
 Route::post('/login', 'HomeController@efetuarLogin'); // rota de login POST
-
+Route::post('/contato','HomeController@contato'); // rota de salvar contato
 
 
 //Curso
