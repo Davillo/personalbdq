@@ -70,5 +70,8 @@
 <script type="text/javascript" src="{{asset('/js/now-ui-dashboard.js?v=1.0.1')}}"></script>
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <!--<script src="../assets/demo/demo.js"></script>-->
-
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace('enunciado');
+</script>
 </html>

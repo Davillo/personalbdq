@@ -30,7 +30,7 @@
             <tbody>
             <tr v-for="questao in filtrarCampo">
                 <td class="td-fixo">
-                    {{questao.enunciado}}
+                    {{questao.enunciado.replace(/(<([^>]+)>)/ig,"")}}
                 </td>
 
                 <td>
