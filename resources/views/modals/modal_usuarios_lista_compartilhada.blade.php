@@ -13,6 +13,9 @@
                                 @if($compartilhada->usuario_convidado_id == $usuario->id)
                                 <li class="list-group-item">{{ $usuario->email }}
                                     <a href="/lista/compartilhar/excluir/{{$compartilhada->id}}" class="float-right">
+                                        {{ method_field('DELETE') }}
+                                        {{csrf_field()}}
+                                    
                                         <i class="material-icons">
                                             clear
                                         </i>

@@ -5,7 +5,6 @@
             Alternativas:
         </div>
     </div>
-
     <div class="row">
         <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">

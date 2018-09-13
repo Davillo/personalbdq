@@ -9,9 +9,12 @@
                 Deseja realmente remover esta questão?
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-              <a href="/questao/excluir/{{$questao->id}}">  <button type="button" class="btn btn-danger">Remover</button></a>
+                <form action="/questao/excluir/{{$questao->id}}" method="POST">
+                    {{ method_field('DELETE') }}
+                    {{csrf_field()}}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Remover</button>
+                </form>
             </div>
         </div>
     </div>

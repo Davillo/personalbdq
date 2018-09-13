@@ -9,9 +9,12 @@
                 Deseja realmente remover este curso?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-              <a href="/curso/excluir/{{$curso->id}}">  <button type="button" class="btn btn-danger">Remover</button></a>
+                <form action="/curso/excluir/{{$curso->id}}" method="POST">
+                    {{ method_field('DELETE') }}
+                    {{csrf_field()}}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Remover</button>
+                </form>
             </div>
         </div>
     </div>

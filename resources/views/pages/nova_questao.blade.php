@@ -99,7 +99,7 @@
 
                             <div class="row">
                                 <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                    <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves..."></input>
+                                    <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves...">
                                 </div>
                             </div>
 
