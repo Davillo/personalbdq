@@ -48325,17 +48325,38 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questoes'],
 
     data: function data() {
         return {
-            list: [],
-            busca: '',
-            dados: [],
-            checkdados: []
-
+            listaQuestoes: [],
+            checkdados: [],
+            categorias: [],
+            dificuldades: []
         };
     },
 
@@ -48343,47 +48364,51 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         filtrarCampo: function filtrarCampo() {
             var _this = this;
 
-            var listaDados = this.checkdados;
-            if (listaDados.length > 0) {
-                this.dados = [];
-
-                var _loop = function _loop(i) {
-                    var _dados;
-
-                    (_dados = _this.dados).push.apply(_dados, _toConsumableArray(_this.list.filter(function (questao) {
-                        return questao.palavras_chave.toLowerCase().match(listaDados[i].toLowerCase());
-                    })));
-                };
-
-                for (var i = 0; i < listaDados.length; i++) {
-                    _loop(i);
-                }
-                this.dados = [].concat(_toConsumableArray(new Set(this.dados)));
-                return this.dados.sort(function (a, b) {
+            if (this.checkdados.length > 0) {
+                var questoesFiltradas = [];
+                this.checkdados.forEach(function (checkdado) {
+                    return _this.listaQuestoes.filter(function (questao) {
+                        questao.palavras_chave.split(",").forEach(function (palavraChave) {
+                            if (palavraChave.toLowerCase() === checkdado.toLowerCase()) questoesFiltradas.push(questao);
+                        });
+                    });
+                });
+                questoesFiltradas = [].concat(_toConsumableArray(new Set(questoesFiltradas)));
+                return questoesFiltradas.sort(function (a, b) {
                     return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
                 });
             } else {
-                return this.list.sort(function (a, b) {
+                return this.listaQuestoes.sort(function (a, b) {
                     return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
                 });
             }
         },
         filtroCheck: function filtroCheck() {
             var lista = [];
-            for (var i = 0; i < this.list.length; i++) {
-                var _lista;
-
-                (_lista = lista).push.apply(_lista, _toConsumableArray(this.list[i].palavras_chave.split(",")));
-            }
-            lista = [].concat(_toConsumableArray(new Set(lista)));
-            return lista;
+            this.listaQuestoes.map(function (questao) {
+                return questao.palavras_chave;
+            }).forEach(function (questao) {
+                return lista.push.apply(lista, _toConsumableArray(questao.split(",")));
+            });
+            return [].concat(_toConsumableArray(new Set(lista)));
+        },
+        filtroCategoria: function filtroCategoria() {
+            return [].concat(_toConsumableArray(new Set(this.listaQuestoes.map(function (questao) {
+                return questao.categoria;
+            })))).sort();
+        },
+        filtroDificuldade: function filtroDificuldade() {
+            return [].concat(_toConsumableArray(new Set(this.listaQuestoes.map(function (questao) {
+                return questao.dificuldade;
+            })))).sort();
         }
+
     },
 
     methods: {},
 
     mounted: function mounted() {
-        this.list = JSON.parse(this.questoes);
+        this.listaQuestoes = JSON.parse(this.questoes);
     },
 
 
@@ -48540,7 +48565,7 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _vm.list.length === 0
+              _vm.listaQuestoes.length === 0
                 ? _c("tr", [
                     _c("td", { attrs: { colspan: "5" } }, [
                       _vm._v("Nenhuma questão foi encontrada.")
@@ -48639,11 +48664,133 @@ var render = function() {
                         ]
                       )
                     })
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "list-group-item" },
+                    _vm._l(_vm.filtroCategoria, function(categoria) {
+                      return _c(
+                        "div",
+                        { staticClass: "form-check form-check-inline" },
+                        [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.categorias,
+                                  expression: "categorias"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                value: categoria,
+                                checked: Array.isArray(_vm.categorias)
+                                  ? _vm._i(_vm.categorias, categoria) > -1
+                                  : _vm.categorias
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.categorias,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = categoria,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.categorias = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.categorias = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.categorias = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(categoria) +
+                                "\n                                    "
+                            ),
+                            _vm._m(4, true)
+                          ])
+                        ]
+                      )
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "list-group-item" },
+                    _vm._l(_vm.filtroDificuldade, function(dificuldade) {
+                      return _c(
+                        "div",
+                        { staticClass: "form-check form-check-inline" },
+                        [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.dificuldades,
+                                  expression: "dificuldades"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                value: dificuldade,
+                                checked: Array.isArray(_vm.dificuldades)
+                                  ? _vm._i(_vm.dificuldades, dificuldade) > -1
+                                  : _vm.dificuldades
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.dificuldades,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = dificuldade,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.dificuldades = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.dificuldades = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.dificuldades = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(dificuldade) +
+                                "\n                                    "
+                            ),
+                            _vm._m(5, true)
+                          ])
+                        ]
+                      )
+                    })
                   )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _vm._m(6)
             ])
           ]
         )
@@ -48706,6 +48853,22 @@ var staticRenderFns = [
         },
         [_vm._v("×")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "form-check-sign" }, [
+      _c("span", { staticClass: "check" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "form-check-sign" }, [
+      _c("span", { staticClass: "check" })
     ])
   },
   function() {

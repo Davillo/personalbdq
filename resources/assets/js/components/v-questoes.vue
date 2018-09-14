@@ -72,7 +72,7 @@
                 </td>
             </tr>
 
-            <tr v-if="list.length === 0">
+            <tr v-if="listaQuestoes.length === 0">
                 <td colspan="5">Nenhuma questão foi encontrada.</td>
             </tr>
 
@@ -101,6 +101,28 @@
                                     </label>
                                 </div>
                             </li>
+                            <li class="list-group-item">
+                                <div class="form-check form-check-inline" v-for="categoria in filtroCategoria">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" v-model="categorias" :value="categoria">
+                                        {{categoria}}
+                                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-check form-check-inline" v-for="dificuldade in filtroDificuldade">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" v-model="dificuldades" :value="dificuldade">
+                                        {{dificuldade}}
+                                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="modal-footer">
@@ -118,39 +140,44 @@
 
         data(){
             return {
-                list:[],
-                busca : '',
-                dados: [],
-                checkdados: []
-
+                listaQuestoes:[],
+                checkdados: [],
+                categorias: [],
+                dificuldades: []
             }
         },
         computed: {
             filtrarCampo: function () {
-
-                let listaDados = this.checkdados
-                if(listaDados.length>0) {
-                    this.dados = []
-                    for (let i = 0; i < listaDados.length; i++) {
-                            this.dados.push(...this.list.filter((questao) => {
-                                return questao.palavras_chave.toLowerCase().match(listaDados[i].toLowerCase())
-                            }))
-                    }
-                    this.dados = [...new Set(this.dados)]
-                    return this.dados.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
+                if(this.checkdados.length>0) {
+                    let questoesFiltradas = []
+                    this.checkdados.forEach(checkdado => 
+                        this.listaQuestoes.filter((questao) => {
+                            questao.palavras_chave.split(",").forEach(palavraChave => 
+                            {
+                                if(palavraChave.toLowerCase() === checkdado.toLowerCase())
+                                    questoesFiltradas.push(questao)
+                            })    
+                        }))     
+                    questoesFiltradas = [...new Set(questoesFiltradas)]
+                    return questoesFiltradas.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
                 }else{
-                    return this.list.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
+                    return this.listaQuestoes.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
                 }
 
             },
             filtroCheck: function () {
-                let lista = []
-                for (let i = 0; i < this.list.length; i++) {
-                    lista.push(...this.list[i].palavras_chave.split(","))
-                }
-                lista = [...new Set(lista)]
-                return lista;
+                const lista = []
+                this.listaQuestoes.map(questao => questao.palavras_chave).forEach(questao => lista.push(...questao.split(",")))
+                return [...new Set(lista)]
+            },
+            filtroCategoria: function () {
+                return [...new Set(this.listaQuestoes.map(questao => questao.categoria))].sort()
+            },
+            filtroDificuldade: function () {
+                return [...new Set(this.listaQuestoes.map(questao => questao.dificuldade))].sort()
             }
+
+
         },
 
         methods: {
@@ -158,7 +185,7 @@
         },
 
         mounted(){
-            this.list = JSON.parse(this.questoes)
+            this.listaQuestoes = JSON.parse(this.questoes)
         },
 
 
