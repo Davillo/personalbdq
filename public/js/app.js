@@ -48364,8 +48364,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         filtrarCampo: function filtrarCampo() {
             var _this = this;
 
+            var questoesFiltradas = void 0;
             if (this.checkdados.length > 0) {
-                var questoesFiltradas = [];
+                questoesFiltradas = [];
                 this.checkdados.forEach(function (checkdado) {
                     return _this.listaQuestoes.filter(function (questao) {
                         questao.palavras_chave.split(",").forEach(function (palavraChave) {
@@ -48374,14 +48375,33 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     });
                 });
                 questoesFiltradas = [].concat(_toConsumableArray(new Set(questoesFiltradas)));
-                return questoesFiltradas.sort(function (a, b) {
-                    return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
-                });
             } else {
-                return this.listaQuestoes.sort(function (a, b) {
-                    return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
-                });
+                questoesFiltradas = this.listaQuestoes;
             }
+
+            if (this.categorias.length > 0) {
+                var questoesFiltradasAux = [];
+                this.categorias.forEach(function (categoria) {
+                    return questoesFiltradasAux.push.apply(questoesFiltradasAux, _toConsumableArray(questoesFiltradas.filter(function (questao) {
+                        return questao.categoria === categoria;
+                    })));
+                });
+                questoesFiltradas = questoesFiltradasAux;
+            }
+
+            if (this.dificuldades.length > 0) {
+                var _questoesFiltradasAux = [];
+                this.dificuldades.forEach(function (dificuldade) {
+                    return _questoesFiltradasAux.push.apply(_questoesFiltradasAux, _toConsumableArray(questoesFiltradas.filter(function (questao) {
+                        return questao.dificuldade === dificuldade;
+                    })));
+                });
+                questoesFiltradas = _questoesFiltradasAux;
+            }
+
+            return questoesFiltradas.sort(function (a, b) {
+                return (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase());
+            });
         },
         filtroCheck: function filtroCheck() {
             var lista = [];

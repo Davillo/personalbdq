@@ -148,8 +148,9 @@
         },
         computed: {
             filtrarCampo: function () {
+                let questoesFiltradas
                 if(this.checkdados.length>0) {
-                    let questoesFiltradas = []
+                    questoesFiltradas = []
                     this.checkdados.forEach(checkdado => 
                         this.listaQuestoes.filter((questao) => {
                             questao.palavras_chave.split(",").forEach(palavraChave => 
@@ -159,11 +160,27 @@
                             })    
                         }))     
                     questoesFiltradas = [...new Set(questoesFiltradas)]
-                    return questoesFiltradas.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
-                }else{
-                    return this.listaQuestoes.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
+                    }else{
+                    questoesFiltradas = this.listaQuestoes
+                }
+                
+                if(this.categorias.length>0) {
+                    let questoesFiltradasAux = []
+                    this.categorias.forEach(categoria => 
+                        questoesFiltradasAux.push(...questoesFiltradas.filter((questao) => 
+                            questao.categoria === categoria )))       
+                    questoesFiltradas = questoesFiltradasAux       
                 }
 
+                if(this.dificuldades.length>0) {
+                    let questoesFiltradasAux = []
+                    this.dificuldades.forEach(dificuldade => 
+                        questoesFiltradasAux.push(...questoesFiltradas.filter((questao) => 
+                            questao.dificuldade === dificuldade )))       
+                    questoesFiltradas = questoesFiltradasAux       
+                }
+
+                return questoesFiltradas.sort((a, b) => (a.palavras_chave.toLowerCase() > b.palavras_chave.toLowerCase()) - (a.palavras_chave.toLowerCase() < b.palavras_chave.toLowerCase()))
             },
             filtroCheck: function () {
                 const lista = []
