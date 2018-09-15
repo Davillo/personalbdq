@@ -87,9 +87,10 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
+                    <h4 class="text-center m-0 p-0 mt-2">Filtrar por</h4> 
                     <div class="modal-body modal-visualizar">
-                        <h5 class="text-center">Selecione as palavras-chave</h5>
                          <ul class="list-group">
+                            <h6>Palavras Chave</h6>
                             <li class="list-group-item">
                                 <div class="form-check form-check-inline" v-for="questao in filtroCheck">
                                     <label class="form-check-label">
@@ -101,6 +102,7 @@
                                     </label>
                                 </div>
                             </li>
+                            <h6 class="mt-2">Categoria</h6>
                             <li class="list-group-item">
                                 <div class="form-check form-check-inline" v-for="categoria in filtroCategoria">
                                     <label class="form-check-label">
@@ -112,11 +114,30 @@
                                     </label>
                                 </div>
                             </li>
+                            <h6 class="mt-2">Dificuldade</h6>
                             <li class="list-group-item">
-                                <div class="form-check form-check-inline" v-for="dificuldade in filtroDificuldade">
+                                <div class="form-check form-check-inline">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" v-model="dificuldades" :value="dificuldade">
-                                        {{dificuldade}}
+                                        <input class="form-check-input" type="checkbox" v-model="dificuldades" value="Fácil">
+                                        Fácl
+                                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>   
+                                <div class="form-check form-check-inline"> 
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" v-model="dificuldades" value="Intermediário">
+                                        Intermediário
+                                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" v-model="dificuldades" value="Difícil">
+                                        Difícil
                                         <span class="form-check-sign">
                                         <span class="check"></span>
                                         </span>
@@ -189,12 +210,7 @@
             },
             filtroCategoria: function () {
                 return [...new Set(this.listaQuestoes.map(questao => questao.categoria))].sort()
-            },
-            filtroDificuldade: function () {
-                return [...new Set(this.listaQuestoes.map(questao => questao.dificuldade))].sort()
             }
-
-
         },
 
         methods: {

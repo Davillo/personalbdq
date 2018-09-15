@@ -48347,6 +48347,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questoes'],
@@ -48416,13 +48437,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             return [].concat(_toConsumableArray(new Set(this.listaQuestoes.map(function (questao) {
                 return questao.categoria;
             })))).sort();
-        },
-        filtroDificuldade: function filtroDificuldade() {
-            return [].concat(_toConsumableArray(new Set(this.listaQuestoes.map(function (questao) {
-                return questao.dificuldade;
-            })))).sort();
         }
-
     },
 
     methods: {},
@@ -48619,12 +48634,14 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(2),
               _vm._v(" "),
+              _c("h4", { staticClass: "text-center m-0 p-0 mt-2" }, [
+                _vm._v("Filtrar por")
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "modal-body modal-visualizar" }, [
-                _c("h5", { staticClass: "text-center" }, [
-                  _vm._v("Selecione as palavras-chave")
-                ]),
-                _vm._v(" "),
                 _c("ul", { staticClass: "list-group" }, [
+                  _c("h6", [_vm._v("Palavras Chave")]),
+                  _vm._v(" "),
                   _c(
                     "li",
                     { staticClass: "list-group-item" },
@@ -48685,6 +48702,8 @@ var render = function() {
                       )
                     })
                   ),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "mt-2" }, [_vm._v("Categoria")]),
                   _vm._v(" "),
                   _c(
                     "li",
@@ -48747,70 +48766,157 @@ var render = function() {
                     })
                   ),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "list-group-item" },
-                    _vm._l(_vm.filtroDificuldade, function(dificuldade) {
-                      return _c(
-                        "div",
-                        { staticClass: "form-check form-check-inline" },
-                        [
-                          _c("label", { staticClass: "form-check-label" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.dificuldades,
-                                  expression: "dificuldades"
+                  _c("h6", { staticClass: "mt-2" }, [_vm._v("Dificuldade")]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "list-group-item" }, [
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("label", { staticClass: "form-check-label" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.dificuldades,
+                              expression: "dificuldades"
+                            }
+                          ],
+                          staticClass: "form-check-input",
+                          attrs: { type: "checkbox", value: "Fácil" },
+                          domProps: {
+                            checked: Array.isArray(_vm.dificuldades)
+                              ? _vm._i(_vm.dificuldades, "Fácil") > -1
+                              : _vm.dificuldades
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.dificuldades,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = "Fácil",
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.dificuldades = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.dificuldades = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
                                 }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                value: dificuldade,
-                                checked: Array.isArray(_vm.dificuldades)
-                                  ? _vm._i(_vm.dificuldades, dificuldade) > -1
-                                  : _vm.dificuldades
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.dificuldades,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = dificuldade,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.dificuldades = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.dificuldades = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.dificuldades = $$c
-                                  }
-                                }
+                              } else {
+                                _vm.dificuldades = $$c
                               }
-                            }),
-                            _vm._v(
-                              "\n                                    " +
-                                _vm._s(dificuldade) +
-                                "\n                                    "
-                            ),
-                            _vm._m(5, true)
-                          ])
-                        ]
-                      )
-                    })
-                  )
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                    Fácl\n                                    "
+                        ),
+                        _vm._m(5)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("label", { staticClass: "form-check-label" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.dificuldades,
+                              expression: "dificuldades"
+                            }
+                          ],
+                          staticClass: "form-check-input",
+                          attrs: { type: "checkbox", value: "Intermediário" },
+                          domProps: {
+                            checked: Array.isArray(_vm.dificuldades)
+                              ? _vm._i(_vm.dificuldades, "Intermediário") > -1
+                              : _vm.dificuldades
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.dificuldades,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = "Intermediário",
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.dificuldades = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.dificuldades = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.dificuldades = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                    Intermediário\n                                    "
+                        ),
+                        _vm._m(6)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("label", { staticClass: "form-check-label" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.dificuldades,
+                              expression: "dificuldades"
+                            }
+                          ],
+                          staticClass: "form-check-input",
+                          attrs: { type: "checkbox", value: "Difícil" },
+                          domProps: {
+                            checked: Array.isArray(_vm.dificuldades)
+                              ? _vm._i(_vm.dificuldades, "Difícil") > -1
+                              : _vm.dificuldades
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.dificuldades,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = "Difícil",
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.dificuldades = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.dificuldades = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.dificuldades = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                    Difícil\n                                    "
+                        ),
+                        _vm._m(7)
+                      ])
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(8)
             ])
           ]
         )
@@ -48873,6 +48979,22 @@ var staticRenderFns = [
         },
         [_vm._v("×")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "form-check-sign" }, [
+      _c("span", { staticClass: "check" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "form-check-sign" }, [
+      _c("span", { staticClass: "check" })
     ])
   },
   function() {
