@@ -35,15 +35,22 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
             @if(!Auth::user()->admin)
                 <li class="@yield('mlistas')">
                     <a href="/listas">
-                        <i class="fa fa-list"></i>
+                        <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>Listas</p>
                     </a>
                 </li>
 
                 <li class="@yield('mquestoes')">
                     <a href="/questoes">
-                        <i class="fa fa-question"></i>
+                        <i class="now-ui-icons design-2_ruler-pencil"></i>
                         <p>Questões</p>
+                    </a>
+                </li>
+
+                <li class="@yield('mavaliacoes')">
+                    <a href="/avaliacoes">
+                        <i class="now-ui-icons education_paper"></i>
+                        <p>Minhas Avaliações</p>
                     </a>
                 </li>
 

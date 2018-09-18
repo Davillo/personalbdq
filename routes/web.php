@@ -55,7 +55,8 @@ Route::post('/questao/clonar','QuestaoController@clonarQuestao');
 Route::post('/questao/comentario','QuestaoController@adicionarComentario');
 Route::delete('/questao/comentario/excluir/{id}','QuestaoController@excluirComentario');
 
-
+//Avaliações
+Route::get('/avaliacoes', 'ListaController@avaliacoes');
 
 
 
