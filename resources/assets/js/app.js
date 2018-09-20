@@ -23,12 +23,31 @@ Vue.component('v-questoes', require('./components/v-questoes'));
 
 const app = new Vue({
     el: '#app',
-
-
-
     data: {
         multiplaEscolha: false,
-        dissertativa: false
+        dissertativa: false,
+        errors: [],
+        //Nova Questão
+        tipo: '',
+        categoria: '',
+        dificuldade: '',
+        palavras_chave: null,
+        //Nova Lista
+        nomeLista: null,
+        descricaoLista: null,
+        //Compartilhar Lista
+        emailCompartilhar: null,
+        //Novo Curso
+        nomeCurso: null,
+        tipoCurso: '',
+        //Novo Usuario
+        matriculaUsuario: null,
+        nomeUsuario: null,
+        emailUsuario: null,
+        senhaUsuario: null,
+        cursoUsuario: ''
+
+
     },
 
     methods: {
@@ -53,9 +72,102 @@ const app = new Vue({
                 this.multiplaEscolha = true
                 this.dissertativa = false
             }
-        }
+        },
+        getCheck(e){
+            if(this.tipo && this.categoria && this.dificuldade && this.palavras_chave && CKEDITOR.instances.enunciado.getData()){
+                return true
+            }
 
+            this.errors = []
 
+            if(!this.tipo){
+                this.errors.push('Selecione o tipo de questão')
+            }
+
+            if(!this.categoria){
+                this.errors.push('Selecione a categoria da questão')
+            }
+
+            if(!this.dificuldade){
+                this.errors.push('Selecione a dificuldade da questão')
+            }
+
+            if(!this.palavras_chave){
+                this.errors.push('Campo palavras chave é obrigatório')
+            }
+            
+            if(!CKEDITOR.instances.enunciado.getData()){
+                this.errors.push('Campo enunciado é obrigatório')
+            }
+            e.preventDefault()
+        },
+        getCheckLista(e){
+            if(this.nomeLista && this.descricaoLista){
+                return true
+            }
+
+            this.errors = []
+
+            if(!this.nomeLista){
+                this.errors.push('Campo nome é obrigatório')
+            }
+            
+            if(!this.descricaoLista){
+                this.errors.push('Campo descrição é obrigatório')
+            }
+            e.preventDefault()
+        },
+        getCheckCompartilhar(e){
+            if(this.emailCompartilhar){
+                return true
+            }
+
+            this.errors = []
+
+            if(!this.emailCompartilhar){
+                this.errors.push('Campo email é obrigatório')
+            }
+            e.preventDefault()
+        },
+        getCheckCurso(e){
+            if(this.nomeCurso && this.tipoCurso){
+                return true
+            }
+
+            this.errors = []
+
+            if(!this.nomeCurso){
+                this.errors.push('Campo nome curso é obrigatório')
+            }
+            if(!this.tipoCurso){
+                this.errors.push('Selecione o tipo do curso')
+            }
+            e.preventDefault()
+        },
+        getCheckUsuario(e){
+            if(this.matriculaUsuario && this.nomeUsuario && this.emailUsuario && this.senhaUsuario && this.cursoUsuario){
+                return true
+            }
+
+            this.errors = []
+
+            if(!this.matriculaUsuario){
+                this.errors.push('Campo matricula é obrigatório')
+            }
+            if(!this.nomeUsuario){
+                this.errors.push('Campo nome é obrigatório')
+            }
+            if(!this.emailUsuario){
+                this.errors.push('Campo email curso é obrigatório')
+            }
+            if(!this.senhaUsuario){
+                this.errors.push('Campo senha curso é obrigatório')
+            }
+            if(!this.cursoUsuario){
+                this.errors.push('Selecione o curso')
+            }
+            e.preventDefault()
+        },
     },
 
 

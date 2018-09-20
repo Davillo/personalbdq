@@ -3,6 +3,12 @@
 @section('mcurso','active')
 
 @section('conteudo')
+    <div v-if="errors.length" class='alert alert-danger'>
+        <b>Por favor corrija os seguintes erros</b>
+        <ul>
+        <li v-for="erro in errors">@{{erro}}</li>
+        </ul>
+    </div>
     <div class="card-header">
         <div class="row">
             <div class="col-md-4">
@@ -23,7 +29,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="form_compartilhar" action="/lista/compartilhar">
+                <form method="POST" @submit="getCheckCompartilhar" id="form_compartilhar" action="/lista/compartilhar">
                     {{ csrf_field() }}
                     <h3 class="title text-center mb-1" id="novoModalLabel">Compartilhar Lista</h3>
 
@@ -36,7 +42,7 @@
                                 </span>
                                 </div>
                                 <input type="hidden" name="id" value="{{$lista->id}}"/>
-                                <input type="text" class="form-control" name="email" placeholder="Email do usuário">
+                                <input v-model="emailCompartilhar" type="text" class="form-control" name="email" placeholder="Email do usuário">
 
                             </div>
                         </div>

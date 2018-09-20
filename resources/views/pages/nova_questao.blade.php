@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('mlistas','active')
-
 @section('conteudo')
+    <div v-if="errors.length" class='alert alert-danger'>
+        <b>Por favor corrija os seguintes erros</b>
+        <ul>
+        <li v-for="erro in errors">@{{erro}}</li>
+        </ul>
+    </div>
     <div class="card-header">
         <div class="row">
             <div class="col-md-4">
@@ -23,7 +28,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="dados" action="/questao/inserir">
+                <form @submit="getCheck" method="POST" id="dados" action="/questao/inserir">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Nova Questão</h3>
 
@@ -39,8 +44,8 @@
                                 </div>
                                 {{csrf_field()}}
 
-                                <select @change="getForm" name="tipo" class="form-control" >
-                                    <option value="">Selecione o tipo de questão...</option>
+                                <select @change="getForm" v-model="tipo" name="tipo" class="form-control" >
+                                    <option value="" disabled >Selecione o tipo de questão...</option>
                                     <option value="Dissertativa">Dissertativa</option>
                                     <option value="Múltipla Escolha">Múltipla Escolha</option>
                                     <option value="Asserção Razão">Asserção Razão</option>
@@ -61,8 +66,8 @@
                                     </div>
 
 
-                                    <select name="categoria" class="form-control">
-                                        <option value="">Categoria...</option>
+                                    <select v-model="categoria" name="categoria" class="form-control">
+                                        <option value="" disabled>Categoria...</option>
                                         <option value="Avaliação 1">Avaliação 1</option>
                                         <option value="Avaliação 2">Avaliação 2</option>
                                         <option value="Enade">Enade</option>
@@ -81,8 +86,8 @@
                                     </span>
                                     </div>
 
-                                    <select name="dificuldade"  class="form-control">
-                                        <option value="">Dificuldade...</option>
+                                    <select v-model="dificuldade" name="dificuldade"  class="form-control">
+                                        <option value="" disabled>Dificuldade...</option>
                                         <option value="Fácil">Fácil</option>
                                         <option value="Intermediário">Intermediário</option>
                                         <option value="Difícil">Difícil</option>
@@ -99,7 +104,7 @@
 
                             <div class="row">
                                 <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                    <input type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves...">
+                                    <input v-model="palavras_chave" type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves...">
                                 </div>
                             </div>
 
@@ -130,5 +135,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> 
 @endsection

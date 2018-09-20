@@ -3,6 +3,12 @@
 @section('mcurso','active')
 
 @section('conteudo')
+<div v-if="errors.length" class='alert alert-danger'>
+    <b>Por favor corrija os seguintes erros</b>
+    <ul>
+    <li v-for="erro in errors">@{{erro}}</li>
+    </ul>
+</div>
     <div class="card-header">
         <div class="row">
             <div class="col-md-4">
@@ -23,7 +29,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 m-auto">
-                <form method="POST" id="dados" action="/curso/inserir">
+                <form method="POST" @submit="getCheckCurso" id="dados" action="/curso/inserir">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Novo Curso</h3>
 
@@ -36,7 +42,7 @@
                                 </span>
                                 </div>
 
-                                <input type="text" class="form-control" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso">
+                                <input v-model="nomeCurso" type="text" class="form-control" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso">
 
                                 </div>
                         </div>
@@ -48,8 +54,8 @@
                                     </span>
                                 </div>
                                 {{csrf_field()}}
-                               <select name="tipo" class="form-control">
-                                   <option value="">Selecione o tipo...</option>
+                               <select v-model="tipoCurso" name="tipo" class="form-control">
+                                   <option value="" disabled>Selecione o tipo...</option>
                                    <option value="BACHAREL">Bacharel</option>
                                    <option value="LICENCIATURA">Licenciatura</option>
                                    <option value="TECNÓLOGO">Tecnólogo</option>
