@@ -6,7 +6,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                Deseja realmente remover este usuário?{{$usuario->id}}
+                Deseja realmente remover este usuário? {{$usuario->nome}}
             </div>
             <div class="modal-footer">
                 <form action="/usuario/excluir/{{$usuario->id}}" method="POST">

@@ -48,7 +48,7 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                            <li><a href="/curso/edit/{{$curso->id}}">Editar</a></li>
+                                            <li><a href="/curso/edit/<?php echo base64_encode($curso->id)?>">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$curso->id}}">Excluir</a></li>
                                         </ul>
                                         @include('modals.modal_remover_curso')

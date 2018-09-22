@@ -8,6 +8,9 @@ Route::delete('/usuario/excluir/{id}','UsuarioController@destroy'); //deletar us
 Route::post('/usuario/inserir','UsuarioController@store'); // rota cadastro usuário POST
 Route::post('/usuario/update','UsuarioController@update');
 
+Route::get('404', ['as' => '404', 'uses' => 'HomeController@notfound']);
+Route::get('500', ['as' => '500', 'uses' => 'HomeController@servererror']);
+
 //Home requests
 Route::get('/logout','HomeController@logout'); // rota logout GET
 Route::get('/', 'HomeController@index'); // Rota root

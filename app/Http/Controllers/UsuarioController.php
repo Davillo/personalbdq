@@ -50,8 +50,13 @@ class UsuarioController extends Controller{
     }
 
     public function edit($id){
-        $usuario = Usuario::find($id);
-        return view('pages.editar_usuario')->with('usuario',$usuario);
+        try{
+
+            $usuario = Usuario::findOrFail(base64_decode($id));
+            return view('pages.editar_usuario')->with('usuario',$usuario);
+        }catch (\Exception $e){
+            return 'NOT FOUND';
+        }
     }
 
     public function update(Request $request){

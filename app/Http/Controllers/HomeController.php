@@ -32,7 +32,13 @@ class HomeController extends Controller{
 
    }
 
+   public function notfound(){
+        return 'not found';
+   }
 
+   public function servererror(){
+       return 'algo errado ocorreu';
+   }
 
     public function home(){
         if(Auth::check()){

@@ -38,8 +38,14 @@ class CursoController extends Controller
     }
 
     public function edit($id){
-        $curso = Curso::find($id);
-        return view('pages.editar_curso')->with('curso',$curso);
+
+        try{
+            $curso = Curso::findOrFail(base64_decode($id));
+            return view('pages.editar_curso')->with('curso',$curso);
+        }catch (\Exception $exception){
+            return 'NOT FOUND';
+        }
+
     }
 
     public function update(Request $request){
@@ -57,7 +63,7 @@ class CursoController extends Controller
     }
 
     public function destroy($id){
-        Curso::destroy($id);
+        Curso::destroy(($id));
         return redirect('/curso')->with('success','Excluído com sucesso!');
     }
 }
