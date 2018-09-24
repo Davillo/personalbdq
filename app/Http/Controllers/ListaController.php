@@ -225,6 +225,6 @@ class ListaController extends Controller
     }
 
     public function avaliacoes(){
-        return view('templates.avaliacao');
+        return view('pages.avaliacoes');
     }
 }

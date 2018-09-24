@@ -76,7 +76,11 @@
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
     filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
     filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+    language: 'pt',
+    uiColor: '#fd7e14',
+    width: 800,
+    height: 300
     };
     CKEDITOR.replace('enunciado',options);
 </script>

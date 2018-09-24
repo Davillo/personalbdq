@@ -34,7 +34,7 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                            <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="material-icons">
@@ -56,7 +56,7 @@
 
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">
                                         <i class="material-icons">
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">
                                         <i class="material-icons">
@@ -97,25 +97,25 @@
                             </div>
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     Palavras Chave:
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     <input v-model="palavras_chave" type="text" class="form-control" name="palavras_chave" placeholder="Palavras chaves...">
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     Enunciado:
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+                                <div class="input-group col-9" style="text-align:center; margin: 0 auto; padding: 10px;">
                                     <textarea id="enunciado" type="text" class="form-control" name="enunciado" placeholder="Enunciado..."></textarea>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                         @if(isset($lista_id))
                         <input type="hidden" name="lista_id" value="{{$lista_id}}">
                         @endif
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
+                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-8" value="Cadastrar"><br>
                     </div>
                 </form>
             </div>
