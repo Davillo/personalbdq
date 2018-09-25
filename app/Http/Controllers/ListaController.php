@@ -223,8 +223,4 @@ class ListaController extends Controller
 
         return redirect('/lista/'.$novaLista->id)->with('success',"Lista clonada com sucesso!");
     }
-
-    public function avaliacoes(){
-        return view('pages.avaliacoes');
-    }
 }

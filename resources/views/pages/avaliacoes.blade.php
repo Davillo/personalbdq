@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('mcompartilhadas','active')
+@section('mavaliacoes','active')
 @section('conteudo')
     <div class="card-header">
         <div class="row">
@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-
+                <a class="btn btn-success float-right" href="/nova_avaliacao/">Criar Avaliação</a>
             </div>
         </div>
     </div>
@@ -20,25 +20,58 @@
                 <div class="table-responsive">
                     <table class="table table-striped" style="margin-bottom: 60px;">
                         <thead class="text-primary">
-                            <th>
-                            Enunciado
-                            </th>    
-                            <th>
-                                Categoria
-                            </th>
-                            <th>
-                                Dificuldade
-                            </th>
-                            <th>
-                                Tipo
-                            </th>
+                        <th>
+                            Titulo
+                        </th>
+                        <th>
+                            Quantidade de questões
+                        </th>
+                        <th>
+                            Data de criação
+                        </th>
                         </thead>
-                        <tbody>   
-                            <tr>
-                                <td colspan="5">Nenhuma questão foi encontrada.</td>
-                            </tr>       
+                        <tbody>
+
+                            @if(count($avaliacoes)>0)
+                                @foreach($avaliacoes as $avaliacao)
+                                <tr>
+
+                                    <td>
+                                        <a href="avaliacao/{{$avaliacao->id}}">{{$avaliacao->titulo}}</a>
+                                    </td>
+                                    <td>
+                                        @if ($avaliacao->qtQuestoes == 1)
+                                            {{$avaliacao->qtQuestoes}} 
+                                        @elseif($avaliacao->qtQuestoes > 1)
+                                            {{$avaliacao->qtQuestoes}} 
+                                        @else
+                                            Nenhuma Questão
+                                        @endif    
+                                    </td>
+                                    <td>
+                                            <?php echo date('d/m/y',strtotime($avaliacao->data_criacao))?>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="dropdown " data-toggle="dropdown">
+                                            <i class="material-icons">
+                                                more_horiz
+                                            </i>
+                                        </a>
+                                        <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
+                                            <li><a href="/avaliacao/edit/<?php echo base64_encode($avaliacao->id)?>">Editar</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#removerModal{{$avaliacao->id}}">Excluir</a></li>
+                                        </ul>
+                                        @include('modals.modal_remover_avaliacao')
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="2">Nenhum avaliação foi encontrata</td>
+                                </tr>
+                            @endif
                         </tbody>
-                        </table>
+                    </table>
                     </div>
                 </div>
          </div>

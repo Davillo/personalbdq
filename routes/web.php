@@ -52,14 +52,21 @@ Route::post('/questao/update', 'QuestaoController@update');
 Route::post('/questao/inserir', 'QuestaoController@store');
 Route::get('/questoes', 'QuestaoController@show');
 Route::delete('/questao/excluir/{id}','QuestaoController@destroy');
-Route::get('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestaoLista');
+Route::delete('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestaoLista');
 Route::post('/questao/fazerCopia','QuestaoController@fazerCopia');
 Route::post('/questao/clonar','QuestaoController@clonarQuestao');
 Route::post('/questao/comentario','QuestaoController@adicionarComentario');
 Route::delete('/questao/comentario/excluir/{id}','QuestaoController@excluirComentario');
 
 //Avaliações
-Route::get('/avaliacoes', 'ListaController@avaliacoes');
+Route::get('/avaliacoes', 'AvaliacaoController@avaliacoes');
+Route::get('/nova_avaliacao', 'AvaliacaoController@nova_avaliacao');
+Route::post('/avaliacao/inserir', 'AvaliacaoController@store');
+Route::get('/avaliacao/{id}', 'AvaliacaoController@avaliacao');
+Route::delete('/avaliacao/questao/remover/{id}/{avaliacao_id}', 'AvaliacaoController@removerQuestaoAvaliacao');
+Route::get('/avaliacao/edit/{id}', 'AvaliacaoController@editarAvaliacao');
+Route::post('/avaliacao/update', 'AvaliacaoController@update');
+Route::delete('/avaliacao/excluir/{id}', 'AvaliacaoController@destroy');
 
 
 
