@@ -33,6 +33,29 @@ class AvaliacaoController extends Controller
         return view('pages.avaliacao')->with('questoes',$questoes)->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
     }
 
+    public function adicionarQuestoes($id){
+        $avaliacao = Avaliacao::find($id);
+        $questoesjaadd = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
+        
+        $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
+        $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+
+        return view('pages.adicionar_questao')->with(compact('questoes'))->with(compact('questoesjaadd'))->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
+    }
+
+    public function storeQuestoesAvaliacao(Request $request){
+        $questoes = $request['questoesavaliacao'];
+        $idavaliacao = $request['idavaliacao'];
+
+        foreach($questoes as $questao){
+            $aux = new QuestaoAvaliacao();
+            $aux->questao_id = $questao;
+            $aux->avaliacao_id = $idavaliacao;
+            $aux->save();
+        }
+        return json_encode($questoes);
+    }
 
     public function nova_avaliacao(){
         return view('pages.nova_avaliacao');

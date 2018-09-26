@@ -11,6 +11,7 @@ use App\Usuario;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\QuestaoAvaliacao;
 
 class QuestaoController extends Controller
 {
@@ -270,6 +271,7 @@ class QuestaoController extends Controller
     public function destroy($id)
     {
         QuestaoListas::where('questao_id',$id)->delete();
+        QuestaoAvaliacao::where('questao_id',$id)->delete();
         Questao::destroy($id);
         return back()->with('success','Questão excluída com sucesso!');
     }

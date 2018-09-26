@@ -67,6 +67,8 @@ Route::delete('/avaliacao/questao/remover/{id}/{avaliacao_id}', 'AvaliacaoContro
 Route::get('/avaliacao/edit/{id}', 'AvaliacaoController@editarAvaliacao');
 Route::post('/avaliacao/update', 'AvaliacaoController@update');
 Route::delete('/avaliacao/excluir/{id}', 'AvaliacaoController@destroy');
+Route::get('/avaliacao/adicionar/{id}', 'AvaliacaoController@adicionarQuestoes');
+Route::post('/avaliacao/addQuestoes', 'AvaliacaoController@storeQuestoesAvaliacao');
 
 
 

@@ -19,7 +19,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 Vue.component('v-multiplaescolha', require('./components/v-multiplaEscolha.vue'));
 
-Vue.component('v-questoes', require('./components/v-questoes'));
+Vue.component('v-questoes', require('./components/v-questoes.vue'));
+
+Vue.component('v-questoesavaliacao', require('./components/v-questoesAvaliacao.vue'));
 
 const app = new Vue({
     el: '#app',
