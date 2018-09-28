@@ -7,7 +7,7 @@
             <div class="modal-visualizar">
             <div class="modal-body ">
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>Enunciado:</strong> {{ strip_tags($questao->enunciado) }}</li>
+                    <li class="list-group-item"><strong>Enunciado:</strong> {!! $questao->enunciado !!}</li>
                     <li class="list-group-item"><strong>Categoria:</strong> {{ $questao->categoria }}</li>
                     <li class="list-group-item"><strong>Tipo:</strong> {{$questao->tipo}}</li>
                     <li class="list-group-item"><strong>Dificuldade:</strong> {{$questao->dificuldade}}</li>

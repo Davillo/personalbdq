@@ -52,6 +52,10 @@
                                             <?php echo date('d/m/y',strtotime($avaliacao->data_criacao))?>
                                     </td>
                                     <td>
+                                            <a href="avaliacao/gerarpdf/{{$avaliacao->id}}">Gerar PDF</a>
+                                       
+                                    </td>
+                                    <td>
                                         <a href="#" class="dropdown " data-toggle="dropdown">
                                             <i class="material-icons">
                                                 more_horiz

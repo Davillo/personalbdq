@@ -114,4 +114,15 @@ class AvaliacaoController extends Controller
 
         return redirect('/avaliacoes')->with('success','Avaliação excluída com sucesso!');
     }
+
+    public function gerarPdf($id){
+        $avaliacao = Avaliacao::find($id);
+        $questoesAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
+        
+        $questoes = Questao::whereIn('id',$questoesAvaliacao)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->get();
+
+        return view('templates.avaliacao')->with('questoes', $questoes)->with('alternativas',$alternativas);
+    }
+
 }

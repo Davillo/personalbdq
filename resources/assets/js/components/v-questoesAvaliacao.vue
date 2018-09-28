@@ -230,7 +230,7 @@
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
                 axios.post('/avaliacao/addQuestoes', {'questoesavaliacao':this.questoesAvaliacao, 'idavaliacao':this.dadosAvaliacao.id})
-                .then((response) => window.location.href='/avaliacao/'+this.idavaliacao)
+                .then((response) => window.location.href='/avaliacao/'+this.dadosAvaliacao.id)
                 .catch(error => console.log(error))
             }
         },

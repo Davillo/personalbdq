@@ -20,7 +20,7 @@
             margin: 0 auto;
             padding-top: 40px;
             width: 793px;
-            height: 1000px;
+            height: 100%;
             background: #ffffff;
         }
         header{
@@ -71,6 +71,14 @@
         .instrucoes{
             text-align: center;
         }
+        .questao{
+            padding: 8px;
+            text-align: justify;
+        }
+        .alternativa {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -120,11 +128,61 @@
             </table>
         </header>
     
-            <div class="instrucoes">
-                <h3>LEIA COM ATENÇÃO AS INSTRUÇÕES:</h3>
-            </div>
+        <div class="instrucoes">
+                <h3>AV1 - 2017.2</h3>
+        </div>
+        @foreach($questoes as $index => $questao)
+        <div class="questao">
         
-
+            <table >
+                <tr>
+                    <td style="vertical-align:top; padding-top:18px;">{{ $index+1 }}.</td>
+                    <td>{!! $questao->enunciado !!}</td>
+                </tr>
+                
+            @if($questao->tipo == 'Múltipla Escolha' || $questao->tipo == 'Asserção Razão' || $questao->tipo == 'Verdadeiro ou Falso')
+                
+                        <?php $count = 0; ?>
+                        @foreach($alternativas as $alternativa )
+                            @if($alternativa->questao_id == $questao->id)       
+                               @if($count == 0) 
+                                    <tr>
+                                        <td></td>
+                                        <td><p class="alternativa">a) {{$alternativa->enunciado}}</p></td>
+                                    </tr>
+                               @endif
+                               @if($count == 1) 
+                                    <tr>
+                                        <td></td>
+                                        <td><p class="alternativa">b) {{$alternativa->enunciado}}</p></td>
+                                    </tr>
+                               @endif
+                               @if($count == 2) 
+                                    <tr>
+                                        <td></td>
+                                        <td><p class="alternativa">c) {{$alternativa->enunciado}}</p></td>
+                                    </tr>
+                               @endif
+                               @if($count == 3) 
+                                    <tr>
+                                        <td></td>
+                                        <td><p class="alternativa">d) {{$alternativa->enunciado}}</p></td>
+                                    </tr>
+                               @endif
+                               @if($count == 4) 
+                                    <tr>
+                                        <td></td>
+                                        <td><p class="alternativa">e) {{$alternativa->enunciado}}</p></td>
+                                    </tr>
+                               @endif
+                               
+                               <?php $count = $count+1; ?>    
+                            @endif                            
+                        @endforeach
+                @endif
+            </table>
+        </div>
+        @endforeach
     </main>
 </body>
 </html>
