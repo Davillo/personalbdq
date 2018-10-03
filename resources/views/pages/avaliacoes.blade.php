@@ -49,12 +49,17 @@
                                         @endif    
                                     </td>
                                     <td>
-                                            <?php echo date('d/m/y',strtotime($avaliacao->data_criacao))?>
+                                        <?php echo date('d/m/y',strtotime($avaliacao->data_criacao))?>
                                     </td>
+                                    @if ($avaliacao->qtQuestoes > 0)
                                     <td>
-                                            <a href="avaliacao/gerarpdf/{{$avaliacao->id}}">Gerar PDF</a>
-                                       
+                                        <a href="avaliacao/gerarpdf/{{$avaliacao->id}}">Gerar PDF</a>                                       
                                     </td>
+                                    @else
+                                    <td>
+                                                                               
+                                    </td>
+                                    @endif
                                     <td>
                                         <a href="#" class="dropdown " data-toggle="dropdown">
                                             <i class="material-icons">

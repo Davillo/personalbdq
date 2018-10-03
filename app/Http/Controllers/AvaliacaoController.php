@@ -10,6 +10,7 @@ use App\QuestaoAvaliacao;
 use App\Questao;
 use App\Alternativa;
 use App\Datas;
+use PDF;
 
 class AvaliacaoController extends Controller
 {
@@ -122,7 +123,9 @@ class AvaliacaoController extends Controller
         $questoes = Questao::whereIn('id',$questoesAvaliacao)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->get();
 
-        return view('templates.avaliacao')->with('questoes', $questoes)->with('alternativas',$alternativas);
+        $pdf = PDF::loadView('templates.avaliacao', compact('questoes', 'alternativas'));
+        return $pdf->stream($avaliacao->titulo.'.pdf');
+        //return view('templates.avaliacao')->with('questoes', $questoes)->with('alternativas',$alternativas);
     }
 
 }
