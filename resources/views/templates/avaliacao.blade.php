@@ -12,7 +12,7 @@
                     }
                     main{           
                         width: 100%;
-                        height: 100%;
+                        height: 100vh;
                         background: #ffffff;
                     }
                     .instrucoes{
@@ -28,7 +28,7 @@
                     }
                     /*Cabeçalho*/
                     header table{
-                        border-spacing: 0px 5px;
+                        border-spacing: 0px 7px;
                         margin: 0 auto;
                         border: solid 1px #000;
                         width: 900px;    
@@ -51,7 +51,7 @@
                     .img-logo{
                         float: left;
                         margin-top: 10px;
-                        width: 200px;
+                        width: 170px;
                         height: 40px;
                     }
                     /*Demais*/
@@ -60,7 +60,7 @@
                         border-left: none;
                     }
                     .td-meio{
-                        width: 60px;
+                        width: 80px;
                     }
                     .td-espaco{
                         padding: 0;
@@ -69,7 +69,7 @@
                     }
                     .td-fim{
                         border-right: none;
-                        width: 60px;
+                        width: 110px;
                     }
                 </style>
             </head>
@@ -116,6 +116,26 @@
                         
                     </table>
                 </header>
+                <div class="instrucoes">
+                    <h3>Gabarito</h3>
+                    <table  style="margin: 0 auto;border-collapse:collapse;">
+                        <tr>
+                            @for ($i = 0; $i < count($questoes); $i++)
+                                <td style="width:50px;height:30px;text-align:center;font-size:20px;">{{$i+1}}</td>
+                            @endfor
+                        </tr>
+                        <tr>
+                            @foreach ($questoes as $index => $questao)
+                                @if($questao->tipo == "Múltipla Escolha" || $questao->tipo == "Asserção Razão" || $questao->tipo == "Verdadeiro ou Falso")
+                                <td style="width:50px;height:30px;border:1px solid #000;"></td>
+                                @else
+                                <td style="width:50px;height:30px;border:1px solid #000;background-color:#131B23;"></td>
+                                @endif
+                            @endforeach
+                        </tr>
+                    </table>
+                </div>
+
                 <main>
                     <div class="instrucoes">
                             <h3>AV1 - 2017.2</h3>

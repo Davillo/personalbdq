@@ -51,16 +51,36 @@
                                     <td>
                                         <?php echo date('d/m/y',strtotime($avaliacao->data_criacao))?>
                                     </td>
-                                    @if ($avaliacao->qtQuestoes > 0)
                                     <td>
-                                        <a href="avaliacao/gerarpdf/{{$avaliacao->id}}">Gerar PDF</a>                                       
-                                    </td>
-                                    @else
-                                    <td>
-                                                                               
-                                    </td>
-                                    @endif
-                                    <td>
+                                        @if ($avaliacao->qtQuestoes > 0)
+                                
+                                            <a title="Gerar PDF" href="avaliacao/gerarpdf/{{$avaliacao->id}}" target="_blank">    
+                                                <i  class="material-icons" >
+                                                    print
+                                                </i>
+                                            </a>   
+                                            <a title="Gerar PDF" href="avaliacao/gerarpdf/{{$avaliacao->id}}" target="_blank">    
+                                                <i  class="material-icons" >
+                                                    list_alt
+                                                </i>
+                                            </a>                                      
+                                       
+                                        @else
+                                        
+                                            <a style="opacity:.5;pointer-events: none;" role="button" aria-disabled="true" href="#">    
+                                                <i class="material-icons" >
+                                                    print
+                                                </i>
+                                            </a> 
+                                            <a style="opacity:.5;pointer-events: none;" role="button" aria-disabled="true" href="#">    
+                                                    <i class="material-icons" >
+                                                        list_alt
+                                                    </i>
+                                                </a>                                        
+                                        
+                                        @endif
+                                        
+                                        
                                         <a href="#" class="dropdown " data-toggle="dropdown">
                                             <i class="material-icons">
                                                 more_horiz

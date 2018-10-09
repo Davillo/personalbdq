@@ -24,37 +24,30 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <form method="POST" id="dados" action="/lista/update">
+                    {{ csrf_field() }}
                     <input type="hidden" class="form-control" value="{{$lista->id }}" name="id">
 
                     <h3 class="title text-center mb-1" id="novoModalLabel">Editar Lista</h3>
 
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">account_box</i>
-                                </span>
-                                </div>
-                                {{csrf_field()}}
-                                <input type="text" class="form-control" value="{{$lista->nome}}" name="nome" placeholder="Nome..." id="nome">
+                            <div class="row">                        
+                                <div class="form-group col-md-9 mx-auto">
+                                    <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                            
+                                    <input value={{$lista->nome}} type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">                                                
+                                </div>                                                       
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">email</i>
-                                </span>
-                                </div>
-                                {{csrf_field()}}
-                                <textarea class="form-control" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255">{{$lista->descricao}}</textarea>
+                            <div class="row">                        
+                                    <div class="form-group col-md-9 mx-auto">
+                                        <label for="Descrição">Descrição<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                
+                                        <textarea  class="form-control borda-input" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255">{{ $lista->descricao}}</textarea>
+                                   </div>                                                       
+                            </div>                          
+                    </div>
+                    <div class="row">
+                            <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">
+                                <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Atualizar"><br>
                             </div>
-                        </div>
-                    </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Salvar"><br>
-                    </div>
+                    </div>  
                 </form>
             </div>
         </div>

@@ -1,12 +1,12 @@
 <template>
    <div>
-    <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-            Alternativas:
-        </div>
+    <div class="row">                                                        
+        <div class="form-group col-md-8 mx-auto">
+        <label for="Alternativas">Alternativas</label>    
+    </div>
     </div>
     <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+        <div class="input-group col-md-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     A
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+        <div class="input-group col-md-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     B
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+        <div class="input-group col-md-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     C
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+        <div class="input-group col-md-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     D
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
+        <div class="input-group col-md-8" style="text-align:center; margin: 0 auto; padding: 10px;">
             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">
                                     E

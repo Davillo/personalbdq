@@ -6,14 +6,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
-            <form method="POST" action="/questao/comentario" >
+            <form method="POST" @submit="getCheckSugestao" action="/questao/comentario" >
+                {{csrf_field()}}
             <div class="modal-body">
-                Descreva o seu comentário
+                Descreva o seu comentário<span class="text-danger f-16" title="Campo obrigatório">*</span>
                     <div class="row">
-                        <div class="input-group col-sm-10" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            {{csrf_field()}}
-                            <textarea type="text" maxlength="100" class="form-control" name="comentario" placeholder="Max. 100 caracteres..."></textarea>
+                        <div class="input-group col-sm-10" style="text-align:center; margin: 0 auto; padding: 10px;">                            
+                            <textarea v-model="sugestaoQuestao" type="text" maxlength="100" class="form-control" name="comentario" placeholder="Max. 100 caracteres..."></textarea><br>                                                                                                              
                         </div>
+                        <label v-if="errors.sugestaoQuestao" class="text-danger ml-5" v-cloak>@{{errors.sugestaoQuestao}}</label>  
                     </div>
             </div>
             <div class="modal-footer">

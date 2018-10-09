@@ -3,12 +3,6 @@
 @section('musuario','active')
 
 @section('conteudo')
-<div v-if="errors.length" class='alert alert-danger'>
-    <b>Por favor corrija os seguintes erros</b>
-    <ul>
-    <li v-for="erro in errors">@{{erro}}</li>
-    </ul>
-</div>
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
@@ -30,78 +24,65 @@
     <div class="row">
         <div class="col-12 m-auto">
             <form method="POST" @submit="getCheckUsuario" id="dados" action="/usuario/inserir">
-
+                {{ csrf_field() }}
                 <h3 class="title text-center mb-1" id="novoModalLabel">Novo Usuario</h3>
 
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">subtitles</i>
-                                </span>
-                            </div>
-                            <input v-model="matriculaUsuario" type="text" class="form-control" name="matricula" placeholder="Matricula..." id="matricula">
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Matrícula">Matrícula<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                     
+                            <input v-model="matriculaUsuario" type="text" class="form-control borda-input" name="matricula" placeholder="Matricula..." id="matricula">
+                            <label v-if="errors.matriculaUsuario" class="text-danger" v-cloak>@{{errors.matriculaUsuario}}</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">account_box</i>
-                                </span>
-                            </div>
-                            {{csrf_field()}}
-                            <input v-model="nomeUsuario" type="text" class="form-control" name="nome" placeholder="Nome..." id="email">
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
+                            <input v-model="nomeUsuario" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="email">
+                            <label v-if="errors.nomeUsuario" class="text-danger" v-cloak>@{{errors.nomeUsuario}}</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">email</i>
-                                </span>
-                            </div>
-                            {{csrf_field()}}
-                            <input v-model="emailUsuario" type="email" class="form-control " name="email" placeholder="Email..." id="email">
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Email">Email<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
+                            <input v-model="emailUsuario" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
+                            <label v-if="errors.emailUsuario" class="text-danger" v-cloak>@{{errors.emailUsuario}}</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">vpn_key</i>
-                                </span>
-                            </div>
-                            <input v-model="senhaUsuario" type="password" class="form-control" name="senha" placeholder="Senha..." id="senha">
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Senha">Senha<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
+                            <input v-model="senhaUsuario" type="password" class="form-control borda-input" name="senha" placeholder="Senha..." id="senha">
+                            <label v-if="errors.senhaUsuario" class="text-danger" v-cloak>@{{errors.senhaUsuario}}</label>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                            </div>
-                                {{csrf_field()}}
-
-                                @if(count($cursos)>0)
-                                    <select v-model="cursoUsuario" name="curso_id" class="form-control">
-                                        <option value="" disabled>Selecione o curso...</option>
-                                        @foreach($cursos as $curso)
-                                            <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                                        @endforeach
-                                    </select>
-                                @endif
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Curso">Curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                   
+                            @if(count($cursos)>0)
+                                <select v-model="cursoUsuario" name="curso_id" class="form-control borda-input">
+                                    <option value="" disabled>Selecione o curso...</option>
+                                    @foreach($cursos as $curso)
+                                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                                    @endforeach
+                                </select>
+                                <label class="text-warning" for="Não existe cursos">Obs: se não houver cursos cadastrados, por favor cadastre um curso antes de continuar</label><br>
+                            @endif
+                            <label v-if="errors.cursoUsuario" class="text-danger" v-cloak>@{{errors.cursoUsuario}}</label>
                         </div>
                     </div>
                 </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Cadastrar"><br>
+                <div class="row">
+                    <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
+                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar"><br>
+                    </div>                      
+                </div>
+                <div class="row">
+                    <div class="col-md-9 mx-auto text-center">
+                        <label v-if="errors.botao" class="text-danger" v-cloak>@{{errors.botao}}</label>
                     </div>
+                </div>
             </form>
         </div>
     </div>

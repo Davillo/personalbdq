@@ -15,7 +15,15 @@ class CriarTabelaAvaliacao extends Migration
     {
         Schema::create('avaliacao', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
+            $table->string('titulo')->nullable(true);
+            $table->string('instituicao')->nullable(true);
+            $table->string('logo')->nullable(true);
+            $table->string('professor')->nullable(true);
+            $table->string('curso')->nullable(true);
+            $table->string('disciplina')->nullable(true);
+            $table->string('turma')->nullable(true);
+            $table->string('avaliacao')->nullable(true);
+            $table->string('instrucao')->nullable(true);
             $table->integer('autor_usuario_id')->unsigned();
             $table->foreign('autor_usuario_id')->references('id')->on('usuario');
             $table->date('data_criacao');

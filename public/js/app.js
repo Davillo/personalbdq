@@ -14009,12 +14009,12 @@ var app = new Vue({
     data: {
         multiplaEscolha: false,
         dissertativa: false,
-        errors: [],
+        errors: {},
         //Nova Questão
-        tipo: '',
-        categoria: '',
-        dificuldade: '',
-        palavras_chave: null,
+        tipoQuestao: '',
+        categoriaQuestao: '',
+        dificuldadeQuestao: '',
+        palavras_chaveQuestao: null,
         //Nova Lista
         nomeLista: null,
         descricaoLista: null,
@@ -14028,8 +14028,11 @@ var app = new Vue({
         nomeUsuario: null,
         emailUsuario: null,
         senhaUsuario: null,
-        cursoUsuario: ''
-
+        cursoUsuario: '',
+        //Nova Avaliação
+        tituloAvaliacao: null,
+        //Adicionar Sugestão
+        sugestaoQuestao: null
     },
 
     methods: {
@@ -14056,31 +14059,30 @@ var app = new Vue({
             }
         },
         getCheck: function getCheck(e) {
-            if (this.tipo && this.categoria && this.dificuldade && this.palavras_chave && CKEDITOR.instances.enunciado.getData()) {
+            if (this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData()) {
                 return true;
             }
 
-            this.errors = [];
+            this.errors = {};
 
-            if (!this.tipo) {
-                this.errors.push('Selecione o tipo de questão');
+            if (!this.tipoQuestao) {
+                this.errors.tipoQuestao = 'Este campo é obrigatório';
             }
-
-            if (!this.categoria) {
-                this.errors.push('Selecione a categoria da questão');
+            if (!this.categoriaQuestao) {
+                this.errors.categoriaQuestao = 'Este campo é obrigatório';
             }
-
-            if (!this.dificuldade) {
-                this.errors.push('Selecione a dificuldade da questão');
+            if (!this.dificuldadeQuestao) {
+                this.errors.dificuldadeQuestao = 'Este campo é obrigatório';
             }
-
-            if (!this.palavras_chave) {
-                this.errors.push('Campo palavras chave é obrigatório');
+            if (!this.palavras_chaveQuestao) {
+                this.errors.palavras_chaveQuestao = 'Este campo é obrigatório';
             }
-
             if (!CKEDITOR.instances.enunciado.getData()) {
-                this.errors.push('Campo enunciado é obrigatório');
+                this.errors.enunciadoQuestao = 'Este campo é obrigatório';
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
             e.preventDefault();
         },
         getCheckLista: function getCheckLista(e) {
@@ -14088,15 +14090,17 @@ var app = new Vue({
                 return true;
             }
 
-            this.errors = [];
+            this.errors = {};
 
             if (!this.nomeLista) {
-                this.errors.push('Campo nome é obrigatório');
+                this.errors.nomeLista = 'Este campo é obrigatório';
+            }
+            if (!this.descricaoLista) {
+                this.errors.descricaoLista = 'Este campo é obrigatório';
             }
 
-            if (!this.descricaoLista) {
-                this.errors.push('Campo descrição é obrigatório');
-            }
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
             e.preventDefault();
         },
         getCheckCompartilhar: function getCheckCompartilhar(e) {
@@ -14104,11 +14108,14 @@ var app = new Vue({
                 return true;
             }
 
-            this.errors = [];
+            this.errors = {};
 
             if (!this.emailCompartilhar) {
-                this.errors.push('Campo email é obrigatório');
+                this.errors.emailCompartilhar = 'Este campo é obrigatório';
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
             e.preventDefault();
         },
         getCheckCurso: function getCheckCurso(e) {
@@ -14116,14 +14123,17 @@ var app = new Vue({
                 return true;
             }
 
-            this.errors = [];
+            this.errors = {};
 
             if (!this.nomeCurso) {
-                this.errors.push('Campo nome curso é obrigatório');
+                this.errors.nomeCurso = 'Este campo é obrigatório';
             }
             if (!this.tipoCurso) {
-                this.errors.push('Selecione o tipo do curso');
+                this.errors.tipoCurso = 'Este campo é obrigatório';
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
             e.preventDefault();
         },
         getCheckUsuario: function getCheckUsuario(e) {
@@ -14131,23 +14141,54 @@ var app = new Vue({
                 return true;
             }
 
-            this.errors = [];
+            this.errors = {};
 
             if (!this.matriculaUsuario) {
-                this.errors.push('Campo matricula é obrigatório');
+                this.errors.matriculaUsuario = 'Este campo é obrigatório';
             }
             if (!this.nomeUsuario) {
-                this.errors.push('Campo nome é obrigatório');
+                this.errors.nomeUsuario = 'Este campo é obrigatório';
             }
             if (!this.emailUsuario) {
-                this.errors.push('Campo email curso é obrigatório');
+                this.errors.emailUsuario = 'Este campo é obrigatório';
             }
             if (!this.senhaUsuario) {
-                this.errors.push('Campo senha curso é obrigatório');
+                this.errors.senhaUsuario = 'Este campo é obrigatório';
             }
             if (!this.cursoUsuario) {
-                this.errors.push('Selecione o curso');
+                this.errors.cursoUsuario = 'Este campo é obrigatório';
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
+            e.preventDefault();
+        },
+        getCheckAvaliacao: function getCheckAvaliacao(e) {
+            if (this.tituloAvaliacao) {
+                return true;
+            }
+
+            this.errors = {};
+
+            if (!this.tituloAvaliacao) {
+                this.errors.tituloAvaliacao = 'Este campo é obrigatório';
+            }
+
+            this.errors.botao = 'Preencha os campos obrigatórios';
+
+            e.preventDefault();
+        },
+        getCheckSugestao: function getCheckSugestao(e) {
+            if (this.sugestaoQuestao) {
+                return true;
+            }
+
+            this.errors = {};
+
+            if (!this.sugestaoQuestao) {
+                this.errors.sugestaoQuestao = 'Este campo é obrigatório';
+            }
+
             e.preventDefault();
         }
     }
@@ -47978,25 +48019,18 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          {
-            staticClass: "input-group col-sm-8",
-            staticStyle: {
-              "text-align": "center",
-              margin: "0 auto",
-              padding: "10px"
-            }
-          },
-          [_vm._v("\n         Alternativas:\n     ")]
-        )
+        _c("div", { staticClass: "form-group col-md-8 mx-auto" }, [
+          _c("label", { attrs: { for: "Alternativas" } }, [
+            _vm._v("Alternativas")
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c(
           "div",
           {
-            staticClass: "input-group col-sm-8",
+            staticClass: "input-group col-md-8",
             staticStyle: {
               "text-align": "center",
               margin: "0 auto",
@@ -48050,7 +48084,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "input-group col-sm-8",
+            staticClass: "input-group col-md-8",
             staticStyle: {
               "text-align": "center",
               margin: "0 auto",
@@ -48104,7 +48138,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "input-group col-sm-8",
+            staticClass: "input-group col-md-8",
             staticStyle: {
               "text-align": "center",
               margin: "0 auto",
@@ -48158,7 +48192,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "input-group col-sm-8",
+            staticClass: "input-group col-md-8",
             staticStyle: {
               "text-align": "center",
               margin: "0 auto",
@@ -48212,7 +48246,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "input-group col-sm-8",
+            staticClass: "input-group col-md-8",
             staticStyle: {
               "text-align": "center",
               margin: "0 auto",

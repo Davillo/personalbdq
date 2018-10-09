@@ -135,4 +135,12 @@ body{
     max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
-
+.borda-input{
+    border-radius: 0;    
+}
+.f-16{
+    font-size: 16px;
+}
+[v-cloak] {
+    display: none;
+}

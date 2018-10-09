@@ -22,54 +22,39 @@
     <div class="row">
         <div class="col-12 m-auto">
             <form method="POST" action="/usuario/update">
+                {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{$usuario->id}}">
                 <h3 class="title text-center mb-1" id="novoModalLabel">Editar Usuario</h3>
 
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">subtitles</i>
-                                </span>
-                            </div>
-                            <input type="text" value="{{$usuario->matricula}}" class="form-control" name="matricula" placeholder="Matricula...">
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Matrícula">Matrícula<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                     
+                            <input type="text" value="{{$usuario->matricula}}" class="form-control borda-input" name="matricula" placeholder="Matricula...">
+                        </div>
+                    </div>
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label> 
+                            <input type="text" value="{{$usuario->nome}}" class="form-control borda-input" name="nome" placeholder="Nome..." >
+                        </div>
+                    </div>
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Email">Email<span class="text-danger f-16" title="Campo obrigatório">*</span></label> 
+                            <input value="{{$usuario->email}}" type="email" class="form-control borda-input" name="email" placeholder="Email...">
+                        </div>
+                    </div>
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Senha">Senha<span class="text-danger f-16" title="Campo obrigatório">*</span></label>
+                            <input type="password" class="form-control borda-input" name="senha" placeholder="Senha...">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">account_box</i>
-                                </span>
-                            </div>
-                            {{ csrf_field() }}
-                            <input type="text" value="{{$usuario->nome}}" class="form-control " name="nome" placeholder="Nome..." >
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">email</i>
-                                </span>
-                            </div>
-                            {{ csrf_field() }}
-                            <input value="{{$usuario->email}}" type="email" class="form-control " name="email" placeholder="Email...">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">vpn_key</i>
-                                </span>
-                            </div>
-                            <input type="password" class="form-control" name="senha" placeholder="Senha...">
-                        </div>
-                    </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="login" name="editar" class="btn btn-modal col-sm-8" value="Atualizar"><br>
+                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
+                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Atualizar"><br>
+                        </div>                      
                     </div>
 
                 </div>

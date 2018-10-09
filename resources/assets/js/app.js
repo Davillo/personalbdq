@@ -28,12 +28,12 @@ const app = new Vue({
     data: {
         multiplaEscolha: false,
         dissertativa: false,
-        errors: [],
+        errors: {},        
         //Nova Questão
-        tipo: '',
-        categoria: '',
-        dificuldade: '',
-        palavras_chave: null,
+        tipoQuestao: '',
+        categoriaQuestao: '',
+        dificuldadeQuestao: '',
+        palavras_chaveQuestao: null,
         //Nova Lista
         nomeLista: null,
         descricaoLista: null,
@@ -47,9 +47,11 @@ const app = new Vue({
         nomeUsuario: null,
         emailUsuario: null,
         senhaUsuario: null,
-        cursoUsuario: ''
-
-
+        cursoUsuario: '',
+        //Nova Avaliação
+        tituloAvaliacao: null,
+        //Adicionar Sugestão
+        sugestaoQuestao: null
     },
 
     methods: {
@@ -76,31 +78,31 @@ const app = new Vue({
             }
         },
         getCheck(e){
-            if(this.tipo && this.categoria && this.dificuldade && this.palavras_chave && CKEDITOR.instances.enunciado.getData()){
+            if(this.tipoQuestao && this.categoriaQuestao 
+                && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData()){
                 return true
             }
 
-            this.errors = []
+            this.errors = {}
 
-            if(!this.tipo){
-                this.errors.push('Selecione o tipo de questão')
+            if(!this.tipoQuestao){
+                this.errors.tipoQuestao = 'Este campo é obrigatório'
             }
-
-            if(!this.categoria){
-                this.errors.push('Selecione a categoria da questão')
+            if(!this.categoriaQuestao){
+                this.errors.categoriaQuestao = 'Este campo é obrigatório'
             }
-
-            if(!this.dificuldade){
-                this.errors.push('Selecione a dificuldade da questão')
+            if(!this.dificuldadeQuestao){
+                this.errors.dificuldadeQuestao = 'Este campo é obrigatório'
             }
-
-            if(!this.palavras_chave){
-                this.errors.push('Campo palavras chave é obrigatório')
-            }
-            
+            if(!this.palavras_chaveQuestao){
+                this.errors.palavras_chaveQuestao = 'Este campo é obrigatório'
+            }           
             if(!CKEDITOR.instances.enunciado.getData()){
-                this.errors.push('Campo enunciado é obrigatório')
+                this.errors.enunciadoQuestao = 'Este campo é obrigatório'
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
             e.preventDefault()
         },
         getCheckLista(e){
@@ -108,15 +110,17 @@ const app = new Vue({
                 return true
             }
 
-            this.errors = []
+            this.errors = {}
 
             if(!this.nomeLista){
-                this.errors.push('Campo nome é obrigatório')
-            }
-            
+                this.errors.nomeLista = 'Este campo é obrigatório'
+            }            
             if(!this.descricaoLista){
-                this.errors.push('Campo descrição é obrigatório')
+                this.errors.descricaoLista = 'Este campo é obrigatório'
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
             e.preventDefault()
         },
         getCheckCompartilhar(e){
@@ -124,11 +128,14 @@ const app = new Vue({
                 return true
             }
 
-            this.errors = []
+            this.errors = {}
 
             if(!this.emailCompartilhar){
-                this.errors.push('Campo email é obrigatório')
+                this.errors.emailCompartilhar = 'Este campo é obrigatório'
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
             e.preventDefault()
         },
         getCheckCurso(e){
@@ -136,14 +143,17 @@ const app = new Vue({
                 return true
             }
 
-            this.errors = []
+            this.errors = {}
 
             if(!this.nomeCurso){
-                this.errors.push('Campo nome curso é obrigatório')
+                this.errors.nomeCurso = 'Este campo é obrigatório'
             }
             if(!this.tipoCurso){
-                this.errors.push('Selecione o tipo do curso')
+                this.errors.tipoCurso = 'Este campo é obrigatório'
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
             e.preventDefault()
         },
         getCheckUsuario(e){
@@ -151,26 +161,59 @@ const app = new Vue({
                 return true
             }
 
-            this.errors = []
+            this.errors = {}
 
             if(!this.matriculaUsuario){
-                this.errors.push('Campo matricula é obrigatório')
+                this.errors.matriculaUsuario = 'Este campo é obrigatório'
             }
             if(!this.nomeUsuario){
-                this.errors.push('Campo nome é obrigatório')
+                this.errors.nomeUsuario = 'Este campo é obrigatório'
             }
             if(!this.emailUsuario){
-                this.errors.push('Campo email curso é obrigatório')
+                this.errors.emailUsuario = 'Este campo é obrigatório'
             }
             if(!this.senhaUsuario){
-                this.errors.push('Campo senha curso é obrigatório')
+                this.errors.senhaUsuario = 'Este campo é obrigatório'
             }
             if(!this.cursoUsuario){
-                this.errors.push('Selecione o curso')
+                this.errors.cursoUsuario = 'Este campo é obrigatório'
             }
+
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
             e.preventDefault()
         },
+        getCheckAvaliacao(e){
+            if(this.tituloAvaliacao){
+                return true
+            }            
+
+            this.errors = {}
+
+            if(!this.tituloAvaliacao){
+                this.errors.tituloAvaliacao = 'Este campo é obrigatório'
+            } 
+    
+            this.errors.botao = 'Preencha os campos obrigatórios'
+
+            e.preventDefault()
+        },
+        getCheckSugestao(e){
+            if(this.sugestaoQuestao){
+                return true
+            }
+
+            this.errors = {}
+
+            if(!this.sugestaoQuestao){
+                this.errors.sugestaoQuestao = 'Este campo é obrigatório'
+            }
+
+            e.preventDefault()
+        }
     },
+   
+    
 
 
 });

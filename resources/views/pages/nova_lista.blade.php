@@ -3,12 +3,6 @@
 @section('mlista','active')
 
 @section('conteudo')
-<div v-if="errors.length" class='alert alert-danger'>
-    <b>Por favor corrija os seguintes erros</b>
-    <ul>
-    <li v-for="erro in errors">@{{erro}}</li>
-    </ul>
-</div>
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
@@ -30,36 +24,35 @@
     <div class="row">
         <div class="col-12 m-auto">
             <form method="POST" @submit="getCheckLista" id="dados" action="/lista/inserir">
-
+                {{ csrf_field() }}
                 <h3 class="title text-center mb-1" id="novoModalLabel">Nova Lista</h3>
 
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">account_box</i>
-                                </span>
-                            </div>
-                            {{csrf_field()}}
-                            <input  v-model="nomeLista" type="text" class="form-control" name="nome" placeholder="Nome..." id="nome">
-                        </div>
+                    <div class="row">                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                            
+                            <input  v-model="nomeLista" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
+                            <label v-if="errors.nomeLista" class="text-danger" v-cloak>@{{errors.nomeLista}}</label>                                                        
+                        </div>                                                       
                     </div>
-                    <div class="row">
-                        <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">email</i>
-                                </span>
-                            </div>
-                            {{csrf_field()}}
-                            <textarea v-model='descricaoLista' class="form-control" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
-                        </div>
-                    </div>
+                    <div class="row">                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Descrição">Descrição<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                
+                                <textarea v-model='descricaoLista' class="form-control borda-input" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
+                                <label v-if="errors.descricaoLista" class="text-danger" v-cloak>@{{errors.descricaoLista}}</label>                                                        
+                            </div>                                                       
+                    </div>                          
                 </div>
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="SALVAR"><br>
-                    </div>
+                <div class="row">
+                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">
+                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar"><br>
+                        </div>
+                </div> 
+                <div class="row">
+                        <div class="col-md-9 mx-auto text-center">
+                            <label v-if="errors.botao" class="text-danger" v-cloak>@{{errors.botao}}</label>
+                        </div>
+                </div>               
             </form>
         </div>
     </div>

@@ -24,6 +24,7 @@
         <div class="row">
             <div class="col-12 m-auto">
                 <form method="POST" id="dados" action="/questao/update">
+                    {{ csrf_field() }}
                     <input type="hidden" class="form-control" value="{{$questao->id }}" name="id">
 
                     @if(isset($lista_id))
@@ -34,115 +35,80 @@
 
                     <div class="modal-body">
 
-                        <div class="row">
-                            <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                                </div>
-                                {{csrf_field()}}
-
-                                <select @change="getForm" name="tipo" class="form-control" disabled>
+                        <div class="row">                                                        
+                             <div class="form-group col-md-9 mx-auto">
+                                <label for="Tipo de questão">Tipo de questão<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
+                                <select @change="getForm" name="tipo" class="form-control borda-input" disabled>
                                     <option value="{{$questao->tipo}}">{{$questao->tipo}}</option>
                                 </select>
                             </div>
                         </div>
 
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Categoria">Categoria<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                                                          
+                                <select name="categoria" class="form-control borda-input">
+                                    <option value="">Categoria...</option>
+                                    @if($questao->categoria == 'Avaliação 1')
+                                        <option value="Avaliação 1" selected>Avaliação 1</option>
+                                        <option value="Avaliação 2" >Avaliação 2</option>
+                                        <option value="Enade" >Enade</option>
+                                    @elseif($questao->categoria == 'Avaliação 2')
+                                    <option value="Avaliação 1" >Avaliação 1</option>
+                                    <option value="Avaliação 2" selected>Avaliação 2</option>
+                                    <option value="Enade" >Enade</option>
+                                    @else
+                                        <option value="Avaliação 1" >Avaliação 1</option>
+                                        <option value="Avaliação 2" >Avaliação 2</option>
+                                        <option value="Enade" selected>Enade</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Dificuldade">Dificuldade<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                                                                                              
+                                <select name="dificuldade"  class="form-control borda-input">
+                                    <option value="">Dificuldade...</option>
+                                    @if($questao->dificuldade == 'Fácil')
+                                        <option value="Fácil" selected>Fácil</option>
+                                        <option value="Intermediário">Intermediário</option>
+                                        <option value="Difícil">Difícil</option>
+                                    @elseif($questao->dificuldade == 'Intermediário')
+                                    <option value="Fácil">Fácil</option>
+                                    <option value="Intermediário" selected>Intermediário</option>
+                                    <option value="Difícil">Difícil</option>
+                                    @else
+                                        <option value="Fácil">Fácil</option>
+                                        <option value="Intermediário">Intermediário</option>
+                                        <option value="Difícil" selected>Difícil</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Palavras Chave">Palavras Chave<span class="text-danger f-16" title="Campo obrigatório">*</span></label>    
+                                <input type="text" value="{{$questao->palavras_chave}}" class="form-control borda-input" name="palavras_chave" placeholder="Palavras chaves..." />
+                            </div>
+                        </div>
+
+
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Enunciado">Enunciado<span class="text-danger f-16" title="Campo obrigatório">*</span></label>
+                                <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." >{{$questao->enunciado}}</textarea>
+                            </div>
+                        </div>
+
                         @if($questao->tipo == "Múltipla Escolha" || $questao->tipo == "Asserção Razão" || $questao->tipo == "Verdadeiro ou Falto")
-                            <div>
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                                        </div>
-
-
-                                        <select name="categoria" class="form-control">
-                                            <option value="">Categoria...</option>
-                                            @if($questao->categoria == 'Avaliação 1')
-                                                <option value="Avaliação 1" selected>Avaliação 1</option>
-                                                <option value="Avaliação 2" >Avaliação 2</option>
-                                                <option value="Enade" >Enade</option>
-                                            @elseif($questao->categoria == 'Avaliação 2')
-                                            <option value="Avaliação 1" >Avaliação 1</option>
-                                            <option value="Avaliação 2" selected>Avaliação 2</option>
-                                            <option value="Enade" >Enade</option>
-                                            @else
-                                                <option value="Avaliação 1" >Avaliação 1</option>
-                                                <option value="Avaliação 2" >Avaliação 2</option>
-                                                <option value="Enade" selected>Enade</option>
-                                            @endif
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                                        </div>
-
-                                        <select name="dificuldade"  class="form-control">
-                                            <option value="">Dificuldade...</option>
-                                            @if($questao->dificuldade == 'Fácil')
-                                                <option value="Fácil" selected>Fácil</option>
-                                                <option value="Intermediário">Intermediário</option>
-                                                <option value="Difícil">Difícil</option>
-                                            @elseif($questao->dificuldade == 'Intermediário')
-                                            <option value="Fácil">Fácil</option>
-                                            <option value="Intermediário" selected>Intermediário</option>
-                                            <option value="Difícil">Difícil</option>
-                                            @else
-                                                <option value="Fácil">Fácil</option>
-                                                <option value="Intermediário">Intermediário</option>
-                                                <option value="Difícil" selected>Difícil</option>
-                                            @endif
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        Palavras Chave:
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <input type="text" value="{{$questao->palavras_chave}}" class="form-control" name="palavras_chave" placeholder="Palavras chaves..." />
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        Enunciado:
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado..." >{{$questao->enunciado}}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        Alternativas:
-                                    </div>
+                            <div class="mt-3">                                
+                                <div class="row">                                                        
+                                    <div class="form-group col-md-8 mx-auto">
+                                        <label for="Alternativas">Alternativas</label> 
+                                    </div>   
                                 </div>
 
                                 <div class="row">
@@ -285,101 +251,13 @@
                                     </div>
                                 </div>
                             </div>
-
-                        @else
-
-                            <div>
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                                        </div>
-
-
-                                        <select name="categoria" class="form-control">
-                                            <option value="">Categoria...</option>
-                                            @if($questao->categoria == 'Avaliação 1')
-                                                <option value="Avaliação 1" selected>Avaliação 1</option>
-                                                <option value="Avaliação 2" >Avaliação 2</option>
-                                                <option value="Enade" >Enade</option>
-                                            @elseif($questao->categoria == 'Avaliação 2')
-                                                <option value="Avaliação 1" >Avaliação 1</option>
-                                                <option value="Avaliação 2" selected>Avaliação 2</option>
-                                                <option value="Enade" >Enade</option>
-                                            @else
-                                                <option value="Avaliação 1" >Avaliação 1</option>
-                                                <option value="Avaliação 2" >Avaliação 2</option>
-                                                <option value="Enade" selected>Enade</option>
-                                            @endif
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="material-icons">
-                                        book
-                                    </i>
-                                </span>
-                                        </div>
-
-                                        <select name="dificuldade"  class="form-control">
-                                            <option value="">Dificuldade...</option>
-                                            @if($questao->dificuldade == 'Fácil')
-                                                <option value="Fácil" selected>Fácil</option>
-                                                <option value="Intermediário">Intermediário</option>
-                                                <option value="Difícil">Difícil</option>
-                                            @elseif($questao->dificuldade == 'Intermediário')
-                                                <option value="Fácil">Fácil</option>
-                                                <option value="Intermediário" selected>Intermediário</option>
-                                                <option value="Difícil">Difícil</option>
-                                            @else
-                                                <option value="Fácil">Fácil</option>
-                                                <option value="Intermediário">Intermediário</option>
-                                                <option value="Difícil" selected>Difícil</option>
-                                            @endif
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        Palavras Chave:
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <input type="text" value="{{$questao->palavras_chave}}" class="form-control" name="palavras_chave" placeholder="Palavras chaves..."/>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        Enunciado:
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-group col-sm-8" style="text-align:center; margin: 0 auto; padding: 10px;">
-                                        <textarea type="text" class="form-control" name="enunciado" placeholder="Enunciado...">{{$questao->enunciado}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
                         @endif
                     </div>
-
-                    <div class="text-center" style="margin-bottom: 10px;">
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-sm-8" value="Atualizar"><br>
-                    </div>
+                    <div class="row">
+                            <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                
+                                <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Atualizar"><br>
+                            </div>                      
+                    </div>                    
                 </form>
             </div>
         </div>

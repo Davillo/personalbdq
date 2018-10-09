@@ -80,7 +80,7 @@
     filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
     language: 'pt',
     uiColor: '#fd7e14',
-    width: 800,
+    width: "100%",
     height: 300
     };
     CKEDITOR.replace('enunciado',options);
