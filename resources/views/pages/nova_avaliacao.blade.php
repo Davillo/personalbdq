@@ -61,9 +61,19 @@
                                                 <div class="row">                                                    
                                                     <div class="form-group col-md-9 mx-auto">
                                                         <label for="Instituição">Instituição</label>
-                                                        <input type="text" class="form-control borda-input" name="instituição" placeholder="Instituição...">
+                                                        <input type="text" class="form-control borda-input" name="instituicao" placeholder="Instituição...">
                                                     </div>    
                                                 </div>  
+                                                <div class="row">  
+                                                        <div class="col-md-9 mx-auto">
+                                                            <label for="Logo">Logo</label>                                                                                                                                   
+                                                            <div class="col-md-9">                                                                                                                      
+                                                                <button id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-modal col-md-3 borda-input mr-3" name="logo">Escolher Logo</button>
+                                                                <img id="holder" style="height:50px;width:200px;">
+                                                            </div>
+                                                            <input class="form-control" type="hidden" name="logo" id="thumbnail">                                                            
+                                                        </div>                                                      
+                                                </div>
                                                 <div class="row">                                                        
                                                         <div class="form-group col-md-9 mx-auto">
                                                             <label for="Professor">Professor</label>
@@ -105,7 +115,7 @@
                                                 <div class="row">                                                        
                                                     <div class="form-group col-md-9 mx-auto">
                                                             <label for="Instruções">Instruções</label>
-                                                            <textarea id="enunciado" type="text" class="form-control" name="instrucoes" placeholder="Instruções..."></textarea>
+                                                            <textarea id="enunciado" type="text" class="form-control" name="instrucao" placeholder="Instruções..."></textarea>
                                                     </div>    
                                                 </div>   
                                                 <div class="row">

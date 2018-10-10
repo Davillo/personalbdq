@@ -85,4 +85,6 @@
     };
     CKEDITOR.replace('enunciado',options);
 </script>
+<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+<script>$('#lfm').filemanager('image');</script>
 </html>

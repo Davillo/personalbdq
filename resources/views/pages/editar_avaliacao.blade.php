@@ -26,7 +26,7 @@
                 <form method="POST" action="/avaliacao/update">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" value="{{ $avaliacao->id }}" name="id" >
-                    <h3 class="title text-center mb-1" id="novoModalLabel">Editar Curso</h3>
+                    <h3 class="title text-center mb-1" id="novoModalLabel">Editar Avaliação</h3>
 
                     <div class="modal-body">
                             <div class="card card-nav-tabs card-plain">
@@ -64,9 +64,23 @@
                                                         <label for="Instituição">Instituição</label>
                                                         <input @isset($avaliacao->instituicao)
                                                             value="{{ $avaliacao->instituicao }}"
-                                                        @endisset type="text" class="form-control borda-input" name="instituição" placeholder="Instituição...">
+                                                        @endisset type="text" class="form-control borda-input" name="instituicao" placeholder="Instituição...">
                                                     </div>    
-                                                </div>  
+                                                </div> 
+                                                <div class="row">                                                    
+                                                        <div class="form-group col-md-9 mx-auto">
+                                                            <label for="Logo">Logo</label>
+                                                            <div class="col-md-9">
+                                                                <button id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-modal col-md-3 borda-input mr-3" name="logo">Logo</button>
+                                                                <img @isset($avaliacao->logo)
+                                                                src="{{ $avaliacao->logo }}"
+                                                                @endisset id="holder" style="height:50px;width:200px;">
+                                                            </div>    
+                                                            <input class="form-control" type="hidden" name="logo" id="thumbnail" @isset($avaliacao->logo)
+                                                            value="{{ $avaliacao->logo }}"
+                                                            @endisset>
+                                                        </div>    
+                                                </div> 
                                                 <div class="row">                                                        
                                                         <div class="form-group col-md-9 mx-auto">
                                                             <label for="Professor">Professor</label>
@@ -99,25 +113,25 @@
                                                         @endisset type="text" class="form-control borda-input" name="turma" placeholder="Turma...">
                                                         </div>    
                                                 </div>
-                                                @if(isset($avaliacao->categoria))
+                                                @if(isset($avaliacao->avaliacao))
                                                 <div class="row">                                                        
                                                     <div class="form-group col-md-9 mx-auto">
                                                         <label for="Categoria">Categoria</label>                                                                                                          
-                                                        <select name="categoria" class="form-control borda-input">
+                                                        <select name="avaliacao" class="form-control borda-input">
                                                             <option value="">Categoria...</option>
-                                                            @if($avaliacao->categoria == 'AV1')
+                                                            @if($avaliacao->avaliacao == 'AV1')
                                                                 <option value="">Selecione a categoria...</option>
                                                                 <option value="AV1" selected>Avaliação 1</option>
                                                                 <option value="AV2">Avaliação 2</option>
                                                                 <option value="ENADE">Enade</option>
                                                                 <option value="PARCIAL">Parcial</option>
-                                                            @elseif($avaliacao->categoria == 'AV2')
+                                                            @elseif($avaliacao->avaliacao == 'AV2')
                                                                 <option value="">Selecione a categoria...</option>
                                                                 <option value="AV1">Avaliação 1</option>
                                                                 <option value="AV2" selected>Avaliação 2</option>
                                                                 <option value="ENADE">Enade</option>
                                                                 <option value="PARCIAL">Parcial</option>
-                                                            @elseif($avaliacao->categoria == 'ENADE')
+                                                            @elseif($avaliacao->avaliacao == 'ENADE')
                                                                 <option value="">Selecione a categoria...</option>
                                                                 <option value="AV1">Avaliação 1</option>
                                                                 <option value="AV2">Avaliação 2</option>
@@ -153,7 +167,7 @@
                                                 <div class="row">                                                        
                                                     <div class="form-group col-md-9 mx-auto">
                                                             <label for="Instruções">Instruções</label>
-                                                            <textarea id="enunciado" type="text" class="form-control" name="instrucoes" placeholder="Instruções..."></textarea>
+                                                            <textarea id="enunciado" type="text" class="form-control" name="instrucao" placeholder="Instruções...">{{ $avaliacao->instrucao }}</textarea>
                                                     </div>    
                                                 </div>   
                                                 <div class="row">

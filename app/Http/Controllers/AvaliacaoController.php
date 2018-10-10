@@ -71,6 +71,14 @@ class AvaliacaoController extends Controller
 
         $avaliacao = new Avaliacao();
         $avaliacao->titulo = $request->input('titulo');
+        $avaliacao->instituicao = $request->input('instituicao');
+        $avaliacao->logo = $request->input('logo');
+        $avaliacao->professor = $request->input('professor');
+        $avaliacao->curso = $request->input('curso');
+        $avaliacao->disciplina = $request->input('disciplina');
+        $avaliacao->turma = $request->input('turma');
+        $avaliacao->avaliacao = $request->input('avaliacao');
+        $avaliacao->instrucao = $request->input('instrucao');
         $avaliacao->autor_usuario_id = Auth::user()->id;
         $avaliacao->data_criacao = date('Y-m-d');
         $avaliacao->data_atualizado = date('Y-m-d');
@@ -91,6 +99,14 @@ class AvaliacaoController extends Controller
 
         $avaliacao = Avaliacao::find($request->input('id'));
         $avaliacao->titulo = $request->input('titulo');
+        $avaliacao->instituicao = $request->input('instituicao');
+        $avaliacao->logo = $request->input('logo');
+        $avaliacao->professor = $request->input('professor');
+        $avaliacao->curso = $request->input('curso');
+        $avaliacao->disciplina = $request->input('disciplina');
+        $avaliacao->turma = $request->input('turma');
+        $avaliacao->avaliacao = $request->input('avaliacao');
+        $avaliacao->instrucao = $request->input('instrucao');
         $avaliacao->data_atualizado = Datas::getDataAtual();
 
         if($avaliacao->save()){
@@ -123,9 +139,20 @@ class AvaliacaoController extends Controller
         $questoes = Questao::whereIn('id',$questoesAvaliacao)->get();
         $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->get();
 
-        $pdf = PDF::loadView('templates.avaliacao', compact('questoes', 'alternativas'));
+        $pdf = PDF::loadView('templates.avaliacao', compact('questoes', 'alternativas', 'avaliacao'));
         return $pdf->stream($avaliacao->titulo.'.pdf');
         //return view('templates.avaliacao')->with('questoes', $questoes)->with('alternativas',$alternativas);
     }
 
+    public function gerarGabarito($id){
+        $avaliacao = Avaliacao::find($id);
+        $questoesAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
+        
+        $questoes = Questao::whereIn('id',$questoesAvaliacao)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->get();
+
+        $pdf = PDF::loadView('templates.gabarito', compact('questoes', 'alternativas', 'avaliacao'));
+        return $pdf->stream($avaliacao->titulo.'.pdf');
+        //return view('templates.avaliacao')->with('questoes', $questoes)->with('alternativas',$alternativas);
+    }
 }

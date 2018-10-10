@@ -145,7 +145,32 @@
                         <tr>
                             @foreach ($questoes as $index => $questao)
                                 @if($questao->tipo == "Múltipla Escolha" || $questao->tipo == "Asserção Razão" || $questao->tipo == "Verdadeiro ou Falso")
-                                <td style="width:50px;height:30px;border:1px solid #000;"></td>
+                                <td style="width:50px;height:30px;border:1px solid #000;text-align:center;">
+                                        <?php $count = 0; ?>
+                                        @foreach($alternativas as $alternativa )
+                                            @if($alternativa->questao_id == $questao->id)       
+                                                @if($alternativa->correta == true)
+                                                    @if($count == 0) 
+                                                        A
+                                                    @endif
+                                                    @if($count == 1) 
+                                                            B
+                                                    @endif
+                                                    @if($count == 2) 
+                                                            C
+                                                    @endif
+                                                    @if($count == 3) 
+                                                            D
+                                                    @endif
+                                                    @if($count == 4) 
+                                                            E
+                                                    @endif
+                                                @endif
+                                               
+                                               <?php $count = $count+1; ?>    
+                                            @endif                            
+                                        @endforeach
+                                </td>
                                 @else
                                 <td style="width:50px;height:30px;border:1px solid #000;background-color:#131B23;"></td>
                                 @endif

@@ -70,6 +70,7 @@ Route::delete('/avaliacao/excluir/{id}', 'AvaliacaoController@destroy');
 Route::get('/avaliacao/adicionar/{id}', 'AvaliacaoController@adicionarQuestoes');
 Route::post('/avaliacao/addQuestoes', 'AvaliacaoController@storeQuestoesAvaliacao');
 Route::get('/avaliacao/gerarpdf/{id}', 'AvaliacaoController@gerarPdf');
+Route::get('/avaliacao/gerargabarito/{id}', 'AvaliacaoController@gerarGabarito');
 
 
 

@@ -59,7 +59,7 @@
                                                     print
                                                 </i>
                                             </a>   
-                                            <a title="Gerar PDF" href="avaliacao/gerarpdf/{{$avaliacao->id}}" target="_blank">    
+                                            <a title="Gerar Gabarito" href="avaliacao/gerargabarito/{{$avaliacao->id}}" target="_blank">    
                                                 <i  class="material-icons" >
                                                     list_alt
                                                 </i>
