@@ -69,9 +69,8 @@
 <!--<script src="../assets/js/plugins/bootstrap-notify.js"></script>-->
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script type="text/javascript" src="{{asset('/js/now-ui-dashboard.js?v=1.0.1')}}"></script>
-<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <!--<script src="../assets/demo/demo.js"></script>-->
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}" charset="utf-8"></script>
 <script>
     let options = {
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
@@ -81,7 +80,8 @@
     language: 'pt',
     uiColor: '#fd7e14',
     width: "100%",
-    height: 300
+    height: 300,
+    entities_latin: false 
     };
     CKEDITOR.replace('enunciado',options);
 </script>

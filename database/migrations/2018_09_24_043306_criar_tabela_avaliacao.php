@@ -23,7 +23,7 @@ class CriarTabelaAvaliacao extends Migration
             $table->string('disciplina')->nullable(true);
             $table->string('turma')->nullable(true);
             $table->string('avaliacao')->nullable(true);
-            $table->string('instrucao')->nullable(true);
+            $table->longText('instrucao')->nullable(true);
             $table->integer('autor_usuario_id')->unsigned();
             $table->foreign('autor_usuario_id')->references('id')->on('usuario');
             $table->date('data_criacao');
