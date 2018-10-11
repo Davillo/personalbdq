@@ -96,7 +96,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="2">Nenhum avaliação foi encontrata</td>
+                                    <td colspan="4">Nenhum avaliação foi encontrata</td>
                                 </tr>
                             @endif
                         </tbody>

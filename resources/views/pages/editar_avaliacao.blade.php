@@ -44,7 +44,11 @@
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="#instrucoes" data-toggle="tab">Instruções</a>
                                                     </li>                                            
+                                                    <li class="nav-item" style="margin-left:55%;">
+                                                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal text-center m-0" value="Atualizar"><br>                                                        
+                                                    </li>                                            
                                                 </ul>
+                                                
                                             </div>
                                         </div>                                        
                                     </div>
@@ -169,12 +173,7 @@
                                                             <label for="Instruções">Instruções</label>
                                                             <textarea id="enunciado" type="text" class="form-control" name="instrucao" placeholder="Instruções...">{{ $avaliacao->instrucao }}</textarea>
                                                     </div>    
-                                                </div>   
-                                                <div class="row">
-                                                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">
-                                                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Atualizar"><br>
-                                                        </div>
-                                                </div>                                                                              
+                                                </div>                                                                                                                            
                                             </div>
                                         </div>
                                     </div>

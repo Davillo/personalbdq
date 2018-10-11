@@ -41,8 +41,13 @@
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="#instrucoes" data-toggle="tab">Instruções</a>
+                                                    </li>                                                                                                                                            
+                                                    <li class="nav-item" style="margin-left:55%;">
+                                                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal text-center m-0" value="Finalizar"><br>                                                        
                                                     </li>                                            
                                                 </ul>
+                                                <label v-if="errors.botao" class="text-danger" v-cloak>@{{errors.botao}}</label>
+                                                            
                                             </div>
                                         </div>                                        
                                     </div>
@@ -117,17 +122,7 @@
                                                             <label for="Instruções">Instruções</label>
                                                             <textarea id="enunciado" type="text" class="form-control" name="instrucao" placeholder="Instruções..."></textarea>
                                                     </div>    
-                                                </div>   
-                                                <div class="row">
-                                                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">
-                                                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Finalizar"><br>
-                                                        </div>
-                                                </div> 
-                                                <div class="row">
-                                                        <div class="col-md-9 mx-auto text-center">
-                                                            <label v-if="errors.botao" class="text-danger" v-cloak>@{{errors.botao}}</label>
-                                                        </div>
-                                                </div>                                 
+                                                </div>                                                                                 
                                             </div>
                                         </div>
                                     </div>
