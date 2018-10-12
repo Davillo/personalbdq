@@ -51,7 +51,7 @@ class ListaController extends Controller
             $lista = ListaQuestao::find(base64_decode($id));
             return view('pages.editar_lista')->with('lista',$lista);
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
     }
@@ -109,7 +109,7 @@ class ListaController extends Controller
             return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
 
         }catch (\Exception $exception){
-            redirect('/404');
+           return redirect('/404');
         }
 
     }
@@ -201,7 +201,7 @@ class ListaController extends Controller
             return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
 
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
     }
@@ -248,7 +248,7 @@ class ListaController extends Controller
 
             return redirect('/listas/compartilhadas')->with('success',"Lista clonada com sucesso!");
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
 

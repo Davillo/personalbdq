@@ -159,7 +159,7 @@ class QuestaoController extends Controller
             $alternativas = Alternativa::where('questao_id',$id)->get();
             return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas)->with('lista_id',base64_decode($lista_id));
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
 

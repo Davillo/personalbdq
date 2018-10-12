@@ -43,7 +43,7 @@ class CursoController extends Controller
             $curso = Curso::findOrFail(base64_decode($id));
             return view('pages.editar_curso')->with('curso',$curso);
         }catch (\Exception $exception){
-             redirect('/404');
+             return redirect('/404');
         }
 
     }

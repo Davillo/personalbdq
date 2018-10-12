@@ -35,7 +35,7 @@ class AvaliacaoController extends Controller
 
             return view('pages.avaliacao')->with('questoes',$questoes)->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
     }
@@ -52,7 +52,7 @@ class AvaliacaoController extends Controller
             $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
             return view('pages.adicionar_questao')->with(compact('questoes'))->with(compact('questoesjaadd'))->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
         }catch (\Exception $exception){
-            redirect('/404');
+            return redirect('/404');
         }
 
 
@@ -107,7 +107,7 @@ class AvaliacaoController extends Controller
             $avaliacao = Avaliacao::findOrFail(base64_decode($id));
             return view('pages.editar_avaliacao')->with('avaliacao',$avaliacao);
         }catch (\Exception $exception){
-            redirect('/404');
+           return redirect('/404');
         }
 
     }
