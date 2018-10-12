@@ -155,7 +155,7 @@ class QuestaoController extends Controller
     {
 
         try{
-            $questao = Questao::find(base64_decode($id));
+            $questao = Questao::findOrFail(base64_decode($id));
             $alternativas = Alternativa::where('questao_id',$id)->get();
             return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas)->with('lista_id',base64_decode($lista_id));
         }catch (\Exception $exception){
@@ -316,7 +316,7 @@ class QuestaoController extends Controller
     public function clonarQuestao(Request $request)
     {
 
-        $questao = Questao::find($request->input('questao_id'));
+        $questao = Questao::findOrFail($request->input('questao_id'));
         $alternativas = Alternativa::where('questao_id',$request->input('questao_id'))->get();
         $novaQuestao = $questao->replicate();
         $novaQuestao->autor_usuario_id = Auth::user()->id;

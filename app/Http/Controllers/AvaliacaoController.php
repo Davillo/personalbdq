@@ -44,7 +44,7 @@ class AvaliacaoController extends Controller
 
         try{
 
-            $avaliacao = Avaliacao::find($id);
+            $avaliacao = Avaliacao::findOrFail($id);
             $questoesjaadd = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
 
             $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);

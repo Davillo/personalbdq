@@ -48,7 +48,7 @@ class ListaController extends Controller
     public function edit($id)
     {
         try{
-            $lista = ListaQuestao::find(base64_decode($id));
+            $lista = ListaQuestao::findOrFail(base64_decode($id));
             return view('pages.editar_lista')->with('lista',$lista);
         }catch (\Exception $exception){
             return redirect('/404');
@@ -96,7 +96,7 @@ class ListaController extends Controller
 
         try{
 
-            $lista = ListaQuestao::find(base64_decode($id));
+            $lista = ListaQuestao::findOrFail(base64_decode($id));
             $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
             $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',base64_decode($id));
             $questoes = Questao::whereIn('id',$questaoLista)->get();
@@ -186,7 +186,7 @@ class ListaController extends Controller
     public function listaCompartilhada($id){
 
         try{
-            $lista = ListaQuestao::find(base64_decode($id));
+            $lista = ListaQuestao::findOrFail(base64_decode($id));
             $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
             $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
             $questoes = Questao::whereIn('id',$questaoLista)->get();
@@ -215,7 +215,7 @@ class ListaController extends Controller
     {
 
         try{
-            $lista = ListaQuestao::find(base64_decode($id));
+            $lista = ListaQuestao::findOrFail(base64_decode($id));
             $novaLista = $lista->replicate();
             $novaLista->autor_usuario_id = Auth::user()->id;
             $novaLista->save();
