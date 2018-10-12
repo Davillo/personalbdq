@@ -48713,7 +48713,7 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { attrs: { href: "/questao/edit/" + questao.id } },
+                            { attrs: { href: "/questao/edit/" +  btoa(questao.id) } },
                             [_vm._v("Editar")]
                           )
                         ]),

@@ -153,17 +153,28 @@ class QuestaoController extends Controller
 
     public function edit($id,$lista_id)
     {
-        $questao = Questao::find($id);
-        $alternativas = Alternativa::where('questao_id',$id)->get();
-        return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas)->with('lista_id',$lista_id);
+
+        try{
+            $questao = Questao::find(base64_decode($id));
+            $alternativas = Alternativa::where('questao_id',$id)->get();
+            return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas)->with('lista_id',base64_decode($lista_id));
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
 
     }
 
     public function editarQuestao($id)
     {
-        $questao = Questao::find($id);
-        $alternativas = Alternativa::where('questao_id',$id)->get();
-        return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas);
+        try{
+
+            $questao = Questao::findOrFail(base64_decode($id));
+            $alternativas = Alternativa::where('questao_id',$id)->get();
+            return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas);
+        }catch (\Exception $exception){
+            return view('pages.error404');
+        }
 
     }
 

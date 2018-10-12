@@ -37,7 +37,7 @@
                                 <tr>
 
                                     <td>
-                                        <a href="avaliacao/{{$avaliacao->id}}">{{$avaliacao->titulo}}</a>
+                                        <a href="avaliacao/<?php echo base64_encode($avaliacao->id)?>">{{$avaliacao->titulo}}</a>
                                     </td>
                                     <td>
                                         @if ($avaliacao->qtQuestoes == 1)

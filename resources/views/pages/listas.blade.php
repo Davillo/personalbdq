@@ -39,7 +39,7 @@
                             @foreach($listas as $lista)
                                 <tr>
                                     <td>
-                                        <a href="lista/{{$lista->id}}">{{$lista->nome}}</a>
+                                        <a href="lista/<?php echo base64_encode($lista->id)?>">{{$lista->nome}}</a>
                                     </td>
 
                                     <td class="td-fixo">
@@ -76,8 +76,8 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                            <li><a href="/lista/edit/{{$lista->id}}">Editar</a></li>
-                                            <li><a href="/lista/compartilhar/{{$lista->id}}">Compartilhar Lista</a></li>
+                                            <li><a href="/lista/edit/<?php echo base64_encode($lista->id)?>">Editar</a></li>
+                                            <li><a href="/lista/compartilhar/<?php echo base64_encode($lista->id)?>">Compartilhar Lista</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$lista->id}}">Excluir</a></li>
                                         </ul>
                                         @include('modals.modal_remover_lista')

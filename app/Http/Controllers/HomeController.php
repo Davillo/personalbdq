@@ -33,7 +33,7 @@ class HomeController extends Controller{
    }
 
    public function notfound(){
-        return 'not found';
+        return view('pages.error404');
    }
 
    public function servererror(){

@@ -71,7 +71,7 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                            <li><a href="/questao/edit/{{$questao->id}}/{{$lista_id}}">Editar</a></li>
+                                            <li><a href="/questao/edit/<?php echo base64_encode($questao->id)?>/<?php  echo base64_encode($lista_id)?>">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$questao->id}}">Excluir</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerQuestaoModal{{$questao->id}}">Remover da lista</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#fazerCopiaModal{{$questao->id}}">Adicionar a lista</a></li>

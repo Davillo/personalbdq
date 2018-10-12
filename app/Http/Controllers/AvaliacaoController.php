@@ -26,23 +26,36 @@ class AvaliacaoController extends Controller
     }
 
     public function avaliacao($id){
-        $avaliacao = Avaliacao::find($id);
-        $idsQuestaoAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id);
-        $questoes = Questao::whereIn('id',$idsQuestaoAvaliacao)->get();
-        $alternativas = Alternativa::whereIn('questao_id',$idsQuestaoAvaliacao)->get();
-        
-        return view('pages.avaliacao')->with('questoes',$questoes)->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
+
+        try{
+            $avaliacao = Avaliacao::find(base64_decode($id));
+            $idsQuestaoAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id);
+            $questoes = Questao::whereIn('id',$idsQuestaoAvaliacao)->get();
+            $alternativas = Alternativa::whereIn('questao_id',$idsQuestaoAvaliacao)->get();
+
+            return view('pages.avaliacao')->with('questoes',$questoes)->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
     }
 
     public function adicionarQuestoes($id){
-        $avaliacao = Avaliacao::find($id);
-        $questoesjaadd = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
-        
-        $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
-        $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
-        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
 
-        return view('pages.adicionar_questao')->with(compact('questoes'))->with(compact('questoesjaadd'))->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
+        try{
+
+            $avaliacao = Avaliacao::find($id);
+            $questoesjaadd = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
+
+            $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
+            $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
+            $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+            return view('pages.adicionar_questao')->with(compact('questoes'))->with(compact('questoesjaadd'))->with('avaliacao', $avaliacao)->with('alternativas',$alternativas);
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
+
     }
 
     public function storeQuestoesAvaliacao(Request $request){
@@ -89,8 +102,14 @@ class AvaliacaoController extends Controller
     }
 
     public function editarAvaliacao($id){
-        $avaliacao = Avaliacao::findOrFail(base64_decode($id));
-        return view('pages.editar_avaliacao')->with('avaliacao',$avaliacao);
+
+        try{
+            $avaliacao = Avaliacao::findOrFail(base64_decode($id));
+            return view('pages.editar_avaliacao')->with('avaliacao',$avaliacao);
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
     }
 
     public function update(Request $request){

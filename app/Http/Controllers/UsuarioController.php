@@ -51,11 +51,10 @@ class UsuarioController extends Controller{
 
     public function edit($id){
         try{
-
             $usuario = Usuario::findOrFail(base64_decode($id));
             return view('pages.editar_usuario')->with('usuario',$usuario);
         }catch (\Exception $e){
-            return 'NOT FOUND';
+            return view('pages.error404');
         }
     }
 

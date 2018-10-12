@@ -39,7 +39,7 @@
                             @foreach($listas as $lista)
                                 <tr>
                                     <td>
-                                        <a href="/lista/compartilhada/{{$lista->id}}">{{$lista->nome}}</a>
+                                        <a href="/lista/compartilhada/<?php echo base64_encode($lista->id)?>">{{$lista->nome}}</a>
                                     </td>
 
                                     <td class="td-fixo">
@@ -63,7 +63,7 @@
                                         </a>
 
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                           <li><a href="/lista/clonar/{{$lista->id}}">Clonar Lista</a></li>
+                                           <li><a href="/lista/clonar/<?php echo base64_encode($lista->id)?>">Clonar Lista</a></li>
                                         </ul>
 
                                     </td>

@@ -47,8 +47,13 @@ class ListaController extends Controller
 
     public function edit($id)
     {
-        $lista = ListaQuestao::find($id);
-        return view('pages.editar_lista')->with('lista',$lista);
+        try{
+            $lista = ListaQuestao::find(base64_decode($id));
+            return view('pages.editar_lista')->with('lista',$lista);
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
     }
 
     public function update(Request $request)
@@ -88,17 +93,25 @@ class ListaController extends Controller
     }
 
     public function lista($id){
-        $lista = ListaQuestao::find($id);
-        $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
-        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
-        $questoes = Questao::whereIn('id',$questaoLista)->get();
-        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
-        $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
-        $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
 
-        $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
+        try{
 
-        return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
+            $lista = ListaQuestao::find(base64_decode($id));
+            $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
+            $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',base64_decode($id));
+            $questoes = Questao::whereIn('id',$questaoLista)->get();
+            $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+            $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
+            $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
+
+            $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
+
+            return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
+
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
     }
 
     public function show(){
@@ -111,8 +124,14 @@ class ListaController extends Controller
     }
 
     public function share($id){
-        $lista = ListaQuestao::find($id);
-        return view('pages.compartilhar_lista')->with('lista',$lista);
+
+        try{
+            $lista = ListaQuestao::findOrFail(base64_decode($id));
+            return view('pages.compartilhar_lista')->with('lista',$lista);
+        }catch (\Exception $exception){
+            return view('pages.error404');
+        }
+
     }
 
     public function compartilharLista(Request $request){
@@ -125,12 +144,11 @@ class ListaController extends Controller
             }
 
      if($usuario!=null){
-
-
-                    $checarJaCompartilhada =
-                            DB::table('usuarios_listas')
-                                ->select('usuario_convidado_id','lista_id')->where
-                           ('usuario_convidado_id','=',$usuario->id)->where('lista_id','=',$idLista)->count();
+                $checarJaCompartilhada =
+                        DB::table('usuarios_listas')
+                            ->select('usuario_convidado_id','lista_id')->where
+                            ('usuario_convidado_id','=',$usuario->id)
+                            ->where('lista_id','=',$idLista)->count();
 
             if($checarJaCompartilhada==0){
                 $compartilhamento = new UsuariosListas();
@@ -149,7 +167,7 @@ class ListaController extends Controller
 
 
         }else{
-                   return redirect('/lista/compartilhar/'.$idLista)->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
+                return redirect('/lista/compartilhar/'.$idLista)->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
 
         }
 
@@ -167,19 +185,25 @@ class ListaController extends Controller
 
     public function listaCompartilhada($id){
 
-        $lista = ListaQuestao::find($id);
-        $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
-        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
-        $questoes = Questao::whereIn('id',$questaoLista)->get();
-        $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
-        $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
+        try{
+            $lista = ListaQuestao::find(base64_decode($id));
+            $listas = ListaQuestao::where('autor_usuario_id',Auth::user()->id)->get();
+            $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$lista->id);
+            $questoes = Questao::whereIn('id',$questaoLista)->get();
+            $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
+            $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
 
-        $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
+            $idsUsuariosComentario = Comentario::select('autor_usuario_id')->whereIn('questao_id',$questaoLista)->get();
 
-        $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
+            $usuarios = Usuario::select('id','nome')->whereIn('id',$idsUsuariosComentario)->get();
 
 
-        return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
+            return view('pages.lista_compartilhada')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('listaAtual',$lista)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
+
+        }catch (\Exception $exception){
+            redirect('/404');
+        }
+
     }
 
     public function excluirCompartilhada($id){
@@ -190,37 +214,43 @@ class ListaController extends Controller
     public function clonarLista($id)
     {
 
-        $lista = ListaQuestao::find($id);
-        $novaLista = $lista->replicate();
-        $novaLista->autor_usuario_id = Auth::user()->id;
-        $novaLista->save();
+        try{
+            $lista = ListaQuestao::find(base64_decode($id));
+            $novaLista = $lista->replicate();
+            $novaLista->autor_usuario_id = Auth::user()->id;
+            $novaLista->save();
 
-        $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',$id);
-        $questoes = Questao::whereIn('id',$questaoLista)->get();
+            $questaoLista = QuestaoListas::select('questao_id')->where('lista_id',base64_decode($id));
+            $questoes = Questao::whereIn('id',$questaoLista)->get();
 
 
-        foreach ($questoes as $questao){
+            foreach ($questoes as $questao){
 
-            $novaQuestao = $questao->replicate();
-            $novaQuestao->autor_usuario_id = Auth::user()->id;
-            $novaQuestao->save();
+                $novaQuestao = $questao->replicate();
+                $novaQuestao->autor_usuario_id = Auth::user()->id;
+                $novaQuestao->save();
 
-            $alternativas = Alternativa::where('questao_id',$questao->id)->get();
-            if(count($alternativas) != 0) {
-                foreach ($alternativas as $alternativa) {
-                    $novaAlternativa = $alternativa->replicate();
-                    $novaAlternativa->questao_id = $novaQuestao->id;
-                    $novaAlternativa->save();
+                $alternativas = Alternativa::where('questao_id',$questao->id)->get();
+                if(count($alternativas) != 0) {
+                    foreach ($alternativas as $alternativa) {
+                        $novaAlternativa = $alternativa->replicate();
+                        $novaAlternativa->questao_id = $novaQuestao->id;
+                        $novaAlternativa->save();
+                    }
                 }
+
+                $questaoLista = new QuestaoListas();
+                $questaoLista->lista_id = $novaLista->id;
+                $questaoLista->questao_id = $novaQuestao->id;
+                $questaoLista->save();
+
             }
 
-            $questaoLista = new QuestaoListas();
-            $questaoLista->lista_id = $novaLista->id;
-            $questaoLista->questao_id = $novaQuestao->id;
-            $questaoLista->save();
-
+            return redirect('/listas/compartilhadas')->with('success',"Lista clonada com sucesso!");
+        }catch (\Exception $exception){
+            redirect('/404');
         }
 
-        return redirect('/lista/'.$novaLista->id)->with('success',"Lista clonada com sucesso!");
+
     }
 }
