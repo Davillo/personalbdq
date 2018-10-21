@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use App\Datas;
+use App\IdAleatorio;
 use App\Usuario;
+use App\UsuariosListas;
 use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,14 +14,25 @@ class UsuarioController extends Controller{
 
 
     public function novo(){
-        $cursos = Curso::all();
-        if (count($cursos) == 0){
-            return redirect('/curso')->with('error','É necessário cadastrar um curso para criar um usuário');
+
+        try{
+            $cursos = Curso::all();
+            if (count($cursos) == 0){
+                return redirect('/curso')->with('error','É necessário cadastrar um curso para criar um usuário');
+            }
+            return view('pages.novo_usuario')->with('cursos',$cursos);
+        }catch (\Exception $e){
+            return redirect('/404');
         }
-        return view('pages.novo_usuario')->with('cursos',$cursos);
+
     }
 
     public function store(Request $request){
+        $usuario = Usuario::where('email', '=',$request->input('email'));
+        if($usuario != null){
+                return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
+        }
+
         date_default_timezone_set('America/Fortaleza');
         if($this->validate($request,[
            'email' => 'required',
@@ -28,7 +41,9 @@ class UsuarioController extends Controller{
             'matricula'=>'required',
             'curso_id' => 'required'
         ])){
+
             $usuario = new Usuario();
+            $usuario->id = IdAleatorio::gerar();
             $usuario->email = $request->input('email');
             $usuario->nome = $request->input('nome');
             $usuario->senha = bcrypt($request->input('senha'));

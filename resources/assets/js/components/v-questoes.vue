@@ -119,7 +119,7 @@
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" v-model="dificuldades" value="Fácil">
-                                        Fácl
+                                        Fácil
                                         <span class="form-check-sign">
                                         <span class="check"></span>
                                         </span>

@@ -20,12 +20,12 @@ class CriarTabelaUsuario extends Migration
             $table->increments('id');
             $table->string('nome',100);
             $table->boolean('admin')->default(false);
-            $table->string('email',100)->unique();
+            $table->string('email',100);
             $table->string('senha',100);
-            $table->string('matricula',40);
+            $table->string('matricula',40)->nullable(true)->change();
             $table->date('data_criacao');
             $table->date('data_atualizado');
-            $table->string('remember_token', 100);
+            $table->string('remember_token', 100)->nullable(true)->change();
 
         });
     }

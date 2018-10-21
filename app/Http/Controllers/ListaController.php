@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Alternativa;
 use App\Comentario;
+use App\IdAleatorio;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
@@ -33,6 +34,7 @@ class ListaController extends Controller
         ]);
 
         $lista = new ListaQuestao();
+        $lista->id = IdAleatorio::gerar();
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->autor_usuario_id = Auth::user()->id;
@@ -152,6 +154,7 @@ class ListaController extends Controller
 
             if($checarJaCompartilhada==0){
                 $compartilhamento = new UsuariosListas();
+                $compartilhamento-> id = IdAleatorio::gerar();
                 $compartilhamento->usuario_convidado_id = $usuario->id;
                 $compartilhamento->lista_id = $idLista;
                 $compartilhamento->autor_usuario_id = Auth::user()->id;
@@ -217,6 +220,7 @@ class ListaController extends Controller
         try{
             $lista = ListaQuestao::findOrFail(base64_decode($id));
             $novaLista = $lista->replicate();
+            $novaLista->id = IdAleatorio::gerar();
             $novaLista->autor_usuario_id = Auth::user()->id;
             $novaLista->save();
 
@@ -227,6 +231,7 @@ class ListaController extends Controller
             foreach ($questoes as $questao){
 
                 $novaQuestao = $questao->replicate();
+                $novaQuestao->id = IdAleatorio::gerar();
                 $novaQuestao->autor_usuario_id = Auth::user()->id;
                 $novaQuestao->save();
 
@@ -234,12 +239,14 @@ class ListaController extends Controller
                 if(count($alternativas) != 0) {
                     foreach ($alternativas as $alternativa) {
                         $novaAlternativa = $alternativa->replicate();
+                        $novaAlternativa->id = IdAleatorio::gerar();
                         $novaAlternativa->questao_id = $novaQuestao->id;
                         $novaAlternativa->save();
                     }
                 }
 
                 $questaoLista = new QuestaoListas();
+                $questaoLista->id = IdAleatorio::gerar();
                 $questaoLista->lista_id = $novaLista->id;
                 $questaoLista->questao_id = $novaQuestao->id;
                 $questaoLista->save();

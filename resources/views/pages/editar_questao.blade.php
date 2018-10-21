@@ -103,7 +103,7 @@
                             </div>
                         </div>
 
-                        @if($questao->tipo == "Múltipla Escolha" || $questao->tipo == "Asserção Razão" || $questao->tipo == "Verdadeiro ou Falto")
+                        @if($questao->tipo == "Múltipla Escolha" || $questao->tipo == "Asserção Razão" || $questao->tipo == "Verdadeiro ou Falso")
                             <div class="mt-3">                                
                                 <div class="row">                                                        
                                     <div class="form-group col-md-8 mx-auto">
@@ -128,14 +128,14 @@
                                                 @endif
                                             </span>
                                         </div>
-                                        <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula...">{{$alternativas[0]->enunciado}}</textarea>
+                                        <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Alternativa...">{{$alternativas[0]->enunciado}}</textarea>
                                         @else
                                             <div class="input-group-prepend">
                                             <span class="input-group-text bg-transparent border-0" id="basic-addon1">
                                                     <input type="radio" name="correta" value="1">
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula..."></textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Alternativa..."></textarea>
                                          @endif
                                     </div>
                                 </div>
@@ -156,14 +156,14 @@
                                                 @endif
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula...">{{$alternativas[1]->enunciado}}</textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Alternativa...">{{$alternativas[1]->enunciado}}</textarea>
                                         @else
                                             <div class="input-group-prepend">
                                             <span class="input-group-text bg-transparent border-0" id="basic-addon1">
                                                     <input type="radio" name="correta" value="2">
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Matricula..."></textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa2" placeholder="Alternativa..."></textarea>
                                         @endif</div>
                                 </div>
                                 <div class="row">
@@ -183,14 +183,14 @@
                                                 @endif
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula...">{{$alternativas[2]->enunciado}}</textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Alternativa...">{{$alternativas[2]->enunciado}}</textarea>
                                         @else
                                             <div class="input-group-prepend">
                                             <span class="input-group-text bg-transparent border-0" id="basic-addon1">
                                                     <input type="radio" name="correta" value="3">
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Matricula..."></textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa3" placeholder="Alternativa..."></textarea>
                                         @endif
                                     </div>
                                 </div>
@@ -211,14 +211,14 @@
                                                 @endif
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula...">{{$alternativas[3]->enunciado}}</textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Alternativa...">{{$alternativas[3]->enunciado}}</textarea>
                                         @else
                                             <div class="input-group-prepend">
                                             <span class="input-group-text bg-transparent border-0" id="basic-addon1">
                                                     <input type="radio" name="correta" value="4">
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Matricula..."></textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa4" placeholder="Alternativa..."></textarea>
                                         @endif
                                     </div>
                                 </div>
@@ -239,14 +239,14 @@
                                                 @endif
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Matricula...">{{$alternativas[4]->enunciado}}</textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa1" placeholder="Alternativa...">{{$alternativas[4]->enunciado}}</textarea>
                                         @else
                                             <div class="input-group-prepend">
                                             <span class="input-group-text bg-transparent border-0" id="basic-addon1">
                                                     <input type="radio" name="correta" value="5">
                                             </span>
                                             </div>
-                                            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Matricula..."></textarea>
+                                            <textarea type="text" class="form-control" name="enunciado_alternativa5" placeholder="Alternativa..."></textarea>
                                         @endif
                                     </div>
                                 </div>

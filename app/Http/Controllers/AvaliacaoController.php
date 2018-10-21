@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\IdAleatorio;
 use Illuminate\Http\Request;
 
 use App\Avaliacao;
@@ -66,6 +67,7 @@ class AvaliacaoController extends Controller
             $aux = new QuestaoAvaliacao();
             $aux->questao_id = $questao;
             $aux->avaliacao_id = $idavaliacao;
+            $aux->id = IdAleatorio::gerar();
             $aux->save();
         }
         return json_encode($questoes);
@@ -83,6 +85,7 @@ class AvaliacaoController extends Controller
         ]);
 
         $avaliacao = new Avaliacao();
+        $avaliacao->id = IdAleatorio::gerar();
         $avaliacao->titulo = $request->input('titulo');
         $avaliacao->instituicao = $request->input('instituicao');
         $avaliacao->logo = $request->input('logo');

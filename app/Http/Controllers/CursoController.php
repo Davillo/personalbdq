@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use App\Datas;
+use App\IdAleatorio;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -25,7 +26,7 @@ class CursoController extends Controller
         ]);
 
         $curso = new Curso();
-
+        $curso->id = IdAleatorio::gerar();
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
         $curso->data_criacao = Datas::getDataAtual();

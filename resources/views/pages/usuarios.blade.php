@@ -59,7 +59,7 @@
                                             </i>
                                         </a>
                                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                                            <li><a href="edit/<?php echo base64_encode($usuario->id)?>">Editar</a></li>
+                                            <li><a href="edit/{{$usuario->id}}">Editar</a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#removerModal{{$usuario->id}}">Excluir</a></li>
                                         </ul>
                                     @include('modals.modal_remover_usuario')

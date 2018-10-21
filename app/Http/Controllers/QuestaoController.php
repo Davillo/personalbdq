@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Alternativa;
 use App\Comentario;
+use App\IdAleatorio;
 use App\ListaQuestao;
 use App\Questao;
 use App\QuestaoListas;
@@ -46,6 +47,7 @@ class QuestaoController extends Controller
         $questao->autor_usuario_id = Auth::user()->id;
         $questao->data_criacao = date('Y-m-d');
         $questao->data_atualizado = date('Y-m-d');
+        $questao->id = IdAleatorio::gerar();
         $questao->save(); // salvando questão
 
         $ultimoIdQeustao = $questao->id; // recuperando ultimo id salvo
@@ -54,6 +56,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa1') != null){
                 $alternativa1 = new Alternativa();
+                $alternativa1->id = IdAleatorio::gerar();
                 $alternativa1->questao_id = $ultimoIdQeustao;
                 $alternativa1->enunciado = $request->input('enunciado_alternativa1');
                 $alternativa1->data_criacao = date('Y-m-d');
@@ -68,6 +71,8 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa2') != null){
                 $alternativa2 = new Alternativa();
+                $alternativa2->id = IdAleatorio::gerar();
+
                 $alternativa2->questao_id = $ultimoIdQeustao;
                 $alternativa2->enunciado = $request->input('enunciado_alternativa2');
                 $alternativa2->data_criacao = date('Y-m-d');
@@ -82,6 +87,8 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa3') != null){
                 $alternativa3 = new Alternativa();
+                $alternativa3->id = IdAleatorio::gerar();
+
                 $alternativa3->questao_id = $ultimoIdQeustao;
                 $alternativa3->enunciado = $request->input('enunciado_alternativa3');
                 $alternativa3->data_criacao = date('Y-m-d');
@@ -96,6 +103,7 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa4') != null){
                 $alternativa4 = new Alternativa();
+                $alternativa4->id = IdAleatorio::gerar();
                 $alternativa4->questao_id = $ultimoIdQeustao;
                 $alternativa4->enunciado = $request->input('enunciado_alternativa4');
                 $alternativa4->data_criacao = date('Y-m-d');
@@ -110,6 +118,8 @@ class QuestaoController extends Controller
 
             if($request->input('enunciado_alternativa5') != null){
                 $alternativa5 = new Alternativa();
+                $alternativa5->id = IdAleatorio::gerar();
+
                 $alternativa5->questao_id = $ultimoIdQeustao;
                 $alternativa5->enunciado = $request->input('enunciado_alternativa5');
                 $alternativa5->data_criacao = date('Y-m-d');
@@ -125,6 +135,7 @@ class QuestaoController extends Controller
 
         if($request->input('lista_id') != null) {
             $questaoListas = new QuestaoListas();
+            $questaoListas->id = IdAleatorio::gerar();
             $questaoListas->questao_id = $ultimoIdQeustao;
             $questaoListas->lista_id = $request->input('lista_id');
             $questaoListas->save();
@@ -156,7 +167,7 @@ class QuestaoController extends Controller
 
         try{
             $questao = Questao::findOrFail(base64_decode($id));
-            $alternativas = Alternativa::where('questao_id',$id)->get();
+            $alternativas = Alternativa::where('questao_id',base64_decode($id))->get();
             return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas)->with('lista_id',base64_decode($lista_id));
         }catch (\Exception $exception){
             return redirect('/404');
@@ -170,7 +181,7 @@ class QuestaoController extends Controller
         try{
 
             $questao = Questao::findOrFail(base64_decode($id));
-            $alternativas = Alternativa::where('questao_id',$id)->get();
+            $alternativas = Alternativa::where('questao_id',base64_decode($id))->get();
             return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas);
         }catch (\Exception $exception){
             return view('pages.error404');
@@ -303,12 +314,13 @@ class QuestaoController extends Controller
 
         if(count($relacaoQuestao)==0){
             $questaoLista = new QuestaoListas();
+            $questaoLista->id = IdAleatorio::gerar();
             $questaoLista->lista_id = $request->input('lista_id');
             $questaoLista->questao_id = $request->input('questao_id');
             $questaoLista->save();
-            return redirect('/lista/'.$request->input('lista_id'))->with('success','Questão adicionada a lista com sucesso!');
+            return redirect('/listas/')->with('success','Questão adicionada com sucesso!');
         }else{
-            return redirect('/lista/'.$request->input('lista_id'))->with('error','A questão já está associada a esta lista!');
+            return redirect('/listas/')->with('error', 'Questão já adicionada a esta lista!');
         }
 
     }
@@ -319,18 +331,21 @@ class QuestaoController extends Controller
         $questao = Questao::findOrFail($request->input('questao_id'));
         $alternativas = Alternativa::where('questao_id',$request->input('questao_id'))->get();
         $novaQuestao = $questao->replicate();
+        $novaQuestao->id = IdAleatorio::gerar();
         $novaQuestao->autor_usuario_id = Auth::user()->id;
         $novaQuestao->save();
 
         if(count($alternativas) != 0) {
             foreach ($alternativas as $alternativa) {
                 $novaAlternativa = $alternativa->replicate();
+                $novaAlternativa->id = IdAleatorio::gerar();
                 $novaAlternativa->questao_id = $novaQuestao->id;
                 $novaAlternativa->save();
             }
         }
 
         $questaoLista = new QuestaoListas();
+        $questaoLista->id = IdAleatorio::gerar();
         $questaoLista->lista_id = $request->input('lista_id');
         $questaoLista->questao_id = $novaQuestao->id;
         $questaoLista->save();
@@ -345,6 +360,7 @@ class QuestaoController extends Controller
         ]);
 
         $comentario = new Comentario();
+        $comentario->id = IdAleatorio::gerar();
         $comentario->comentario = $request->input('comentario');
         $comentario->questao_id = $request->input('questao_id');
         $comentario->autor_usuario_id = Auth::user()->id;

@@ -45,7 +45,7 @@
                             @foreach($questoes as $questao)
                                 <tr>
                                     <td class="td-fixo">
-                                        {{$questao->enunciado}}
+                                        {!! $questao->enunciado !!}
                                     </td>
 
                                     <td>
