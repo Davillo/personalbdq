@@ -14137,6 +14137,7 @@ var app = new Vue({
             e.preventDefault();
         },
         getCheckUsuario: function getCheckUsuario(e) {
+
             if (this.matriculaUsuario && this.nomeUsuario && this.emailUsuario && this.senhaUsuario && this.cursoUsuario) {
                 return true;
             }
@@ -14190,6 +14191,32 @@ var app = new Vue({
             }
 
             e.preventDefault();
+        },
+        verificarEmail: function verificarEmail() {
+            var _this = this;
+
+            this.errors.emailUsuario = '';
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (re.test(this.emailUsuario)) {
+
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                axios.get('/usuario/verificarEmail/' + this.emailUsuario).then(function (response) {
+                    if (response) {
+                        _this.errors.emailUsuario = 'Email já existente';
+                        _this.$forceUpdate();
+                    }
+                    if (!response.data) {
+                        _this.errors.emailUsuario = false;
+                        _this.$forceUpdate();
+                    }
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            } else {
+                this.errors.emailUsuario = 'Utilize um email válido';
+                this.$forceUpdate();
+            }
         }
     }
 
@@ -48713,7 +48740,7 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { attrs: { href: "/questao/edit/" +  btoa(questao.id) } },
+                            { attrs: { href: "/questao/edit/" + questao.id } },
                             [_vm._v("Editar")]
                           )
                         ]),
@@ -48962,7 +48989,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(
-                          "\n                                    Fácl\n                                    "
+                          "\n                                    Fácil\n                                    "
                         ),
                         _vm._m(5)
                       ])
@@ -49595,7 +49622,7 @@ var render = function() {
                   "tbody",
                   [
                     _vm._l(_vm.filtrarCampo, function(questao) {
-                      return _c("tr", [
+                      return _c("tr", { key: questao.id }, [
                         _c("td", [
                           _c("input", {
                             directives: [
@@ -49759,7 +49786,10 @@ var render = function() {
                     _vm._l(_vm.filtroCheck, function(questao) {
                       return _c(
                         "div",
-                        { staticClass: "form-check form-check-inline" },
+                        {
+                          key: questao.id,
+                          staticClass: "form-check form-check-inline"
+                        },
                         [
                           _c("label", { staticClass: "form-check-label" }, [
                             _c("input", {
@@ -49822,7 +49852,10 @@ var render = function() {
                     _vm._l(_vm.filtroCategoria, function(categoria) {
                       return _c(
                         "div",
-                        { staticClass: "form-check form-check-inline" },
+                        {
+                          key: categoria.id,
+                          staticClass: "form-check form-check-inline"
+                        },
                         [
                           _c("label", { staticClass: "form-check-label" }, [
                             _c("input", {

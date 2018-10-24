@@ -38,14 +38,14 @@
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="nomeUsuario" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="email">
+                            <input v-model="nomeUsuario" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
                             <label v-if="errors.nomeUsuario" class="text-danger" v-cloak>@{{errors.nomeUsuario}}</label>
                         </div>
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Email">Email<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="emailUsuario" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
+                            <input @change="verificarEmail" v-model="emailUsuario" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
                             <label v-if="errors.emailUsuario" class="text-danger" v-cloak>@{{errors.emailUsuario}}</label>
                         </div>
                     </div>

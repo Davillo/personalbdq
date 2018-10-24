@@ -157,10 +157,11 @@ const app = new Vue({
             e.preventDefault()
         },
         getCheckUsuario(e){
+            
             if(this.matriculaUsuario && this.nomeUsuario && this.emailUsuario && this.senhaUsuario && this.cursoUsuario){
                 return true
             }
-
+            
             this.errors = {}
 
             if(!this.matriculaUsuario){
@@ -210,6 +211,31 @@ const app = new Vue({
             }
 
             e.preventDefault()
+        },
+        verificarEmail(){            
+            this.errors.emailUsuario = ''
+            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            if(re.test(this.emailUsuario)){              
+            
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+                axios.get('/usuario/verificarEmail/'+this.emailUsuario)
+                .then(response => {
+                    if(response){
+                        this.errors.emailUsuario = 'Email já existente' 
+                        this.$forceUpdate()                       
+                    }
+                    if(!response.data){
+                        this.errors.emailUsuario = false;   
+                        this.$forceUpdate()                     
+                    }
+                })
+                .catch(error => console.log(error))
+            }else{
+                this.errors.emailUsuario = 'Utilize um email válido'
+                this.$forceUpdate()                
+            }
+            
         }
     },
    

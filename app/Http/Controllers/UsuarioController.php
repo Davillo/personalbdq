@@ -105,4 +105,14 @@ class UsuarioController extends Controller{
             return redirect('/usuario')->with('success','Deletado com sucesso!');
         }
     }
+
+    public function verificarEmail($email){
+        $usuario = Usuario::where('email', $email)->get();
+        
+        if(count($usuario) == 1){            
+            return json_encode(true);
+        }else{            
+            return json_encode(false);
+        }
+    }
 }

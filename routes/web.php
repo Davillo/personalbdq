@@ -7,6 +7,7 @@ Route::get('/usuario','UsuarioController@show'); //rota listar usuários GET
 Route::delete('/usuario/excluir/{id}','UsuarioController@destroy'); //deletar usuário GET
 Route::post('/usuario/inserir','UsuarioController@store'); // rota cadastro usuário POST
 Route::post('/usuario/update','UsuarioController@update');
+Route::get('/usuario/verificarEmail/{email}', 'UsuarioController@verificarEmail');
 
 
 //handlers
