@@ -51,7 +51,9 @@ const app = new Vue({
         //Nova Avaliação
         tituloAvaliacao: null,
         //Adicionar Sugestão
-        sugestaoQuestao: null
+        sugestaoQuestao: null,
+        //Clonar Questao
+        nomeListaQuestao: ''
     },
 
     methods: {
@@ -124,17 +126,43 @@ const app = new Vue({
             e.preventDefault()
         },
         getCheckCompartilhar(e){
-            if(this.emailCompartilhar){
-                return true
-            }
-
             this.errors = {}
+
+            if(this.emailCompartilhar){
+                let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                if(!re.test(this.emailCompartilhar)){                                                              
+                    this.errors.emailCompartilhar = 'Utilize um email válido'                     
+                    e.preventDefault()                                    
+                    return false
+                }     
+               
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+                axios.get('/usuario/verificarEmail/'+this.emailCompartilhar)
+                    .then(response => {                        
+                        if(!response.data){  
+                            this.errors.emailCompartilhar = 'Email inexistente' 
+                            this.$forceUpdate()                                                                           
+                            e.preventDefault()
+                            return false
+                        }
+                        if(response.data){   
+                            document.forms["form_compartilhar"].submit()                                                     
+                            return true                                                    
+                        }
+                    })
+                    .catch(error => console.log(error))
+                
+                
+                                
+            }
 
             if(!this.emailCompartilhar){
                 this.errors.emailCompartilhar = 'Este campo é obrigatório'
+                this.errors.botao = 'Preencha os campos obrigatórios'
             }
 
-            this.errors.botao = 'Preencha os campos obrigatórios'
+            
 
             e.preventDefault()
         },
@@ -212,6 +240,19 @@ const app = new Vue({
 
             e.preventDefault()
         },
+        getCheckClonarQuestao(e){
+            if(this.nomeListaQuestao){
+                return true
+            }
+
+            this.errors = {}
+
+            if(!this.nomeListaQuestao){
+                this.errors.clonarQuestao = 'Este campo é obrigatório'
+            }            
+
+            e.preventDefault()
+        },
         verificarEmail(){            
             this.errors.emailUsuario = ''
             let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -221,7 +262,7 @@ const app = new Vue({
 
                 axios.get('/usuario/verificarEmail/'+this.emailUsuario)
                 .then(response => {
-                    if(response){
+                    if(response.data){
                         this.errors.emailUsuario = 'Email já existente' 
                         this.$forceUpdate()                       
                     }

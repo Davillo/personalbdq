@@ -13977,8 +13977,9 @@ module.exports = __webpack_require__(56);
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14032,7 +14033,9 @@ var app = new Vue({
         //Nova Avaliação
         tituloAvaliacao: null,
         //Adicionar Sugestão
-        sugestaoQuestao: null
+        sugestaoQuestao: null,
+        //Clonar Questao
+        nomeListaQuestao: ''
     },
 
     methods: {
@@ -14104,17 +14107,40 @@ var app = new Vue({
             e.preventDefault();
         },
         getCheckCompartilhar: function getCheckCompartilhar(e) {
-            if (this.emailCompartilhar) {
-                return true;
-            }
+            var _this = this;
 
             this.errors = {};
 
-            if (!this.emailCompartilhar) {
-                this.errors.emailCompartilhar = 'Este campo é obrigatório';
+            if (this.emailCompartilhar) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(this.emailCompartilhar)) {
+                    this.errors.emailCompartilhar = 'Utilize um email válido';
+                    e.preventDefault();
+                    return false;
+                }
+
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                axios.get('/usuario/verificarEmail/' + this.emailCompartilhar).then(function (response) {
+                    if (!response.data) {
+                        _this.errors.emailCompartilhar = 'Email inexistente';
+                        _this.$forceUpdate();
+                        e.preventDefault();
+                        return false;
+                    }
+                    if (response.data) {
+                        document.forms["form_compartilhar"].submit();
+                        return true;
+                    }
+                }).catch(function (error) {
+                    return console.log(error);
+                });
             }
 
-            this.errors.botao = 'Preencha os campos obrigatórios';
+            if (!this.emailCompartilhar) {
+                this.errors.emailCompartilhar = 'Este campo é obrigatório';
+                this.errors.botao = 'Preencha os campos obrigatórios';
+            }
 
             e.preventDefault();
         },
@@ -14192,8 +14218,21 @@ var app = new Vue({
 
             e.preventDefault();
         },
+        getCheckClonarQuestao: function getCheckClonarQuestao(e) {
+            if (this.nomeListaQuestao) {
+                return true;
+            }
+
+            this.errors = {};
+
+            if (!this.nomeListaQuestao) {
+                this.errors.clonarQuestao = 'Este campo é obrigatório';
+            }
+
+            e.preventDefault();
+        },
         verificarEmail: function verificarEmail() {
-            var _this = this;
+            var _this2 = this;
 
             this.errors.emailUsuario = '';
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -14202,13 +14241,13 @@ var app = new Vue({
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 axios.get('/usuario/verificarEmail/' + this.emailUsuario).then(function (response) {
-                    if (response) {
-                        _this.errors.emailUsuario = 'Email já existente';
-                        _this.$forceUpdate();
+                    if (response.data) {
+                        _this2.errors.emailUsuario = 'Email já existente';
+                        _this2.$forceUpdate();
                     }
                     if (!response.data) {
-                        _this.errors.emailUsuario = false;
-                        _this.$forceUpdate();
+                        _this2.errors.emailUsuario = false;
+                        _this2.$forceUpdate();
                     }
                 }).catch(function (error) {
                     return console.log(error);

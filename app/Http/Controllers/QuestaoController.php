@@ -20,9 +20,9 @@ class QuestaoController extends Controller
             return view('pages.nova_questao')->with("lista_id",$id);
     }
 
-    public function nova_vindo_questoes(){
-        $listas = ListaQuestao::where('autor_usuario_id', Auth::user()->id)->get();
-        return view('pages.nova_questao')->with("listas",$listas);
+    public function nova_vindo_questoes(){        
+        $vindoDeQuestoes = true;
+        return view('pages.nova_questao')->with("vindoDeQuestoes",$vindoDeQuestoes);
     }
 
 
@@ -350,7 +350,7 @@ class QuestaoController extends Controller
         $questaoLista->questao_id = $novaQuestao->id;
         $questaoLista->save();
 
-        return redirect('/lista/'.$request->input('lista_id'))->with('success',"Questão clonada com sucesso!");
+        return redirect('/lista/'.base64_encode($request->input('lista_id')))->with('success',"Questão clonada com sucesso!");
     }
 
     public function adicionarComentario(Request $request)

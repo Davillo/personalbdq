@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('mlistas','active')
+@if(isset($vindoDeQuestoes))
+    @section('mquestoes','active')    
+@else
+    @section('mlistas','active')
+@endif
 @section('conteudo')
     <div class="card-header">
         <div class="row">

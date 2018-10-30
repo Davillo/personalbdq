@@ -141,8 +141,8 @@ class ListaController extends Controller
             $idLista = $request->input('id');
             $usuario = Usuario::where('email','=',$email)->first();
 
-            if(Auth::user()->email == $email){
-                    return redirect('/lista/compartilhar/'.$idLista)->with('error','Não é possível compartilhar uma lista consigo mesmo.');
+            if(Auth::user()->email == $email){                    
+                    return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Não é possível compartilhar uma lista consigo mesmo.');
             }
 
      if($usuario!=null){
@@ -163,14 +163,14 @@ class ListaController extends Controller
                 $compartilhamento->save();
                 return redirect('/listas')->with('success','Lista compartilhada com sucesso.');
 
-            }else{
-                return redirect('/lista/compartilhar/'.$idLista)->with('error','Esta lista já foi compartilhada com esse usuário.');
+            }else{                
+                return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Esta lista já foi compartilhada com esse usuário.');
             }
 
 
 
         }else{
-                return redirect('/lista/compartilhar/'.$idLista)->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
+                return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
 
         }
 

@@ -38,14 +38,15 @@
                         </div>
                         <div class="row">
                                 <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">
-                                    <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Compartilhar"><br>
+                                    <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal text-center float-right" value="Compartilhar"><br>
                                 </div>
                         </div> 
                         <div class="row">
                                 <div class="col-md-9 mx-auto text-center">
                                     <label v-if="errors.botao" class="text-danger" v-cloak>@{{errors.botao}}</label>
                                 </div>
-                        </div>  
+                        </div> 
+                    </div>     
                 </form>
             </div>
         </div>

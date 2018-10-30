@@ -53,8 +53,6 @@
         </footer>
     </div>
 </div>
-</body>
-
 <!--   Core JS Files   -->
 
 <script type="text/javascript" src="{{ asset('/js/jquery-3.3.1.min.js') }}"></script>
@@ -87,4 +85,5 @@
 </script>
 <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 <script>$('#lfm').filemanager('image');</script>
+</body>
 </html>

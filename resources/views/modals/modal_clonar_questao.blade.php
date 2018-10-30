@@ -2,22 +2,23 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                    <h3 class="logo-modal text-center" id="removerModalLabel">Fazer cópia questão</h3>
+                    <h3 class="logo-modal mx-auto" id="removerModalLabel">Fazer cópia questão</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form method="POST" action="/questao/clonar" >
+            <form @submit="getCheckClonarQuestao" method="POST" action="/questao/clonar" >
                 {{ csrf_field() }}
             <div class="modal-body">
-                Deseja adicionar a questão em qual lista?
+                <p>Deseja adicionar a questão em qual lista?</p>
                     <div class="row">
-                        <div class="input-group col-sm-10" style="text-align:center; margin: 0 auto; padding: 10px;">
+                        <div class="col-md-9 mx-auto">
                             @if(count($listasUsuario)>0)
-                                <select name="lista_id" class="form-control">
+                                <select v-model="nomeListaQuestao" name="lista_id" class="form-control borda-input">
                                     <option value="">Selecione a lista...</option>
                                         @foreach($listasUsuario as $lista)
                                             <option value="{{$lista->id}}">{{$lista->nome}}</option>
                                         @endforeach
                                 </select>
+                                <label v-if="errors.clonarQuestao" class="text-danger" v-cloak>@{{errors.clonarQuestao}}</label>                                
                             @else
                                 <label class="text-danger text-center" for="Não existe Listas">Você não possuí listas cadastradas</label>
                             @endif
@@ -31,7 +32,8 @@
                 <button type="submit" class="btn btn-primary">Confirmar</button>
                 @else
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-                @endif
+                @endif                
+            </div> 
             </div>
             </form>
         </div>
