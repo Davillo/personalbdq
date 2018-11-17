@@ -13977,9 +13977,8 @@ module.exports = __webpack_require__(56);
 
 /***/ }),
 /* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -49566,7 +49565,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             axios.post('/avaliacao/addQuestoes', { 'questoesavaliacao': this.questoesAvaliacao, 'idavaliacao': this.dadosAvaliacao.id }).then(function (response) {
-                return window.location.href = '/avaliacao/' + _this2.dadosAvaliacao.id;
+                return window.location.href = '/avaliacao/' + btoa(_this2.dadosAvaliacao.id);
             }).catch(function (error) {
                 return console.log(error);
             });

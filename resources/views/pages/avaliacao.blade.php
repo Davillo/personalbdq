@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-8 pr-5">
-                <a class="btn btn-success float-right" href="/avaliacao/adicionar/{{$avaliacao->id}}">Adicionar Questão</a>
+                <a class="btn btn-success float-right" href="/avaliacao/adicionar/<?php echo base64_encode($avaliacao->id)?>">Adicionar Questão</a>
             </div>
         </div>
     </div>

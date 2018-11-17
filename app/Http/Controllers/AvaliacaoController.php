@@ -45,7 +45,7 @@ class AvaliacaoController extends Controller
 
         try{
 
-            $avaliacao = Avaliacao::findOrFail($id);
+            $avaliacao = Avaliacao::findOrFail(base64_decode($id));
             $questoesjaadd = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
 
             $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
@@ -100,7 +100,7 @@ class AvaliacaoController extends Controller
         $avaliacao->data_atualizado = date('Y-m-d');
         
         if ($avaliacao->save()){
-            return redirect('/avaliacoes')->with('success','Avaliacao criada com sucesso');
+            return redirect('/avaliacoes')->with('success','Avaliação criada com sucesso');
         }
     }
 
