@@ -133,14 +133,15 @@ class QuestaoController extends Controller
             }
         }
 
-        if($request->input('lista_id') != null) {
+        if($request->input(('lista_id')) != null) {
+            $decrypt = base64_decode($request->input('lista_id'));
             $questaoListas = new QuestaoListas();
             $questaoListas->id = IdAleatorio::gerar();
             $questaoListas->questao_id = $ultimoIdQeustao;
-            $questaoListas->lista_id = $request->input('lista_id');
+            $questaoListas->lista_id = $decrypt;
             $questaoListas->save();
 
-            return redirect('/lista/' . $questaoListas->lista_id)->with('success', 'Questão criada com sucesso!');
+            return redirect('/lista/' . base64_encode($decrypt))->with('success', 'Questão criada com sucesso!');
         }else{
             return redirect('/questoes')->with('success', 'Questão criada com sucesso!');
         }
@@ -368,7 +369,7 @@ class QuestaoController extends Controller
         $comentario->data_atualizado = date('Y-m-d');
         $comentario->save();
 
-        return redirect('/lista/compartilhada/'.$request->input('lista_id'))->with('success','Comentário feito com sucesso!');
+        return redirect('/lista/compartilhada/'.base64_encode($request->input('lista_id')))->with('success','Comentário feito com sucesso!');
 
     }
 

@@ -28,8 +28,8 @@ class UsuarioController extends Controller{
     }
 
     public function store(Request $request){
-        $usuario = Usuario::where('email', '=',$request->input('email'));
-        if($usuario != null){
+        $usuario = Usuario::where('email', $request->input('email'))->get();
+        if(count ($usuario ) > 0 ){
                 return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
         }
 
@@ -74,7 +74,10 @@ class UsuarioController extends Controller{
     }
 
     public function update(Request $request){
-
+        $usuario = Usuario::where('email', $request->input('email'))->get();
+        if(count ($usuario ) > 0 ){
+            return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
+        }
         $this->validate($request,[
             'email' => 'required',
             'nome' => 'required',
@@ -109,7 +112,7 @@ class UsuarioController extends Controller{
     public function verificarEmail($email){
         $usuario = Usuario::where('email', $email)->get();
         
-        if(count($usuario) == 1){            
+        if(count($usuario) > 0){
             return json_encode(true);
         }else{            
             return json_encode(false);
