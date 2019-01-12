@@ -51,8 +51,9 @@ class UsuarioController extends Controller{
             $usuario->curso_id = $request->input('curso_id');
             $usuario->data_criacao = Datas::getDataAtual();
             $usuario->data_atualizado = Datas::getDataAtual();
+            $usuario->save();
             try {
-                $usuario->save();
+
                 return redirect('/usuario')->with('success','Salvo com sucesso!');
             } catch (\Exception $e) {
                 return redirect('/usuario')->with('error','Erro ao salvar usuário!');

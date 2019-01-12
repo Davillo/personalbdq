@@ -25,7 +25,7 @@ class CriarTabelaUsuario extends Migration
             $table->string('matricula',40);
             $table->date('data_criacao');
             $table->date('data_atualizado');
-            $table->string('remember_token', 100);
+            $table->string('remember_token', 100)->nullable();
 
         });
     }

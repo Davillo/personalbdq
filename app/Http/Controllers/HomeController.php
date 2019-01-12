@@ -13,7 +13,8 @@ class HomeController extends Controller{
 
     public function index(){
         
-       /* $usuario = new Usuario();
+      /*  $usuario = new Usuario();
+        $usuario->matricula= 'nao possui';
         $usuario->nome = 'admin';
         $usuario->admin = 1;
         $usuario->email = 'admin@admin.com';

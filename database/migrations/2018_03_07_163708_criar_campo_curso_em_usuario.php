@@ -14,7 +14,7 @@ class CriarCampoCursoEmUsuario extends Migration
     public function up()
     {
         Schema::table('usuario', function (Blueprint $table) {
-            $table->integer('curso_id')->unsigned();
+            $table->integer('curso_id')->unsigned()->nullable();
             $table->foreign('curso_id')->references('id')->on('curso');
         });
     }
