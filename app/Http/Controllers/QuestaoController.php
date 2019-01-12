@@ -16,17 +16,17 @@ use App\QuestaoAvaliacao;
 
 class QuestaoController extends Controller
 {
-    public function nova($id){
+    public function nova($id){//vindo de lista, GET tambem, questao dentro de lista
             return view('pages.nova_questao')->with("lista_id",$id);
     }
 
-    public function nova_vindo_questoes(){        
+    public function nova_vindo_questoes(){ //novo cadastro , GET       
         $vindoDeQuestoes = true;
         return view('pages.nova_questao')->with("vindoDeQuestoes",$vindoDeQuestoes);
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request)//salvar questão
     {
 
         $this->validate($request,[
@@ -151,6 +151,8 @@ class QuestaoController extends Controller
     {
         $questaoLista = Questao::select('questao_id')->where('autor_usuario_id',Auth::user()->id);
         $questoes = Questao::where('autor_usuario_id',Auth::user()->id)->get();
+
+
         $alternativas = Alternativa::whereIn('questao_id',$questaoLista)->get();
 
         $comentarios = Comentario::whereIn('questao_id',$questaoLista)->get();
@@ -181,8 +183,8 @@ class QuestaoController extends Controller
     {
         try{
 
-            $questao = Questao::findOrFail(base64_decode($id));
-            $alternativas = Alternativa::where('questao_id',base64_decode($id))->get();
+            $questao = Questao::findOrFail(($id));
+            $alternativas = Alternativa::where('questao_id',($id))->get();
             return view('pages.editar_questao')->with('questao',$questao)->with('alternativas',$alternativas);
         }catch (\Exception $exception){
             return view('pages.error404');

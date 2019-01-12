@@ -41,10 +41,13 @@ class ListaController extends Controller
         $lista->data_criacao = date('Y-m-d');
         $lista->data_atualizado = date('Y-m-d');
 
-
-        if ($lista->save()){
+        try {
+            $lista->save(); 
             return redirect('/listas')->with('success','Lista criada com sucesso');
-        }
+        } catch (\Exception $e) {
+            return redirect('/listas')->with('error','Ocorreu um erro criando a lista'); 
+        }    
+   
     }
 
     public function edit($id)
@@ -72,10 +75,14 @@ class ListaController extends Controller
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->data_atualizado = date('Y-m-d');
-
-        if($lista->save()){
+       
+        try {
+            $lista->save(); 
             return redirect('/listas')->with('success','Salvo com sucesso!');
-        }
+        } catch (\Exception $e) {
+            return redirect('/listas')->with('error','Ocorreu um erro atualizando a lista'); 
+        }    
+   
     }
 
     public function destroy($id)

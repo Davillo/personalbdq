@@ -1,6 +1,8 @@
 <template>
-    <div>
 
+    <div>   
+      
+          
         <div class="table-responsive">
             <a class="float-right mr-3" style="font-size:14px;" href="#" data-toggle="modal" data-target="#filtrar">Filtrar por</a>
             <table class="table table-striped" style="margin-bottom: 60px;">
@@ -22,7 +24,7 @@
                     Dificuldade
                 </th>
 
-                <th>
+                <th>    
                     Tipo
                 </th>
                </tr>
@@ -64,7 +66,7 @@
                         </i>
                     </a>
                     <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                        <li><a :href="'/questao/edit/'+questao.id">Editar</a></li>
+                        <li><a :href="'/questao/edit/'+(questao.id)">Editar</a></li>
                         <li><a href="#" data-toggle="modal" :data-target="'#removerModal'+questao.id">Excluir</a></li>
                         <li><a href="#" data-toggle="modal" :data-target="'#fazerCopiaModal'+questao.id">Adicionar a lista</a></li>
                     </ul>
@@ -156,6 +158,7 @@
 </template>
 
 <script>
+ 
     export default {
         props: ['questoes'],
 

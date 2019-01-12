@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://code.google.com/p/stringencoders/source/browse/trunk/javascript/base64.js?r=230">
     <!-- CSS Files -->
     <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
     <link href="{{asset('/css/now-ui-dashboard.css?v=1.0.1')}}" rel="stylesheet" />

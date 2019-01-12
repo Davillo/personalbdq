@@ -15,9 +15,9 @@ class UsuarioController extends Controller{
 
     public function novo(){
 
-        if(Auth::user()!= null){
+        if(Auth::user() != null){
             $cursos = Curso::all();
-            if (count($cursos) == 0){
+            if ( count($cursos) == 0 ){
                 return redirect('/curso')->with('error','É necessário cadastrar um curso para criar um usuário');
             }
             return view('pages.novo_usuario')->with('cursos',$cursos);
@@ -27,7 +27,7 @@ class UsuarioController extends Controller{
 
     }
 
-    public function store(Request $request){
+    public function store(Request $request){//salvar usuario
         $usuario = Usuario::where('email', $request->input('email'))->get();
         if(count ($usuario ) > 0 ){
                 return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
@@ -51,10 +51,13 @@ class UsuarioController extends Controller{
             $usuario->curso_id = $request->input('curso_id');
             $usuario->data_criacao = Datas::getDataAtual();
             $usuario->data_atualizado = Datas::getDataAtual();
-
-            if($usuario->save()){
+            try {
+                $usuario->save();
                 return redirect('/usuario')->with('success','Salvo com sucesso!');
+            } catch (\Exception $e) {
+                return redirect('/usuario')->with('error','Erro ao salvar usuário!');
             }
+           
         }
 
     }
@@ -95,17 +98,23 @@ class UsuarioController extends Controller{
        }else{
             $usuario->senha = bcrypt($request->input('senha'));
         }
-
-        if($usuario->save()){
+        
+        try {
+            $usuario->save();
             return redirect('/usuario')->with('success','Editado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/usuario')->with('error','Erro ao atualizar usuário!'); 
         }
+       
     }
 
 
     public function destroy($id){
-        $usuario = Usuario::find($id);
-        if($usuario->delete()){
-            return redirect('/usuario')->with('success','Deletado com sucesso!');
+        try {
+           $usuario = Usuario::find($id);
+           return redirect('/usuario')->with('success','Deletado com sucesso!');
+        } catch (\Exception $e) {
+           return redirect('/usuario')->with('error','Erro ao deletar usuário!');
         }
     }
 

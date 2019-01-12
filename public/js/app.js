@@ -48584,6 +48584,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questoes'],
@@ -49157,7 +49160,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("\n                Dificuldade\n            ")]),
         _vm._v(" "),
-        _c("th", [_vm._v("\n                Tipo\n            ")])
+        _c("th", [_vm._v("    \n                Tipo\n            ")])
       ])
     ])
   },

@@ -12,6 +12,15 @@ use Exception;
 class HomeController extends Controller{
 
     public function index(){
+        
+       /* $usuario = new Usuario();
+        $usuario->nome = 'admin';
+        $usuario->admin = 1;
+        $usuario->email = 'admin@admin.com';
+        $usuario->senha = bcrypt('123');
+        $usuario->data_criacao = Datas::getDataAtual();
+        $usuario->data_atualizado = Datas::getDataAtual();
+        $usuario->save();*/
 
 
        return view('login');
