@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Datas;
 
 class CriarTabelaUsuario extends Migration
 {
@@ -28,6 +29,18 @@ class CriarTabelaUsuario extends Migration
             $table->string('remember_token', 100)->nullable();
 
         });
+
+        DB::table('usuario')->insert(
+            array(
+                'email' => 'admin@admin.com',
+                'nome' => 'admin',
+                'senha'=> bcrypt('admin'),
+                'admin' => 1,
+                'matricula'=> 'Não possui',
+                'data_criacao' => Datas::getDataAtual(),
+                'data_atualizado' => Datas::getDataAtual()
+            )
+        );
     }
 
     /**

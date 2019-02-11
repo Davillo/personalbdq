@@ -1,13 +1,13 @@
 <?php
 
 // Usuário
-Route::get('/novo_usuario','UsuarioController@novo');
+Route::get('/novo_usuario','UsuarioController@novo');//formulario para criacao de novo usuario
 Route::get('/edit/{id}', 'UsuarioController@edit');// formulario de edicao de usuario
 Route::get('/usuario','UsuarioController@show'); //rota listar usuários GET
 Route::delete('/usuario/excluir/{id}','UsuarioController@destroy'); //deletar usuário GET
 Route::post('/usuario/inserir','UsuarioController@store'); // rota cadastro usuário POST
-Route::post('/usuario/update','UsuarioController@update');
-Route::get('/usuario/verificarEmail/{email}', 'UsuarioController@verificarEmail');
+Route::post('/usuario/update','UsuarioController@update');//rota atualizadcao usuario POST
+Route::get('/usuario/verificarEmail/{email}', 'UsuarioController@verificarEmail');//rota verificar email existente
 
 
 //handlers
@@ -17,7 +17,7 @@ Route::get('500', ['as' => '500', 'uses' => 'HomeController@servererror']);
 //Home requests
 Route::get('/logout','HomeController@logout'); // rota logout GET
 Route::get('/', 'HomeController@index'); // Rota root
-Route::get('/home', 'HomeController@home');
+Route::get('/home', 'HomeController@home');// rota inicial, dashboard
 Route::post('/login', 'HomeController@efetuarLogin'); // rota de login POST
 Route::post('/contato','HomeController@contato'); // rota de salvar contato
 
@@ -48,15 +48,15 @@ Route::get('/lista/clonar/{id}','ListaController@clonarLista');
 
 //Questão
 Route::get('/nova_questao', 'QuestaoController@nova_vindo_questoes');// formulario cadastro de questoes
-Route::get('/nova_questao/{id}', 'QuestaoController@nova');
-Route::get('/questao/edit/{id}/{lista_id}', 'QuestaoController@edit'); // formulario editar questão
-Route::get('/questao/edit/{id}', 'QuestaoController@editarQuestao');
-Route::post('/questao/update', 'QuestaoController@update');
-Route::post('/questao/inserir', 'QuestaoController@store');
-Route::get('/questoes', 'QuestaoController@show');
-Route::delete('/questao/excluir/{id}','QuestaoController@destroy');
-Route::delete('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestaoLista');
-Route::post('/questao/fazerCopia','QuestaoController@fazerCopia');
+Route::get('/nova_questao/{id}', 'QuestaoController@nova');//form para cadastrar questao
+Route::get('/questao/edit/{id}/{lista_id}', 'QuestaoController@edit'); // formulario editar questão de lista
+Route::get('/questao/edit/{id}', 'QuestaoController@editarQuestao');//formulario para editar questao 
+Route::post('/questao/update', 'QuestaoController@update');//formulario POST para atualizar questao
+Route::post('/questao/inserir', 'QuestaoController@store');//Post para salvar Questao
+Route::get('/questoes', 'QuestaoController@show'); // View de lista de questoes
+Route::delete('/questao/excluir/{id}','QuestaoController@destroy');// rota DELETE para exclusão de questões
+Route::delete('/questao/remover/{id}/{lista_id}', 'QuestaoController@removerQuestaoLista');//rota Delete para exclusão de questões da lista
+Route::post('/questao/fazerCopia','QuestaoController@fazerCopia');//POST para efetuar copia de questao
 Route::post('/questao/clonar','QuestaoController@clonarQuestao');//  envio post para clonar questao
 Route::post('/questao/comentario','QuestaoController@adicionarComentario');// post para cadastrar comentario
 Route::delete('/questao/comentario/excluir/{id}','QuestaoController@excluirComentario'); // delete para exclusão de comentario
