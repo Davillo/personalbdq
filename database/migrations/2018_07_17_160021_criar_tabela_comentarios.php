@@ -17,9 +17,9 @@ class CriarTabelaComentarios extends Migration
             $table->increments('id');
             $table->longText('comentario');
             $table->integer('questao_id')->unsigned();
-            $table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');
+         //   $table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');
             $table->integer('autor_usuario_id')->unsigned();
-            $table->foreign('autor_usuario_id')->references('id')->on('usuario');
+         //   $table->foreign('autor_usuario_id')->references('id')->on('usuario');
             $table->date('data_criacao');
             $table->date('data_atualizado');
         });

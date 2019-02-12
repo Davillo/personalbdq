@@ -17,8 +17,8 @@ class CriarTabelaQuestaoAvaliacao extends Migration
             $table->increments('id');
             $table->integer('questao_id')->unsigned();
             $table->integer('avaliacao_id')->unsigned();
-            $table->foreign('questao_id')->references('id')->on('questao');
-            $table->foreign('avaliacao_id')->references('id')->on('avaliacao');
+   //         $table->foreign('questao_id')->references('id')->on('questao');
+         //   $table->foreign('avaliacao_id')->references('id')->on('avaliacao');
         });
     }
 

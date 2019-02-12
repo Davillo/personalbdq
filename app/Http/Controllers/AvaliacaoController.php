@@ -12,6 +12,7 @@ use App\Questao;
 use App\Alternativa;
 use App\Datas;
 use PDF;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class AvaliacaoController extends Controller
 {
@@ -21,7 +22,6 @@ class AvaliacaoController extends Controller
             $idsQuestaoAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id);
             $questoes = Questao::whereIn('id',$idsQuestaoAvaliacao)->get();
             $avaliacoes[$index]['qtQuestoes'] = count($questoes);
-            
         }
         return view('pages.avaliacoes')->with('avaliacoes',$avaliacoes);
     }
@@ -96,12 +96,19 @@ class AvaliacaoController extends Controller
         $avaliacao->avaliacao = $request->input('avaliacao');
         $avaliacao->instrucao = $request->input('instrucao');
         $avaliacao->autor_usuario_id = Auth::user()->id;
-        $avaliacao->data_criacao = date('Y-m-d');
-        $avaliacao->data_atualizado = date('Y-m-d');
-        
-        if ($avaliacao->save()){
+        $avaliacao->data_criacao = Datas::getDataAtual();
+        $avaliacao->data_atualizado = Datas::getDataAtual();
+
+
+        try{
+            $avaliacao->save();
             return redirect('/avaliacoes')->with('success','Avaliação criada com sucesso');
+
         }
+        catch (\Exception $e){
+            return redirect('/avaliacoes')->with('error','Erro ao salvar Avaliação!'.' Mensagem original: '.$e->getMessage());
+        }
+
     }
 
     public function editarAvaliacao($id){
@@ -131,9 +138,16 @@ class AvaliacaoController extends Controller
         $avaliacao->instrucao = $request->input('instrucao');
         $avaliacao->data_atualizado = Datas::getDataAtual();
 
-        if($avaliacao->save()){
-            return redirect('/avaliacoes')->with('success','Editado com sucesso!');
+
+        try{
+            $avaliacao->save();
+             return redirect('/avaliacoes')->with('success','Editado com sucesso!');
+
         }
+        catch (\Exception $e){
+            return redirect('/avaliacoes')->with('success','Erro ao editar avaliação.');
+        }
+
     }
 
     public function removerQuestaoAvaliacao($id,$avaliacao_id)

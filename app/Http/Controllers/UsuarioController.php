@@ -54,7 +54,7 @@ class UsuarioController extends Controller{
             $usuario->save();
             try {
 
-                return redirect('/usuario')->with('success','Salvo com sucesso!');
+                return redirect('/usuario')->with('success','Usuário salvo com sucesso!');
             } catch (\Exception $e) {
                 return redirect('/usuario')->with('error','Erro ao salvar usuário!');
             }
@@ -79,33 +79,35 @@ class UsuarioController extends Controller{
 
     public function update(Request $request){
         $usuario = Usuario::where('email', $request->input('email'))->get();
-        if(count ($usuario ) > 0 ){
-            return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
-        }
-        $this->validate($request,[
-            'email' => 'required',
-            'nome' => 'required',
-            'matricula'=>'required',
+        if($usuario[0]->email == $request->input('email') && count($usuario) < 0 ){
+            $this->validate($request,[
+                'email' => 'required',
+                'nome' => 'required',
+                'matricula'=>'required',
             ]);
 
-        $usuario = Usuario::find($request->input('id'));
-        $usuario->email = $request->input('email');
-        $usuario->nome = $request->input('nome');
-        $usuario->matricula = $request->input('matricula');
-        $usuario->data_atualizado = Datas::getDataAtual();
+            $usuario = Usuario::find($request->input('id'));
+            $usuario->email = $request->input('email');
+            $usuario->nome = $request->input('nome');
+            $usuario->matricula = $request->input('matricula');
+            $usuario->data_atualizado = Datas::getDataAtual();
 
-        if($request->input('senha') == null){
-            $usuario->senha = $usuario->senha;
-       }else{
-            $usuario->senha = bcrypt($request->input('senha'));
+            if($request->input('senha') == null){
+                $usuario->senha = $usuario->senha;
+            }else{
+                $usuario->senha = bcrypt($request->input('senha'));
+            }
+
+            try {
+                $usuario->save();
+                return redirect('/usuario')->with('success','Usuário editado com sucesso!');
+            } catch (\Exception $e) {
+                return redirect('/usuario')->with('error','Erro ao atualizar usuário!');
+            }
+        }else{
+            return redirect('/usuario')->with('error','Email já cadastrado!');
         }
-        
-        try {
-            $usuario->save();
-            return redirect('/usuario')->with('success','Editado com sucesso!');
-        } catch (\Exception $e) {
-            return redirect('/usuario')->with('error','Erro ao atualizar usuário!'); 
-        }
+
        
     }
 
@@ -113,19 +115,27 @@ class UsuarioController extends Controller{
     public function destroy($id){
         try {
            $usuario = Usuario::find($id);
-           return redirect('/usuario')->with('success','Deletado com sucesso!');
+           $usuario->delete();
+           return redirect('/usuario')->with('success','Usuário excluído com sucesso!');
         } catch (\Exception $e) {
-           return redirect('/usuario')->with('error','Erro ao deletar usuário!');
+           return redirect('/usuario')->with('error','Erro ao excluir usuário!'.$e->getMessage());
         }
     }
 
     public function verificarEmail($email){
-        $usuario = Usuario::where('email', $email)->get();
-        
-        if(count($usuario) > 0){
-            return json_encode(true);
-        }else{            
+        try{
+            $usuario = Usuario::where('email', $email)->get();
+            if(count($usuario) > 0){
+                return json_encode(true);
+            }else{
+                return json_encode(false);
+            }
+        }
+        catch (\Exception $e){
             return json_encode(false);
         }
+
+        
+
     }
 }

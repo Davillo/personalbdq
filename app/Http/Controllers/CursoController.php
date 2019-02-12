@@ -32,8 +32,12 @@ class CursoController extends Controller
         $curso->data_criacao = Datas::getDataAtual();
         $curso->data_atualizado = Datas::getDataAtual();
 
-        if($curso->save()){
-            return redirect('/curso')->with('success','Salvo com sucesso!');
+        try{
+            $curso->save();
+            return redirect('/curso')->with('success','Curso salvo com sucesso.');
+        }
+        catch (\Exception $e){
+            return redirect('/curso')->with('error','Erro ao salvar curso!');
         }
 
     }
@@ -46,25 +50,33 @@ class CursoController extends Controller
         }catch (\Exception $exception){
              return redirect('/404');
         }
-
     }
 
     public function update(Request $request){
 
         $this->validate($request, ['nome' => 'required', 'tipo' => 'required']);
-
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
         $curso->data_atualizado = Datas::getDataAtual();
 
-        if($curso->save()){
-            return redirect('/curso')->with('success','Editado com sucesso!');
+        try{
+            $curso->save();
+            return redirect('/curso')->with('success','Curso editado com sucesso!');
         }
+        catch (\Exception $e){
+            return redirect('/curso')->with('success','Erro ao editar curso!');
+        }
+
     }
 
     public function destroy($id){
-        Curso::destroy($id);
-        return redirect('/curso')->with('success','Excluído com sucesso!');
+        try{
+            Curso::destroy($id);
+            return redirect('/curso')->with('success','Curso excluído com sucesso!');
+        }
+        catch (\Exception $e){
+            return redirect('/curso')->with('error','Erro ao excluir curso!');
+        }
     }
 }

@@ -18,7 +18,8 @@ class AtualizarTabelaAlternativa extends Migration
             $table->string('enunciado', 255);
             $table->boolean('correta');
             $table->integer('questao_id')->unsigned();
-            $table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');
+            //$table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');
+          //  $table->integer('questao_id')->references('id')->on('questao')->onDelete('cascade');
             $table->date('data_criacao');
             $table->date('data_atualizado');
         });

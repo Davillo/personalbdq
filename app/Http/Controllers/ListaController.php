@@ -38,8 +38,8 @@ class ListaController extends Controller
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->autor_usuario_id = Auth::user()->id;
-        $lista->data_criacao = date('Y-m-d');
-        $lista->data_atualizado = date('Y-m-d');
+        $lista->data_criacao = Datas::getDataAtual();
+        $lista->data_atualizado = Datas::getDataAtual();
 
         try {
             $lista->save(); 

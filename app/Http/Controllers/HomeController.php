@@ -12,18 +12,6 @@ use Exception;
 class HomeController extends Controller{
 
     public function index(){
-        
-      /*  $usuario = new Usuario();
-        $usuario->matricula= 'nao possui';
-        $usuario->nome = 'admin';
-        $usuario->admin = 1;
-        $usuario->email = 'admin@admin.com';
-        $usuario->senha = bcrypt('123');
-        $usuario->data_criacao = Datas::getDataAtual();
-        $usuario->data_atualizado = Datas::getDataAtual();
-        $usuario->save();*/
-
-
        return view('login');
    }
 
@@ -33,13 +21,11 @@ class HomeController extends Controller{
    }
 
    public function contato(Request $request){
-
         $contato = new Contato();
         $contato->nome = $request->input('nome');
         $contato->email = $request->input('email');
         $contato->texto = $request->input('texto');
         $contato->save();
-
    }
 
    public function notfound(){
