@@ -251,6 +251,19 @@
                                     </div>
                                 </div>
                             </div>
+                        @else
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Resposta">Resposta<span class="text-danger f-16" title="Campo obrigatório">*</span></label>
+                                <textarea id="resposta" type="text" class="form-control" name="resposta" placeholder="Resposta da quetão...">{{$questao->resposta}}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Quantidade de linahs">Quantidade de linhas<span class="text-danger f-16" title="Campo obrigatório">*</span></label>
+                                <input value="{{$questao->quantidadeLinhas}}" id="quantidadeLinhas" type="number" min="1" max="15" class="form-control borda-input" name="quantidadeLinhas" placeholder="Quantidade de linhas..." />
+                            </div>
+                        </div>
                         @endif
                     </div>
                     <div class="row">

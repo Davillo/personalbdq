@@ -48,6 +48,10 @@ class QuestaoController extends Controller
         $questao->data_criacao = date('Y-m-d');
         $questao->data_atualizado = date('Y-m-d');
         $questao->id = IdAleatorio::gerar();
+        if($questao->tipo == 'Dissertativa'){
+            $questao->resposta = $request->input('resposta');
+            $questao->quantidadeLinhas = $request->input('quantidadeLinhas');
+        }
         $questao->save(); // salvando questão
 
         $ultimoIdQeustao = $questao->id; // recuperando ultimo id salvo
@@ -210,6 +214,10 @@ class QuestaoController extends Controller
         $questao->dificuldade = $request->input('dificuldade');
         $questao->autor_usuario_id = Auth::user()->id;
         $questao->data_atualizado = date('Y-m-d');
+        if($questao->tipo == 'Dissertativa'){
+            $questao->resposta = $request->input('resposta');
+            $questao->quantidadeLinhas = $request->input('quantidadeLinhas');
+        }
         $questao->save();
 
         $ultimoIdQuestao = $questao->id;

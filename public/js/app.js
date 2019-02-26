@@ -14015,6 +14015,8 @@ var app = new Vue({
         categoriaQuestao: '',
         dificuldadeQuestao: '',
         palavras_chaveQuestao: null,
+        resposta: '',
+        quantidadeLinhas: '',
         //Nova Lista
         nomeLista: null,
         descricaoLista: null,
@@ -14061,7 +14063,7 @@ var app = new Vue({
             }
         },
         getCheck: function getCheck(e) {
-            if (this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData()) {
+            if (this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData() && this.resposta && this.quantidadeLinhas) {
                 return true;
             }
 
@@ -14081,6 +14083,12 @@ var app = new Vue({
             }
             if (!CKEDITOR.instances.enunciado.getData()) {
                 this.errors.enunciadoQuestao = 'Este campo é obrigatório';
+            }
+            if (!this.resposta) {
+                this.errors.respostaQuestao = 'Este campo é obrigatório';
+            }
+            if (!this.quantidadeLinhas) {
+                this.errors.quantidadeLinhasQuestao = 'Este campo é obrigatório';
             }
 
             this.errors.botao = 'Preencha os campos obrigatórios';

@@ -27,6 +27,8 @@
                                 @endif
                             @endif
                         @endforeach
+                    @else
+                    <li class="list-group-item"><strong>Resposta:</strong> {{$questao->resposta}}</li>
                     @endif
 
                 </ul>

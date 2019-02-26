@@ -58,13 +58,7 @@
                                                 <i  class="material-icons" >
                                                     print
                                                 </i>
-                                            </a>   
-                                            <a title="Gerar Gabarito" href="avaliacao/gerargabarito/{{$avaliacao->id}}" target="_blank">    
-                                                <i  class="material-icons" >
-                                                    list_alt
-                                                </i>
-                                            </a>                                      
-                                       
+                                            </a>                                          
                                         @else
                                         
                                             <a style="opacity:.5;pointer-events: none;" role="button" aria-disabled="true" href="#">    
