@@ -209,7 +209,15 @@
                                            <?php $count = $count+1; ?>    
                                         @endif                            
                                     @endforeach
-                            @endif
+                        @else
+                            @for ($i = 0; $i < $questao->quantidadeLinhas; $i++)
+                                <tr>
+                                    <td colspan="2" style="padding-bottom: 10px;">
+                                        <hr/>
+                                    </td>
+                                </tr>
+                            @endfor
+                        @endif
                         </table>
                     </div>
                     @endforeach
