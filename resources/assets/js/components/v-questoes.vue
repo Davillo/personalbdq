@@ -30,7 +30,7 @@
                </tr>
             </thead>
             <tbody>
-            <tr v-for="questao in filtrarCampo">
+            <tr v-for="questao in filtrarCampo" :key="questao.id">
                 <td class="td-fixo">
                     {{questao.enunciado.replace(/(<([^>]+)>)/ig,"")}}
                 </td>
@@ -94,7 +94,7 @@
                          <ul class="list-group">
                             <h6>Palavras Chave</h6>
                             <li class="list-group-item">
-                                <div class="form-check form-check-inline" v-for="questao in filtroCheck">
+                                <div class="form-check form-check-inline" v-for="questao in filtroCheck" :key="questao">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" v-model="checkdados" :value="questao">
                                         {{questao}}
@@ -106,7 +106,7 @@
                             </li>
                             <h6 class="mt-2">Categoria</h6>
                             <li class="list-group-item">
-                                <div class="form-check form-check-inline" v-for="categoria in filtroCategoria">
+                                <div class="form-check form-check-inline" v-for="categoria in filtroCategoria" :key="categoria">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" v-model="categorias" :value="categoria">
                                         {{categoria}}

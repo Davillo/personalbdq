@@ -31,28 +31,28 @@
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Matrícula">Matrícula<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                     
-                            <input v-model="matriculaUsuario" type="text" class="form-control borda-input" name="matricula" placeholder="Matricula..." id="matricula">
+                            <input v-model.trim="matriculaUsuario" type="text" class="form-control borda-input" name="matricula" placeholder="Matricula..." id="matricula">
                             <label v-if="errors.matriculaUsuario" class="text-danger" v-cloak>@{{errors.matriculaUsuario}}</label>
                         </div>
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="nomeUsuario" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
+                            <input v-model.trim="nomeUsuario" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
                             <label v-if="errors.nomeUsuario" class="text-danger" v-cloak>@{{errors.nomeUsuario}}</label>
                         </div>
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Email">Email<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input @change="verificarEmail" v-model="emailUsuario" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
+                            <input @change="verificarEmail" v-model.trim="emailUsuario" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
                             <label v-if="errors.emailUsuario" class="text-danger" v-cloak>@{{errors.emailUsuario}}</label>
                         </div>
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Senha">Senha<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="senhaUsuario" type="password" class="form-control borda-input" name="senha" placeholder="Senha..." id="senha">
+                            <input v-model.trim="senhaUsuario" type="password" class="form-control borda-input" name="senha" placeholder="Senha..." id="senha">
                             <label v-if="errors.senhaUsuario" class="text-danger" v-cloak>@{{errors.senhaUsuario}}</label>
                         </div>
                     </div>

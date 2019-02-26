@@ -31,14 +31,14 @@
                     <div class="row">                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Nome">Nome<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                            
-                            <input  v-model="nomeLista" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
+                            <input  v-model.trim="nomeLista" type="text" class="form-control borda-input" name="nome" placeholder="Nome..." id="nome">
                             <label v-if="errors.nomeLista" class="text-danger" v-cloak>@{{errors.nomeLista}}</label>                                                        
                         </div>                                                       
                     </div>
                     <div class="row">                        
                             <div class="form-group col-md-9 mx-auto">
                                 <label for="Descrição">Descrição<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                
-                                <textarea v-model='descricaoLista' class="form-control borda-input" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
+                                <textarea v-model.trim='descricaoLista' class="form-control borda-input" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
                                 <label v-if="errors.descricaoLista" class="text-danger" v-cloak>@{{errors.descricaoLista}}</label>                                                        
                             </div>                                                       
                     </div>                          

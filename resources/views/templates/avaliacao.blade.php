@@ -89,7 +89,7 @@
                         @if(isset($avaliacao->logo) || isset($avaliacao->instituicao))
                         <tr>
                             <td class="td-logo" colspan="5">
-                                @isset($avaliacao->logo)<img class="img-logo" src="{{ public_path(".$avaliacao->logo.")}}" alt="BTS">@endisset
+                                @isset($avaliacao->logo)<img class="img-logo" src="{{ public_path("$avaliacao->logo")}}" alt="BTS">@endisset
                                 @isset($avaliacao->instituicao)<h1 class="titulo">{{$avaliacao->instituicao}}</h1>@endisset
                             </td>
                         </tr>

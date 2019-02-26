@@ -75,7 +75,7 @@
                         <div class="row">                                                        
                             <div class="form-group col-md-9 mx-auto">
                                 <label for="Palavras Chave">Palavras Chave<span class="text-danger f-16" title="Campo obrigatório">*</span></label>    
-                                <input v-model="palavras_chaveQuestao" type="text" class="form-control borda-input" name="palavras_chave" placeholder="Palavras chaves...">
+                                <input v-model.trim="palavras_chaveQuestao" type="text" class="form-control borda-input" name="palavras_chave" placeholder="Palavras chaves...">
                                 <label v-if="errors.palavras_chaveQuestao" class="text-danger" v-cloak>@{{errors.palavras_chaveQuestao}}</label>
                             </div>
                         </div>

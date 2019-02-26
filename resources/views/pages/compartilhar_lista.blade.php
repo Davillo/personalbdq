@@ -32,7 +32,7 @@
                         <div class="row">                        
                                 <div class="form-group col-md-9 mx-auto">
                                     <label for="Email do usuário">Email do usuário<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                            
-                                    <input v-model="emailCompartilhar" type="text" class="form-control borda-input" name="email" placeholder="Email do usuário">
+                                    <input v-model.trim="emailCompartilhar" type="text" class="form-control borda-input" name="email" placeholder="Email do usuário">
                                     <label v-if="errors.emailCompartilhar" class="text-danger" v-cloak>@{{errors.emailCompartilhar}}</label>                                                        
                                 </div>                                                                                                     
                         </div>

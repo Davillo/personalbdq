@@ -31,7 +31,7 @@
                         <div class="row">                                                        
                             <div class="form-group col-md-9 mx-auto">
                                 <label for="Nome do curso">Nome do curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                                <input v-model="nomeCurso" type="text" class="form-control borda-input" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso">
+                                <input v-model.trim="nomeCurso" type="text" class="form-control borda-input" value="<?php if(isset($curso)) echo $curso->nome ?>" name="nome" placeholder="Nome do curso">
                                 <label v-if="errors.nomeCurso" class="text-danger" v-cloak>@{{errors.nomeCurso}}</label>                            
                             </div>
                         </div>

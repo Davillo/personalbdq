@@ -57,7 +57,7 @@
                                                 <div class="row">                                                    
                                                     <div class="form-group col-md-9 mx-auto">
                                                         <label for="Título avaliação">Título avaliação<span class="text-danger f-16" title="Campo obrigatório">*</span></label>
-                                                        <input v-model='tituloAvaliacao' type="text" class="form-control borda-input" name="titulo" placeholder="Titulo da avaliação...">
+                                                        <input v-model.trim='tituloAvaliacao' type="text" class="form-control borda-input" name="titulo" placeholder="Titulo da avaliação...">
                                                         <label v-if="errors.tituloAvaliacao" class="text-danger" v-cloak>@{{errors.tituloAvaliacao}}</label>                                                        
                                                     </div>                                                       
                                                 </div>                                                                                   
