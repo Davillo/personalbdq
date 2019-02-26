@@ -49582,7 +49582,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             axios.post('/avaliacao/addQuestoes', { 'questoesavaliacao': this.questoesAvaliacao, 'idavaliacao': this.dadosAvaliacao.id }).then(function (response) {
-                return window.location.href = '/avaliacao/' + _this2.dadosAvaliacao.id;
+                return window.location.href = '/avaliacao/' + window.btoa(_this2.dadosAvaliacao.id);
             }).catch(function (error) {
                 return console.log(error);
             });
