@@ -27,12 +27,6 @@ class ListaController extends Controller
 
         date_default_timezone_set('America/Fortaleza');
 
-
-        $this->validate($request, [
-            'nome' => 'required',
-            'descricao' => 'required'
-        ]);
-
         $lista = new ListaQuestao();
         $lista->id = IdAleatorio::gerar();
         $lista->nome = $request->input('nome');
@@ -42,12 +36,12 @@ class ListaController extends Controller
         $lista->data_atualizado = Datas::getDataAtual();
 
         try {
-            $lista->save(); 
+            $lista->save();
             return redirect('/listas')->with('success','Lista criada com sucesso');
         } catch (\Exception $e) {
-            return redirect('/listas')->with('error','Ocorreu um erro criando a lista'); 
-        }    
-   
+            return redirect('/listas')->with('error','Ocorreu um erro criando a lista');
+        }
+
     }
 
     public function edit($id)
@@ -75,14 +69,14 @@ class ListaController extends Controller
         $lista->nome = $request->input('nome');
         $lista->descricao = $request->input('descricao');
         $lista->data_atualizado = date('Y-m-d');
-       
+
         try {
-            $lista->save(); 
-            return redirect('/listas')->with('success','Salvo com sucesso!');
+            $lista->save();
+            return redirect('/lista/edit/'.base64_encode($lista->id))->with('success','Salvo com sucesso!');
         } catch (\Exception $e) {
-            return redirect('/listas')->with('error','Ocorreu um erro atualizando a lista'); 
-        }    
-   
+            return redirect('/listas')->with('error','Ocorreu um erro atualizando a lista');
+        }
+
     }
 
     public function destroy($id)
@@ -118,7 +112,7 @@ class ListaController extends Controller
             return view('pages.lista')->with('questoes',$questoes)->with('lista_id',$id)->with('alternativas',$alternativas)->with('nomeLista',$lista->nome)->with('listasUsuario',$listas)->with('comentarios',$comentarios)->with('usuarios',$usuarios);
 
         }catch (\Exception $exception){
-           return redirect('/404');
+            return redirect('/404');
         }
 
     }
@@ -144,20 +138,20 @@ class ListaController extends Controller
     }
 
     public function compartilharLista(Request $request){
-            $email = $request->input('email');
-            $idLista = $request->input('id');
-            $usuario = Usuario::where('email','=',$email)->first();
+        $email = $request->input('email');
+        $idLista = $request->input('id');
+        $usuario = Usuario::where('email','=',$email)->first();
 
-            if(Auth::user()->email == $email){                    
-                    return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Não é possível compartilhar uma lista consigo mesmo.');
-            }
+        if(Auth::user()->email == $email){
+            return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Não é possível compartilhar uma lista consigo mesmo.');
+        }
 
-     if($usuario!=null){
-                $checarJaCompartilhada =
-                        DB::table('usuarios_listas')
-                            ->select('usuario_convidado_id','lista_id')->where
-                            ('usuario_convidado_id','=',$usuario->id)
-                            ->where('lista_id','=',$idLista)->count();
+        if($usuario!=null){
+            $checarJaCompartilhada =
+                DB::table('usuarios_listas')
+                    ->select('usuario_convidado_id','lista_id')->where
+                    ('usuario_convidado_id','=',$usuario->id)
+                    ->where('lista_id','=',$idLista)->count();
 
             if($checarJaCompartilhada==0){
                 $compartilhamento = new UsuariosListas();
@@ -170,14 +164,12 @@ class ListaController extends Controller
                 $compartilhamento->save();
                 return redirect('/listas')->with('success','Lista compartilhada com sucesso.');
 
-            }else{                
+            }else{
                 return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Esta lista já foi compartilhada com esse usuário.');
             }
 
-
-
         }else{
-                return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
+            return redirect('/lista/compartilhar/'.base64_encode($idLista))->with('error','Este email de usuário não está cadastrado no PersonalBDQ.');
 
         }
 
@@ -190,7 +182,7 @@ class ListaController extends Controller
             ->where('usuarios_listas.usuario_convidado_id', Auth::user()->id)
             ->get();
 
-            return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
+        return  view('pages.listas_compartilhadas')->with('listas',$listasCompartilhadas);
     }
 
     public function listaCompartilhada($id){
@@ -217,6 +209,7 @@ class ListaController extends Controller
     }
 
     public function excluirCompartilhada($id){
+
         UsuariosListas::destroy($id);
         return  redirect('/listas')->with('success','Usuário removido da lista com sucesso!');
     }

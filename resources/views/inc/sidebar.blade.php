@@ -17,6 +17,12 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
 
     <div class="sidebar-wrapper">
         <ul class="nav">
+            <li class="@yield('mhome')">
+                    <a href="/home">
+                        <i class="fa fa-home"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
             @if(Auth::user()->admin)
             <li class="@yield('musuario')">
                 <a href="/usuario">

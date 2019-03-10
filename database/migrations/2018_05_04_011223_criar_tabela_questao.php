@@ -20,14 +20,11 @@ class CriarTabelaQuestao extends Migration
             $table->string('categoria',30);
             $table->string('tipo',30);
             $table->string('dificuldade',30);
-            $table->string('resposta')->nullable();
+            $table->longText('resposta')->nullable();
             $table->integer('quantidadeLinhas')->nullable();
             $table->integer('autor_usuario_id')->unsigned();
-           //$table->foreign('autor_usuario_id')->references('id')->on('usuario');
-         //   $table->integer('autor_usuario_id');
             $table->date('data_criacao');
             $table->date('data_atualizado');
-           //$table->timestamps();
         });
     }
 

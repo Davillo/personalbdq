@@ -28,20 +28,8 @@ class UsuarioController extends Controller{
     }
 
     public function store(Request $request){//salvar usuario
-        $usuario = Usuario::where('email', $request->input('email'))->get();
-        if(count ($usuario ) > 0 ){
-                return redirect('/usuario')->with('error','Email já cadastrado no banco de dados, utilize outro');
-        }
-
         date_default_timezone_set('America/Fortaleza');
-        if($this->validate($request,[
-           'email' => 'required',
-            'nome' => 'required',
-            'senha' => 'required',
-            'matricula'=>'required',
-            'curso_id' => 'required'
-        ])){
-
+   
             $usuario = new Usuario();
             $usuario->id = IdAleatorio::gerar();
             $usuario->email = $request->input('email');
@@ -53,13 +41,12 @@ class UsuarioController extends Controller{
             $usuario->data_atualizado = Datas::getDataAtual();
             $usuario->save();
             try {
-
-                return redirect('/usuario')->with('success','Usuário salvo com sucesso!');
+                return redirect('/novo_usuario')->with('success','Usuário salvo com sucesso!');
             } catch (\Exception $e) {
-                return redirect('/usuario')->with('error','Erro ao salvar usuário!');
+                return redirect('/novo_usuario')->with('error','Erro ao salvar usuário!')->withInput();
             }
            
-        }
+        
 
     }
 
@@ -78,35 +65,37 @@ class UsuarioController extends Controller{
     }
 
     public function update(Request $request){
-        $usuario = Usuario::where('email', $request->input('email'))->get();
-        if($usuario[0]->email == $request->input('email') && count($usuario) < 0 ){
-            $this->validate($request,[
-                'email' => 'required',
-                'nome' => 'required',
-                'matricula'=>'required',
-            ]);
+        $this->validate($request,[
+            'email' => 'required',
+            'nome' => 'required',
+            'matricula'=>'required',
+        ]);
 
-            $usuario = Usuario::find($request->input('id'));
-            $usuario->email = $request->input('email');
-            $usuario->nome = $request->input('nome');
-            $usuario->matricula = $request->input('matricula');
-            $usuario->data_atualizado = Datas::getDataAtual();
+        $email = Usuario::where('email', $request->input('email'))->get();
+        $usuario = Usuario::find($request->input('id'));
 
-            if($request->input('senha') == null){
-                $usuario->senha = $usuario->senha;
-            }else{
-                $usuario->senha = bcrypt($request->input('senha'));
-            }
-
-            try {
-                $usuario->save();
-                return redirect('/usuario')->with('success','Usuário editado com sucesso!');
-            } catch (\Exception $e) {
-                return redirect('/usuario')->with('error','Erro ao atualizar usuário!');
-            }
-        }else{
-            return redirect('/usuario')->with('error','Email já cadastrado!');
+        if($usuario->email != $request->input('email') && count($email) > 0){
+            return redirect('/edit/'.base64_encode($request->input('id')))->with('error','Email já cadastrado!');
         }
+
+        $usuario->email = $request->input('email');
+        $usuario->nome = $request->input('nome');
+        $usuario->matricula = $request->input('matricula');
+        $usuario->data_atualizado = Datas::getDataAtual();
+
+        if($request->input('senha') == null){
+            $usuario->senha = $usuario->senha;
+        }else{
+            $usuario->senha = bcrypt($request->input('senha'));
+        }
+
+        try {
+            $usuario->save();
+            return redirect('/edit/'.base64_encode($request->input('id')))->with('success','Usuário editado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/edit/'.base64_encode($request->input('id')))->with('error','Erro ao atualizar usuário!');
+        }
+    
 
        
     }
@@ -139,3 +128,4 @@ class UsuarioController extends Controller{
 
     }
 }
+

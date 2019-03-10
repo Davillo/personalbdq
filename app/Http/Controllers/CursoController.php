@@ -20,11 +20,7 @@ class CursoController extends Controller
 
     public function inserir(Request $request){
 
-        $this->validate($request, [
-            'nome' => 'required',
-            'tipo' => 'required'
-        ]);
-
+  
         $curso = new Curso();
         $curso->id = IdAleatorio::gerar();
         $curso->nome = $request->input('nome');
@@ -54,12 +50,14 @@ class CursoController extends Controller
 
     public function update(Request $request){
 
-        $this->validate($request, ['nome' => 'required', 'tipo' => 'required']);
+         $this->validate($request, 
+         ['nome' => 'required', 'tipo' => 'required']);
+         
         $curso = Curso::find($request->input('id'));
         $curso->nome = $request->input('nome');
         $curso->tipo = $request->input('tipo');
         $curso->data_atualizado = Datas::getDataAtual();
-
+        
         try{
             $curso->save();
             return redirect('/curso')->with('success','Curso editado com sucesso!');

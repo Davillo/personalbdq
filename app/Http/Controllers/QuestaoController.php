@@ -29,12 +29,6 @@ class QuestaoController extends Controller
     public function store(Request $request)//salvar questão
     {
 
-        $this->validate($request,[
-            'enunciado' => 'required',
-            'palavras_chave' => 'required',
-            'dificuldade' => 'required',
-            'categoria' => 'required'
-        ]);
         date_default_timezone_set('America/Fortaleza');
 
         $questao = new Questao();
@@ -204,7 +198,9 @@ class QuestaoController extends Controller
             'enunciado' => 'required',
             'palavras_chave' => 'required',
             'dificuldade' => 'required',
-            'categoria' => 'required'
+            'categoria' => 'required',
+            'resposta' => 'required',
+            'quantidadeLinhas' => 'required'
         ]);
 
         $questao = Questao::find($request->input('id'));
@@ -292,16 +288,16 @@ class QuestaoController extends Controller
             }
         }
 
-        $lista_id = $request->input('lista_id');
-        if($lista_id != null) {
-            return redirect('/lista/' . $lista_id)->with('success', 'Questão atualizada com sucesso!');
-        }else{
-            return redirect('/questoes/')->with('success', 'Questão atualizada com sucesso!');
-        }
+        //$lista_id = $request->input('lista_id');
+      //  if($lista_id != null) {
+            return redirect('/questao/edit/' .($questao->id))->with('success', 'Questão atualizada com sucesso!');
+      //  }else{
+      //      return redirect('/questao/edit/' .($questao->id))->with('success', 'Questão atualizada com sucesso!');
+     //   }
 
     }
 
-    public function destroy($id)
+    public function destroy($id)    
     {
         QuestaoListas::where('questao_id',$id)->delete();
         QuestaoAvaliacao::where('questao_id',$id)->delete();
@@ -319,8 +315,7 @@ class QuestaoController extends Controller
         $this->validate($request,[
             'lista_id' => 'required'
         ]);
-
-
+        
         $relacaoQuestao = QuestaoListas::where('questao_id',$request->input('questao_id'))->where('lista_id',$request->input('lista_id'))->get();
 
         if(count($relacaoQuestao)==0){
