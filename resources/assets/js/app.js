@@ -70,9 +70,11 @@ const app = new Vue({
             }
         },
         getCheck(e){
-            if(this.tipoQuestao && this.categoriaQuestao 
+            if((this.tipoQuestao && this.categoriaQuestao 
                 && this.dificuldadeQuestao && this.palavras_chaveQuestao 
-                && CKEDITOR.instances.enunciado.getData() && this.resposta && this.quantidadeLinhas){
+                && CKEDITOR.instances.enunciado.getData() && !this.resposta && !this.quantidadeLinhas) || (this.tipoQuestao && this.categoriaQuestao 
+                && this.dificuldadeQuestao && this.palavras_chaveQuestao 
+                && CKEDITOR.instances.enunciado.getData() && this.resposta && this.quantidadeLinhas)){
                 return true
             }
 

@@ -15,7 +15,7 @@ class AtualizarTabelaAlternativa extends Migration
     {
         Schema::create('alternativa', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('enunciado', 255);
+            $table->longText('enunciado');
             $table->boolean('correta');
             $table->integer('questao_id')->unsigned();
             //$table->foreign('questao_id')->references('id')->on('questao')->onDelete('cascade');

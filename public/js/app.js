@@ -14050,7 +14050,7 @@ var app = new Vue({
             }
         },
         getCheck: function getCheck(e) {
-            if (this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData() && this.resposta && this.quantidadeLinhas) {
+            if (this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData() && !this.resposta && !this.quantidadeLinhas || this.tipoQuestao && this.categoriaQuestao && this.dificuldadeQuestao && this.palavras_chaveQuestao && CKEDITOR.instances.enunciado.getData() && this.resposta && this.quantidadeLinhas) {
                 return true;
             }
 
@@ -47540,7 +47540,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\v-multiplaEscolha.vue"
+Component.options.__file = "resources/assets/js/components/v-multiplaEscolha.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47549,9 +47549,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-519d5541", Component.options)
+    hotAPI.createRecord("data-v-5cdbcafe", Component.options)
   } else {
-    hotAPI.reload("data-v-519d5541", Component.options)
+    hotAPI.reload("data-v-5cdbcafe", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47572,13 +47572,13 @@ var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(44)("77875a0a", content, false, {});
+var update = __webpack_require__(44)("4d05fd80", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-519d5541\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-multiplaEscolha.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-519d5541\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-multiplaEscolha.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5cdbcafe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-multiplaEscolha.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5cdbcafe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-multiplaEscolha.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -48245,7 +48245,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-519d5541", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5cdbcafe", module.exports)
   }
 }
 
@@ -48275,7 +48275,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\v-questoes.vue"
+Component.options.__file = "resources/assets/js/components/v-questoes.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48284,9 +48284,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-13702e49", Component.options)
+    hotAPI.createRecord("data-v-4282d109", Component.options)
   } else {
-    hotAPI.reload("data-v-13702e49", Component.options)
+    hotAPI.reload("data-v-4282d109", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49144,7 +49144,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-13702e49", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4282d109", module.exports)
   }
 }
 
@@ -49174,7 +49174,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\v-questoesAvaliacao.vue"
+Component.options.__file = "resources/assets/js/components/v-questoesAvaliacao.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -49183,9 +49183,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9a504c00", Component.options)
+    hotAPI.createRecord("data-v-08b04f40", Component.options)
   } else {
-    hotAPI.reload("data-v-9a504c00", Component.options)
+    hotAPI.reload("data-v-08b04f40", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -50105,7 +50105,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9a504c00", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-08b04f40", module.exports)
   }
 }
 
@@ -50113,7 +50113,7 @@ if (false) {
 /* 53 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Node Sass does not yet support your current environment: Linux 64-bit with Unsupported runtime (67)\nFor more information on which environments are supported please see:\nhttps://github.com/sass/node-sass/releases/tag/v4.9.0\n    at module.exports (/opt/lampp/htdocs/personalbdq/node_modules/node-sass/lib/binding.js:13:13)\n    at Object.<anonymous> (/opt/lampp/htdocs/personalbdq/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (internal/modules/cjs/loader.js:799:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:810:10)\n    at Module.load (internal/modules/cjs/loader.js:666:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:606:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:598:3)\n    at Module.require (internal/modules/cjs/loader.js:705:19)\n    at require (internal/modules/cjs/helpers.js:14:16)\n    at Object.<anonymous> (/opt/lampp/htdocs/personalbdq/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (internal/modules/cjs/loader.js:799:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:810:10)\n    at Module.load (internal/modules/cjs/loader.js:666:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:606:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:598:3)\n    at Module.require (internal/modules/cjs/loader.js:705:19)\n    at require (internal/modules/cjs/helpers.js:14:16)\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:13:17)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at runLoaders (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:170:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:27:11)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/opt/lampp/htdocs/personalbdq/node_modules/loader-runner/lib/LoaderRunner.js:362:2)\n    at NormalModule.doBuild (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/Compilation.js:157:10)\n    at moduleFactory.create (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/Compilation.js:460:10)\n    at factory (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModuleFactory.js:94:13)\n    at /opt/lampp/htdocs/personalbdq/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/opt/lampp/htdocs/personalbdq/node_modules/tapable/lib/Tapable.js:272:13)\n    at resolver (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModuleFactory.js:69:10)\n    at process.nextTick (/opt/lampp/htdocs/personalbdq/node_modules/webpack/lib/NormalModuleFactory.js:196:7)\n    at processTicksAndRejections (internal/process/next_tick.js:74:9)");
 
 /***/ })
 /******/ ]);

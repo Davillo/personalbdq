@@ -84,6 +84,11 @@
                     .pagebreak{
                         page-break-before: always;
                     }
+                    img {
+                        width: 300px;
+                        height: 300px;
+                        margin: 0 auto;
+                    }
                 </style>
             </head>
             <body>

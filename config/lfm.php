@@ -80,8 +80,8 @@ return [
     // If true, the uploading file's size will be verified for over than max_image_size/max_file_size.
     'should_validate_size' => false,
 
-    'max_image_size' => 50000,
-    'max_file_size' => 50000,
+    'max_image_size' => 5000,
+    'max_file_size' => 5000,
 
     // If true, the uploading file's mime type will be valid in valid_image_mimetypes/valid_file_mimetypes.
     'should_validate_mime' => false,
@@ -142,33 +142,17 @@ return [
     */
 
     'file_type_array' => [
-        'pdf'  => 'Adobe Acrobat',
-        'doc'  => 'Microsoft Word',
-        'docx' => 'Microsoft Word',
-        'xls'  => 'Microsoft Excel',
-        'xlsx' => 'Microsoft Excel',
-        'zip'  => 'Archive',
         'gif'  => 'GIF Image',
         'jpg'  => 'JPEG Image',
         'jpeg' => 'JPEG Image',
         'png'  => 'PNG Image',
-        'ppt'  => 'Microsoft PowerPoint',
-        'pptx' => 'Microsoft PowerPoint',
     ],
 
     'file_icon_array' => [
-        'pdf'  => 'fa-file-pdf-o',
-        'doc'  => 'fa-file-word-o',
-        'docx' => 'fa-file-word-o',
-        'xls'  => 'fa-file-excel-o',
-        'xlsx' => 'fa-file-excel-o',
-        'zip'  => 'fa-file-archive-o',
         'gif'  => 'fa-file-image-o',
         'jpg'  => 'fa-file-image-o',
         'jpeg' => 'fa-file-image-o',
         'png'  => 'fa-file-image-o',
-        'ppt'  => 'fa-file-powerpoint-o',
-        'pptx' => 'fa-file-powerpoint-o',
     ],
 
     /*

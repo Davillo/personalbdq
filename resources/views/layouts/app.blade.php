@@ -73,16 +73,37 @@
 <script>
     let options = {
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
     filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-    language: 'pt',
+    language: 'pt-br',
+    filebrowserUploadUrl: null, // desabilitar a guia de upload 
+    filebrowserImageUploadUrl: null, // desabilitar o upload da guia 
+    filebrowserFlashUploadUrl: null, // disable tab de upload
     uiColor: '#fd7e14',
     width: "100%",
     height: 300,
-    entities_latin: false 
+    entities_latin: false,
     };
     CKEDITOR.replace('enunciado',options);
+
+    CKEDITOR.on('dialogDefinition', function( ev )
+   {
+      // Take the dialog name and its definition from the event
+      // data.
+      var dialogName = ev.data.name;
+      var dialogDefinition = ev.data.definition;
+
+      // Check if the definition is from the dialog we're
+      // interested on (the 'Image' dialog).
+      if ( dialogName == 'image' )
+      {
+
+         // Get a reference to the 'Image Info' tab.
+         var infoTab = dialogDefinition.getContents( 'info' );
+
+         // Remove unnecessary widgets from the 'Image Info' tab.         
+         infoTab.remove( 'txtAlt');
+      }
+   });
 </script>
 <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 <script>$('#lfm').filemanager('image');</script>

@@ -173,7 +173,7 @@ class AvaliacaoController extends Controller
         $questoesAvaliacao = QuestaoAvaliacao::select('questao_id')->where('avaliacao_id',$avaliacao->id)->get();
         
         $questoes = Questao::whereIn('id',$questoesAvaliacao)->inRandomOrder()->get();
-        $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->get();
+        $alternativas = Alternativa::whereIn('questao_id',$questoesAvaliacao)->inRandomOrder()->get();
 
         $pdf = PDF::loadView('templates.avaliacao', compact('questoes', 'alternativas', 'avaliacao'));
         return $pdf->stream($avaliacao->titulo.'.pdf');
