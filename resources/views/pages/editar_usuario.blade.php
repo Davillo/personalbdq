@@ -51,6 +51,20 @@
                             <input type="password" class="form-control borda-input" name="senha" placeholder="Senha...">
                         </div>
                     </div>
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Tipo de Usuário">Tipo de Usuário<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                   
+                                <select name="type" class="form-control borda-input">
+                                    @if($usuario->type == 'Professor')
+                                        <option value="Professor" checked>Professor</option>
+                                        <option value="Coordenador">Coordenador</option>
+                                    @else
+                                        <option value="Professor" >Professor</option>
+                                        <option value="Coordenador" checked>Coordenador</option>
+                                    @endif
+                                </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
                             <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Atualizar"><br>

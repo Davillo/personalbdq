@@ -37,11 +37,12 @@ class UsuarioController extends Controller{
             $usuario->senha = bcrypt($request->input('senha'));
             $usuario->matricula = $request->input('matricula');
             $usuario->curso_id = $request->input('curso_id');
+            $usuario->type = $request->input('type') ? $request->input('type') : 'Professor';
             $usuario->data_criacao = Datas::getDataAtual();
             $usuario->data_atualizado = Datas::getDataAtual();
             $usuario->save();
             try {
-                return redirect('/novo_usuario')->with('success','Usuário salvo com sucesso!');
+                return redirect('/usuario')->with('success','Usuário salvo com sucesso!');
             } catch (\Exception $e) {
                 return redirect('/novo_usuario')->with('error','Erro ao salvar usuário!')->withInput();
             }
@@ -51,7 +52,7 @@ class UsuarioController extends Controller{
     }
 
     public function show(){
-        $usuarios = Usuario::orderBy('id','desc')->get();
+        $usuarios = Usuario::orderBy('id','desc')->where('admin', '=', 'false')->get();
         return view('pages.usuarios')->with('usuarios',$usuarios);
     }
 
@@ -82,6 +83,7 @@ class UsuarioController extends Controller{
         $usuario->nome = $request->input('nome');
         $usuario->matricula = $request->input('matricula');
         $usuario->data_atualizado = Datas::getDataAtual();
+        $usuario->type = $request->input('type');
 
         if($request->input('senha') == null){
             $usuario->senha = $usuario->senha;
@@ -91,7 +93,7 @@ class UsuarioController extends Controller{
 
         try {
             $usuario->save();
-            return redirect('/edit/'.base64_encode($request->input('id')))->with('success','Usuário editado com sucesso!');
+            return redirect('/usuario')->with('success','Usuário editado com sucesso!');
         } catch (\Exception $e) {
             return redirect('/edit/'.base64_encode($request->input('id')))->with('error','Erro ao atualizar usuário!');
         }

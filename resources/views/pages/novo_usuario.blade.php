@@ -59,6 +59,17 @@
 
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
+                            <label for="Tipo de Usuário">Tipo de Usuário<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                   
+                                <select name="type" class="form-control borda-input">
+                                    <option value="">Selecione o tipo de usuário...</option>
+                                    <option value="Professor">Professor</option>
+                                    <option value="Coordenador">Coordenador</option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
                             <label for="Curso">Curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                   
                             @if(count($cursos)>0)
                                 <select v-model="cursoUsuario" name="curso_id" class="form-control borda-input">

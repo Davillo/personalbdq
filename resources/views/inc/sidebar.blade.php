@@ -7,12 +7,17 @@ Tip 1: You can change the color of the sidebar using: data-color="blue | green |
                 color: #ffffff;
                 margin-top: 10px;
                 margin-left: 20px;">PersonalBDQ</h3>
-
-        <h5  style=" font-family: 'arial', cursive;
+        @if(Auth::user()->admin)
+        <h6  style=" font-family: 'arial', cursive;
                 color: #ffffff;
                 margin-top: 10px;
-                margin-left: 20px;">Usuário:  {{Auth::user()->nome}}</h5>
-
+                margin-left: 20px;">{{Auth::user()->nome}}</h6>
+        @else
+        <h5  style="font-family:'arial', cursive;
+        color: #ffffff;
+        margin-top: 10px;
+        margin-left: 20px;">{{Auth::user()->nome}} <br> <span style="font-size:1rem;font-weight:bold;">{{Auth::user()->type}}</span></h5>
+        @endif
     </div>
 
     <div class="sidebar-wrapper">
