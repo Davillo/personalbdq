@@ -56,11 +56,11 @@
                             <label for="Tipo de Usuário">Tipo de Usuário<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                   
                                 <select name="type" class="form-control borda-input">
                                     @if($usuario->type == 'Professor')
-                                        <option value="Professor" checked>Professor</option>
+                                        <option value="Professor" selected>Professor</option>
                                         <option value="Coordenador">Coordenador</option>
                                     @else
-                                        <option value="Professor" >Professor</option>
-                                        <option value="Coordenador" checked>Coordenador</option>
+                                        <option value="Professor">Professor</option>
+                                        <option value="Coordenador" selected>Coordenador</option>
                                     @endif
                                 </select>
                         </div>
