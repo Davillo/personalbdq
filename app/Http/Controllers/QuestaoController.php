@@ -202,6 +202,13 @@ class QuestaoController extends Controller
                 'resposta' => 'required',
                 'quantidadeLinhas' => 'required'
             ]);
+        }else{
+            $this->validate($request,[
+                'enunciado' => 'required',
+                'palavras_chave' => 'required',
+                'dificuldade' => 'required',
+                'categoria' => 'required'
+            ]);
         }
 
         $questao = Questao::find($request->input('id'));
