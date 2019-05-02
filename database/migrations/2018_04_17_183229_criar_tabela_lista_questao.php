@@ -18,8 +18,6 @@ class CriarTabelaListaQuestao extends Migration
             $table->string('nome',100);
             $table->string('descricao',255);
             $table->integer('autor_usuario_id')->unsigned();
-          //  $table->foreign('autor_usuario_id')->references('id')->on('usuario');
-           // $table->integer('autor_usuario_id');
             $table->date('data_criacao');
             $table->date('data_atualizado');
         });

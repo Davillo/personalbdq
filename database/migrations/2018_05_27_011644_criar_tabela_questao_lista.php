@@ -17,10 +17,6 @@ class CriarTabelaQuestaoLista extends Migration
             $table->increments('id');
             $table->integer('questao_id')->unsigned();
             $table->integer('lista_id')->unsigned();
-           // $table->foreign('questao_id')->references('id')->on('questao');
-          //  $table->integer('questao_id');
-            //$table->foreign('lista_id')->references('id')->on('lista_questao');
-          //  $table->integer('lista_id');
         });
     }
 

@@ -16,17 +16,10 @@ class CriarTabelaUsuariosListas extends Migration
         Schema::create('usuarios_listas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('usuario_convidado_id')->unsigned();
-            //$table->foreign('usuario_convidado_id')->references('id')->on('usuario');
-
             $table->integer('lista_id')->unsigned();
-           // $table->foreign('lista_id')->references('id')->on('lista_questao');
-
             $table->integer('autor_usuario_id')->unsigned();
-          //  $table->foreign('autor_usuario_id')->references('id')->on('usuario');
-
             $table->date('data_criacao');
             $table->date('data_atualizado');
-            //$table->timestamps();
         });
     }
 

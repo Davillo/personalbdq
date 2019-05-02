@@ -38,7 +38,7 @@
                         <div class="row">                                                        
                              <div class="form-group col-md-9 mx-auto">
                                 <label for="Tipo de questão">Tipo de questão<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
-                                <select @change="getForm" name="tipo" class="form-control borda-input" disabled>
+                                <select @change="getForm" name="tipo" class="form-control borda-input" >
                                     <option value="{{$questao->tipo}}">{{$questao->tipo}}</option>
                                 </select>
                             </div>

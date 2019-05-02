@@ -193,15 +193,16 @@ class QuestaoController extends Controller
     public function update(Request $request){
         date_default_timezone_set('America/Fortaleza');
 
-
-        $this->validate($request,[
-            'enunciado' => 'required',
-            'palavras_chave' => 'required',
-            'dificuldade' => 'required',
-            'categoria' => 'required',
-            'resposta' => 'required',
-            'quantidadeLinhas' => 'required'
-        ]);
+        if($request->input('tipo') == 'Dissertativa'){
+            $this->validate($request,[
+                'enunciado' => 'required',
+                'palavras_chave' => 'required',
+                'dificuldade' => 'required',
+                'categoria' => 'required',
+                'resposta' => 'required',
+                'quantidadeLinhas' => 'required'
+            ]);
+        }
 
         $questao = Questao::find($request->input('id'));
         $questao->enunciado = $request->input('enunciado');
@@ -288,13 +289,7 @@ class QuestaoController extends Controller
             }
         }
 
-        //$lista_id = $request->input('lista_id');
-      //  if($lista_id != null) {
             return redirect('/questao/edit/' .($questao->id))->with('success', 'Questão atualizada com sucesso!');
-      //  }else{
-      //      return redirect('/questao/edit/' .($questao->id))->with('success', 'Questão atualizada com sucesso!');
-     //   }
-
     }
 
     public function destroy($id)    
